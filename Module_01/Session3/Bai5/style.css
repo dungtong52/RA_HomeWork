@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.image-div img {
+  vertical-align: top;
+  width: 100%;
+}
+.image-div {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+  margin: 10px 20px 0 10px;
+}
+.description-div {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  margin-top: 10px;
+}
+.description-div .source-line {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.source-line .source {
+  color: #41455e;
+}
+.source-line .source-time {
+  color: #777777;
+}

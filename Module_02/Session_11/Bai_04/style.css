@@ -1,0 +1,111 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.larger-container {
+  background: #62d4d1;
+  background: linear-gradient(
+    180deg,
+    rgba(98, 212, 209, 1) 10%,
+    rgba(77, 137, 228, 1) 100%
+  );
+  padding: 50px;
+}
+.smaller-contanier {
+  max-width: 400px;
+  padding: 30px 20px;
+  background-color: white;
+  text-align: left;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+.smaller-contanier .title {
+  margin-bottom: 15px;
+}
+/* input-div */
+#input-div {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+#input-div #todo-input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-left: 10px;
+  width: 100%;
+}
+#input-div .btn-add,
+.btn-edit {
+  padding: 8px 10px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  background-color: #bb92f1;
+}
+#input-div .btn-edit {
+  display: none;
+}
+#input-div .btn-add:hover,
+.btn-edit:hover {
+  background-color: #30ac4b;
+  cursor: pointer;
+}
+/* list-todo-div */
+#list-todo-div {
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+#list-todo-div li {
+  background-color: #f2f2f2;
+  list-style-type: none;
+  padding-left: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 36px;
+  cursor: pointer;
+}
+#list-todo-div .trash-div {
+  background-color: #e74c3c;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  display: none;
+}
+#list-todo-div li:hover .trash-div {
+  display: inline;
+}
+#list-todo-div .trash-div:hover {
+  background-color: #30ac4b;
+  cursor: pointer;
+}
+.trash-div i {
+  color: white;
+  padding: 12px;
+  font-size: 12px;
+}
+
+/* total-pendingTask */
+#total-pendingTask-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#total-pendingTask-div #btn-clearAll {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #8e49e8;
+  color: white;
+}
+#total-pendingTask-div #btn-clearAll:hover {
+  background-color: #30ac4b;
+  cursor: pointer;
+}

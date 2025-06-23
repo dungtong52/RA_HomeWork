@@ -1,0 +1,149 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  padding-top: 50px;
+  text-align: center;
+  background-color: #7c59b0;
+}
+.btn-add {
+  text-transform: uppercase;
+  background-color: #34495e;
+  color: rgb(247, 247, 247);
+  font-size: 30px;
+  padding: 20px 40px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+}
+.btn-add:hover {
+  cursor: pointer;
+  background-color: #244361;
+}
+/* LIST BOOKMARK */
+#list-container {
+  margin-top: 50px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 0 50px;
+}
+#list-container .bookmark-detail-div {
+  text-transform: uppercase;
+  background-color: #34495e;
+  padding: 30px 30px 20px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  position: relative;
+}
+#list-container .bookmark-detail-div:hover {
+  cursor: pointer;
+  background-color: #244361;
+}
+.bookmark-detail-div img {
+  display: block;
+  width: 24px;
+}
+.bookmark-detail-div .fa-x {
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.bookmark-detail-div .fa-edit {
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.bookmark-detail-div i:hover {
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: white;
+  color: #7c59b0;
+}
+/* POP UP */
+#popUp-bookmark-container {
+  width: 450px;
+  background-color: white;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+#popUp-bookmark-container .bookmark-title-div {
+  background-color: #7c59b0;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+.bookmark-title-div i {
+  padding: 3px 5px;
+  color: white;
+}
+.bookmark-title-div i:hover {
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 3px;
+  background-color: white;
+  color: #7c59b0;
+}
+
+#popUp-bookmark-container .bookmark-detail-input {
+  text-align: left;
+  padding: 20px;
+  color: #7c59b0;
+}
+.bookmark-detail-input label {
+  display: block;
+}
+.bookmark-detail-input input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  border: 2px solid #7c59b0;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.bookmark-detail-input input:focus {
+  outline: none;
+}
+.bookmark-detail-input .btn-save,
+.btn-edit {
+  color: white;
+  background-color: #7c59b0;
+  padding: 8px 36px;
+  border: none;
+  border-radius: 5px;
+}
+.bookmark-detail-input .btn-save:hover,
+.btn-edit:hover {
+  cursor: pointer;
+  background-color: rgb(53, 105, 0);
+}
+/* Overlay */
+.overlay {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+.hidden {
+  display: none;
+}

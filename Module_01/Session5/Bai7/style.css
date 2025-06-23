@@ -1,0 +1,83 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 1.5s ease-out;
+}
+.container {
+  margin: 0 auto;
+  padding: 10px;
+  width: 1050px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.container .row {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+.row.large {
+  width: 100%;
+  position: relative;
+}
+.row .small {
+  flex: 1;
+  position: relative;
+}
+.title {
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+}
+.title p {
+  margin-top: 30px;
+}
+.small.sign-up {
+  background-color: #800000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.small .btn {
+  background-color: #fff;
+  color: #800000;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+  margin: 20px;
+  width: calc(100% - 40px);
+  border-radius: 10px;
+  transition: transform 1s ease;
+}
+
+/* Practice */
+img:hover {
+  border: 1px solid black;
+  box-shadow: 0 0 50px rgb(0, 0, 0);
+  border-radius: 10px;
+  transform: scale(1.2);
+  position: relative;
+  z-index: 2;
+}
+.btn:hover {
+  transform: translateY(50px);
+}

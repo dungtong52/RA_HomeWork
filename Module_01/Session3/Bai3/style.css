@@ -1,0 +1,35 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #cccccc;
+  text-align: center;
+  color: #2c3f50;
+}
+h1 {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 10px rgba(83, 110, 136, 0.8);
+}
+th,
+td {
+  border: solid 1px #999999;
+  padding: 10px;
+}
+table {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  text-transform: uppercase;
+  background-color: #027bff;
+  color: #fff;
+}
+tr:nth-child(3) {
+  background-color: #ffffff;
+}

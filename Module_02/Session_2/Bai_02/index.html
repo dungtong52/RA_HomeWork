@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 02 - Bài 02</title>
+  </head>
+  <body>
+    <h1>Session 02 - Bài 02</h1>
+    <p>Tính điểm trung bình và xếp loại học lực</p>
+    <p>
+      Nhập điểm 3 môn Toán, Văn, Anh, sau đó tính điểm trung bình và xếp loại
+      học lực:
+    </p>
+    <ul>
+      <li>>= 8.0: Giỏi</li>
+      <li>6.5 - 7.9: Khá</li>
+      <li>5.0 - 6.4: Trung bình</li>
+      <li>5.0: Yếu</li>
+    </ul>
+    <hr />
+
+    <div style="margin-bottom: 15px">
+      <label class="mathScore">Nhập vào điểm Toán:</label>
+      <input type="number" id="mathScore" />
+    </div>
+    <div style="margin-bottom: 15px">
+      <label class="literatureScore">Nhập vào điểm Văn:</label>
+      <input type="number" id="literatureScore" />
+    </div>
+    <div style="margin-bottom: 15px">
+      <label class="englishScore">Nhập vào điểm Anh:</label>
+      <input type="number" id="englishScore" />
+    </div>
+
+    <button
+      id="btn"
+      style="
+        padding: 5px;
+        border-radius: 5px;
+        background-color: chartreuse;
+        margin-bottom: 15px;
+      ">
+      Try it
+    </button>
+
+    <div id="result"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

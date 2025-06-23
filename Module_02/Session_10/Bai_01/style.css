@@ -1,0 +1,76 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.contaniner {
+  margin: 50px auto;
+  width: 600px;
+  padding: 30px 15px 15px 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+.contaniner .title {
+  text-align: center;
+}
+/* ADD STUDENT */
+.contaniner #addStudent-form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+input {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.contaniner .btn-add {
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.contaniner .btn-add:hover {
+  cursor: pointer;
+  background-color: rgb(75, 150, 0);
+}
+/* TABLE LIST STUDENT */
+.student-list-table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-top: 10px;
+}
+.student-list-table th,
+td {
+  padding: 10px;
+}
+.student-list-table tr {
+  border-bottom: 1px solid #e2e2e2;
+}
+.student-list-table .btn-edit {
+  margin-right: 10px;
+  background-color: #ffc107;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.student-list-table .btn-delete {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.btn-edit:hover,
+.btn-delete:hover {
+  cursor: pointer;
+  background-color: rgb(75, 150, 0);
+}

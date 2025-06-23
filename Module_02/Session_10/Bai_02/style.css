@@ -1,0 +1,47 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  margin: 50px auto;
+  width: 600px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+#text-output {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.keyboard-div {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+}
+.keyboard-div .character-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  text-align: center;
+}
+.keyboard-div .btn-delete {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  text-align: center;
+}
+.keyboard-div .character-btn:hover,
+.btn-delete:hover {
+  background-color: rgb(79, 158, 0);
+  cursor: pointer;
+}

@@ -1,0 +1,97 @@
+*,
+*::after,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row-1 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.row-1 .col {
+  height: 60px;
+  background-color: #ffa437;
+  width: calc((100% - 10px) / 2);
+}
+.row-2 {
+  height: 300px;
+  background-color: #daec00;
+}
+.row-3 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.row-3 .col {
+  height: 150px;
+  background-color: #4a89cf;
+  width: calc((100% - 20px) / 3);
+}
+.row-4 {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.row-4 .col {
+  height: 100px;
+  background-color: #e3e3e3;
+  width: calc((100% - 30px) / 4);
+}
+
+@media screen and (max-width: 767px) {
+  .row-1 {
+    flex-wrap: wrap;
+  }
+  .row-1 .col {
+    width: 100%;
+  }
+  .row-2 {
+    height: 100px;
+  }
+  .row-3 {
+    flex-wrap: wrap;
+  }
+  .row-3 .col {
+    width: 100%;
+  }
+  .row-4 {
+    flex-wrap: wrap;
+  }
+  .row-4 .col {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .row-1 {
+    flex-wrap: wrap;
+  }
+  .row-1 .col {
+    width: 100%;
+  }
+  .row-2 {
+    height: 200px;
+  }
+  .row-3 {
+    flex-wrap: wrap;
+  }
+  .row-3 .col {
+    height: 100px;
+    width: 100%;
+  }
+  .row-4 {
+    flex-wrap: wrap;
+  }
+  .row-4 .col {
+    height: 100px;
+    width: calc((100% - 10px) / 2);
+  }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 02 - Bài 12</title>
+  </head>
+  <body style="width: 600px">
+    <h1>Session 02 - Bài 12</h1>
+    <p
+      style="margin-bottom: 20px; font-family: 'Times New Roman', Times, serif">
+      Viết chương trình javascript thực hiện tính toán số tiền lãi khi gửi ngân
+      hàng. Yêu cầu:
+    </p>
+    <ul>
+      <li>Người dùng nhập vào số tiền gửi</li>
+      <li>Người dùng nhập vào số tháng gửi</li>
+      <li>
+        Thực hiện tính toán số tiền lãi nhận được biết lãi suất là 4.3% / năm và
+        hiển thị kết quả ra màn hình
+      </li>
+    </ul>
+
+    <div style="margin-bottom: 20px">
+      <label for="amountInput">Nhập số tiền cần gửi:</label>
+      <input
+        type="number"
+        id="amountInput"
+        placeholder="Nhập số tiền"
+        value="" />
+      VNĐ
+    </div>
+    <div>
+      <label for="monthInput">Nhập số tháng gửi:</label>
+      <input type="number" id="monthInput" placeholder="Nhập số tháng" /> tháng
+    </div>
+    <p>Lãi suất 4.3% / năm</p>
+    <button
+      class="btn"
+      onclick="interestCalculation()"
+      style="margin-top: 20px">
+      Tính tiền lãi:
+    </button>
+    <p id="amountOutput"></p>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

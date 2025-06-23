@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 02 - Bài 4</title>
+  </head>
+  <body style="text-align: center; width: 600px">
+    <h1>Session 02 - Bài 4</h1>
+    <h4
+      style="margin-bottom: 20px; font-family: 'Times New Roman', Times, serif">
+      Trong phần này, chúng ta sẽ khai báo 3 biến đại diện cho điểm các môn học
+      ở đây là 3 môn học là (math, physics, chemistry), thực hiện tính điểm
+      trung bình 3 môn học trên và hiển thị lên màn hình
+    </h4>
+    <div>
+      <label for="mathScore">Nhập điểm môn Toán:</label><br />
+      <input type="number" id="mathScore" />
+    </div>
+    <div>
+      <label for="physicsScore">Nhập điểm môn Vật lý:</label><br />
+      <input type="number" id="physicsScore" />
+    </div>
+    <div>
+      <label for="chemistryScore">Nhập điểm môn Hóa học:</label><br />
+      <input type="number" id="chemistryScore" />
+    </div>
+
+    <button class="btn" onclick="averageScore()">Tính điểm trung bình:</button>
+    <div id="result"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Session 11 - Bài 01</title>
+  </head>
+  <body>
+    <h1>Session 11 - Bài 01</h1>
+
+    <div class="container">
+      <h1 class="title">Register</h1>
+      <form action="" id="login-form">
+        <div class="email-div">
+          <label>Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address" />
+        </div>
+        <div class="password-div">
+          <label>Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            title="Mật khẩu ít nhất 8 ký tự trong đó có ít nhất 1 ký tự đặc biệt, ít nhất 1 ký tự in hoa, có cả số và chữ"
+            placeholder="Enter your password" />
+        </div>
+        <div class="confirmPassword-div">
+          <label>Confirm Password:</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="password"
+            placeholder="Enter your confirm password" />
+        </div>
+        <button type="submit" class="btn">Register</button>
+      </form>
+    </div>
+    <div id="msg">
+      <p id="empty">Các ô không được để trống</p>
+      <p id="psw-confirm">Password và Confirm password không khớp nhau</p>
+    </div>
+    <div id="msg-email">Email nhập sai định dạng</div>
+    <div id="msg-psw">
+      <h3>Mật khẩu phải bao gồm:</h3>
+      <p id="letter">Một ký tự đặc biệt</p>
+      <p id="capital">Một ký tự in hoa</p>
+      <p id="character">Một ký tự chữ thường</p>
+      <p id="number">Một chữ số</p>
+      <p id="length">Tối thiểu 8 ký tự</p>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

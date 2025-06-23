@@ -1,0 +1,53 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  color: #231651;
+}
+.container {
+  width: 700px;
+  background-color: #eaeaea;
+  padding: 15px;
+}
+.container h2 {
+  font-size: 40px;
+  line-height: 1.5;
+}
+.container .benefit-div {
+  margin: 30px 0;
+}
+.benefit-div li {
+  margin: 15px 0;
+  font-size: 18px;
+  list-style: none;
+  font-weight: 500;
+}
+.benefit-div .icon {
+  vertical-align: middle;
+  margin-right: 10px;
+  height: 2em;
+}
+.container .btn {
+  padding: 15px 20px;
+  border: 2px solid #c1bcd1;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.container .solid-red {
+  background-color: #bc2229;
+  margin-right: 15px;
+  border: 2px solid #bc2229;
+}
+.solid-red a {
+  text-decoration: none;
+  color: #fff;
+}
+.opacity a {
+  color: #231651;
+  text-decoration: none;
+}

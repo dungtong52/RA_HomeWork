@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <title>Session 11 - Bài 04</title>
+  </head>
+  <body>
+    <h1>Session 11 - Bài 04</h1>
+    <div class="larger-container">
+      <div class="smaller-contanier">
+        <h1 class="title">Todo App</h1>
+        <div id="input-div">
+          <input
+            type="text"
+            id="todo-input"
+            name="todo-input"
+            placeholder="Add your new todo" />
+          <div id="btn-create-update">
+            <i class="btn-add fa-solid fa-plus"></i>
+            <i class="btn-edit fa-solid fa-pen-to-square"></i>
+          </div>
+        </div>
+
+        <ul id="list-todo-div"></ul>
+
+        <div id="total-pendingTask-div">
+          <p id="total-pendingTask">
+            You have <span id="total"></span> pending tasks
+          </p>
+          <button id="btn-clearAll">Clear All</button>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+/* HEADER */
+#header {
+  background-color: #333333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 30px 0 20px 0;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+}
+.navbar li {
+  list-style-type: none;
+}
+/* MAIN */
+#portfolio {
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 30px;
+}
+.btn {
+  background-color: #333333;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.feature-work {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 30px;
+}
+.feature-work .project-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+.project-wrapper .project {
+  width: 25%;
+  text-align: center;
+}
+.project img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#about {
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 30px;
+}
+#footer {
+  background-color: #333333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f9f9f9;
+  padding: 15px 0;
+}

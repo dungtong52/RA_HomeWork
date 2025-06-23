@@ -1,0 +1,66 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 15px 0 25px 15px;
+}
+.container {
+  width: 600px;
+}
+a {
+  text-decoration: none;
+}
+.container h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #2d2d2d;
+}
+.container .column-bold {
+  border-left: 6px solid #ff6116;
+  margin-right: 20px;
+}
+.container .img-wrapper {
+  position: relative;
+  transition: transform 0.5s ease;
+}
+.container .img-wrapper:hover span {
+  color: black;
+}
+.container img {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.container .img-caption {
+  width: 80%;
+  font-size: 36px;
+  font-weight: 400;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.container .recommend {
+  font-size: 22px;
+  margin: 15px 0;
+}
+.recommend a {
+  color: #2d2d2d;
+  font-weight: 600;
+}
+.recommend a:hover {
+  text-decoration: underline;
+  color: red;
+  cursor: pointer;
+}
+hr {
+  border: none;
+  height: 2px;
+  background-color: #e9e9e9;
+}

@@ -1,0 +1,35 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  color: #231651;
+}
+.container {
+  margin: 20px;
+  background-color: #e6e5e5;
+  border: 2px solid rgb(145, 145, 145);
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+}
+.container .box {
+  height: 100px;
+  color: #fff;
+  background-color: #3498db;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 calc(25% - 5px);
+}
+.box.large {
+  flex: 0 0 calc(50% - 5px);
+}

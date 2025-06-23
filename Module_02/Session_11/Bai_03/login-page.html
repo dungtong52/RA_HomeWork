@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <title>Session 11 - Bài 03</title>
+  </head>
+  <body>
+    <h1>Session 11 - Bài 03</h1>
+
+    <div id="container">
+      <h1 class="title">Login</h1>
+      <form action="" id="login-form">
+        <div class="email-div">
+          <label>Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address" />
+        </div>
+        <div class="password-div">
+          <label>Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password" />
+          <i class="fa-solid fa-eye" id="password-display"></i>
+          <i class="fa-solid fa-eye-slash" id="password-hidden"></i>
+        </div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <div>
+        <input type="checkbox" id="time-login" name="time" value="Save" />
+        <label for="time-login">Lưu đăng nhập</label>
+      </div>
+      <div id="signup-forgotPassword">
+        <span><a href="#">Forgot password</a></span>
+        <span>or</span>
+        <span><a href="#">SignUp</a></span>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

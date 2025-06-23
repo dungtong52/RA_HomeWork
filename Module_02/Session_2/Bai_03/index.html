@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 02 - Bài 03</title>
+  </head>
+  <body>
+    <h1>Session 02 - Bài 03</h1>
+    <ul>
+      <li>Viết chương trình kiểm tra đăng nhập hệ thống của người dùng.</li>
+      <li>Yêu cầu người dùng nhập tên từ bàn phím.</li>
+      <ul>
+        <li>
+          Nếu tên nhập vào là <b>ADMIN</b> thì yêu cầu nhập mật khẩu :
+          <ul>
+            <li>
+              Nếu mật khẩu là <b>TheMaster</b> thì in ra chuỗi <b>Welcome</b>.
+            </li>
+            <li>Nếu mật khẩu nhập vào là null in ra chuỗi <b>Cancelled</b>.</li>
+            <li>Còn lại in ra chuỗi <b>Wrong password</b>.</li>
+          </ul>
+        </li>
+        <li>Nếu tên nhập vào là null in ra chuỗi <b>Cancelled</b></li>
+        <li>Còn lại in ra chuỗi “<b>I Don’t know you</b>”</li>
+      </ul>
+    </ul>
+    <hr />
+
+    <div style="margin-bottom: 15px">
+      <label class="accountInput">Nhập tên vào đây:</label>
+      <input type="text" id="accountInput" placeholder="ADMIN" />
+    </div>
+
+    <div style="margin-bottom: 15px">
+      <label class="passwordInput">Nhập mật khẩu vào đây:</label>
+      <input type="text" id="passwordInput" placeholder="TheMaster" />
+    </div>
+
+    <button id="btn">Check password</button>
+    <script src="./script.js"></script>
+  </body>
+</html>

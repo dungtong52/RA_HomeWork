@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 2 - Bài 7</title>
+  </head>
+  <body>
+    <form action="www.myserver.com" method="post">
+      <div>
+        <label for="name">Họ và tên:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div>
+        <label for="datetime">Chọn ngày giờ:</label>
+        <input type="datetime-local" id="datetime" name="datetime" required />
+      </div>
+      <div>
+        <label for="services">Loại dịch vụ:</label>
+        <select name="services" id="services" required multiple>
+          <option value="tuvan">Tư vấn</option>
+          <option value="khamrang">Khám răng</option>
+          <option value="nhorang">Nhổ răng</option>
+          <option value="trongrang">Trồng răng</option>
+        </select>
+      </div>
+      <div>
+        <label for="ghichu">Ghi chú:</label>
+        <textarea name="ghichu" id="ghichu" rows="4" cols="30"></textarea>
+      </div>
+      <div>
+        <button type="submit">Đặt lịch</button>
+      </div>
+    </form>
+  </body>
+</html>

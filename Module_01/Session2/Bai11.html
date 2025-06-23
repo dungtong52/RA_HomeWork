@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 2 - Bài 11</title>
+  </head>
+  <body>
+    <form action="www.myserver.com" method="post">
+      <table style="width: 600px">
+        <tr>
+          <td><label for="name">Họ và tên:</label></td>
+          <td><input type="text" id="name" name="name" required /></td>
+        </tr>
+        <tr>
+          <td><label for="dob">Ngày sinh:</label></td>
+          <td><input type="date" id="dob" name="dob" required /></td>
+        </tr>
+        <tr>
+          <td><label>Giới tính:</label></td>
+          <td>
+            <label><input type="radio" name="gender" value="male" />Nam</label>
+            <label><input type="radio" name="gender" value="female" />Nữ</label>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="phone">Số điện thoại:</label></td>
+          <td>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              maxlength="11"
+              minlength="10"
+              required />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">Email:</label></td>
+          <td><input type="email" id="email" name="email" required /></td>
+        </tr>
+        <tr>
+          <td><label for="addressT">Địa chỉ:</label></td>
+          <td>
+            <textarea
+              name="addressT"
+              id="addressT"
+              rows="2"
+              cols="25"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="role">Vai trò trong nhóm:</label></td>
+          <td>
+            <select name="role" id="role">
+              <option value="member">Thành viên</option>
+              <option value="leader">Trưởng nhóm</option>
+              <option value="planner">Người lập kế hoạch</option>
+              <option value="photographer">Người chụp ảnh</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="hobby">Sở thích:</label></td>
+          <td><input type="text" id="hobby" name="hobby" required /></td>
+        </tr>
+        <tr>
+          <td><label for="skill">Kỹ năng:</label></td>
+          <td>
+            <textarea name="skill" id="skill" rows="2" cols="25"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="freeTime">Thời gian rảnh:</label></td>
+          <td>
+            <label
+              ><input
+                type="checkbox"
+                name="freeTime"
+                value="morning" />Sáng</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="freeTime"
+                value="afternoon" />Chiều</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="freeTime"
+                value="evening" />Tối</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><label for="reason">Lý do tham gia nhóm:</label></td>
+          <td>
+            <textarea name="reason" id="reason" rows="2" cols="25"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="favoriteColor">Màu yêu thích:</label></td>
+          <td>
+            <input type="color" id="favoriteColor" name="favoriteColor" />
+          </td>
+        </tr>
+        <tr>
+          <td><label>Đăng ký nhận bản tin:</label></td>
+          <td>
+            <label
+              ><input type="checkbox" name="newsletter" value="yes" />Có</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><label>Nhận thông báo qua:</label></td>
+          <td>
+            <label
+              ><input
+                type="radio"
+                name="getNewsletter"
+                value="email" />Email</label
+            >
+            <label
+              ><input type="radio" name="getNewsletter" value="sms" />SMS</label
+            >
+          </td>
+        </tr>
+        <tr>
+          <td><button type="submit">Đăng ký thành viên</button></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

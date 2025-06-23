@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <title>Session 11 - Bài 05</title>
+  </head>
+  <body>
+    <button class="btn-add">Add bookmark</button>
+    <!-- LIST BOOKMARK -->
+    <div id="list-container"></div>
+    <!-- POP UP -->
+    <div id="popUp-bookmark-container" class="hidden">
+      <div class="bookmark-title-div">
+        <h3 class="popUp-title">Add Bookmark</h3>
+        <i class="fa-solid fa-x" id="popup-close"></i>
+      </div>
+      <form class="bookmark-detail-input">
+        <label>Website Name</label>
+        <input type="text" id="website-name-input" name="website-name-input" />
+        <label>Website URL</label>
+        <input type="text" id="website-url" name="website-url" />
+        <button type="submit" class="btn-save">Save</button>
+        <button type="submit" class="btn-edit hidden">Edit</button>
+      </form>
+    </div>
+    <!-- OVERLAY -->
+    <div class="overlay hidden"></div>
+    <script src="./script.js"></script>
+  </body>
+</html>

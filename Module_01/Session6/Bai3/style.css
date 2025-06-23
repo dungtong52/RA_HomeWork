@@ -1,0 +1,81 @@
+*,
+*::after,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#header {
+  height: 50px;
+  background-color: #6d6d6d;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#main {
+  margin-top: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row-1 {
+  background-color: #a60162;
+  height: 300px;
+}
+.row-2 {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.row-2 .col {
+  height: 200px;
+  background-color: #db317f;
+  width: calc((100% - 60px) / 4);
+}
+.row-3 {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.row-3 .col-2 {
+  height: 250px;
+  background-color: #df60a0;
+  width: calc((100% - 20px) / 2);
+}
+.row-4 {
+  background-color: #9d56a7;
+  height: 300px;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .row-2 {
+    flex-wrap: wrap;
+  }
+  .row-2 .col {
+    width: calc((100% - 20px) / 2);
+  }
+  .row-3 {
+    flex-wrap: wrap;
+  }
+  .row-3 .col-2 {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .row-2 {
+    flex-wrap: wrap;
+  }
+  .row-2 .col {
+    width: 100%;
+  }
+  .row-3 {
+    flex-wrap: wrap;
+  }
+  .row-3 .col-2 {
+    width: 100%;
+  }
+}

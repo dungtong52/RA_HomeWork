@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Session 02 - Bài 3</title>
+  </head>
+  <body style="text-align: center; width: 600px">
+    <h1>Session 02 - Bài 3</h1>
+    <pre
+      style="
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        line-height: 1.5;
+      ">
+        Trong phần này, chúng ta sẽ mô tả thuật toán để chuyển đổi tiền tệ, từ Đô la Mỹ sang Việt Nam Đồng.
+        Ban đầu, chúng ta nhập số tiền Đô la Mỹ và sau đó tính ra số tiền Việt Nam Đồng tương ứng.
+        VỚI 1$ = 25.000 đ
+        Thực hiện chuyển đổi sang tiền việt và hiển thị ra màn hình
+    </pre>
+    <div>
+      <label for="usdCurrency">Nhập số tiền USD:</label><br />
+      <input type="number" id="usdCurrency" />
+    </div>
+    <p>Tỷ giá hôm nay: 1$ = 25.000 VND</p>
+    <button class="btn" onclick="exchangeMoney()">Đổi tiền</button>
+    <div id="vndAmount"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

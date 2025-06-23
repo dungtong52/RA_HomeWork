@@ -1,0 +1,28 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+}
+.container {
+  background-color: #c9c9c9;
+  width: 50%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .square {
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,82 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin: 20px;
+}
+.container {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(85, 84, 84, 0.3), 0 0 10px rgba(85, 84, 84, 0.2);
+  text-align: center;
+}
+.title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background-color: red;
+  border-radius: 10px 10px 0 0;
+  padding: 20px;
+  position: relative;
+}
+.img-float {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -30%);
+}
+.detail-wrapper {
+  margin: 10px 0;
+}
+.row-content {
+  padding: 10px 30px;
+  border-bottom: 1px solid #dcdcdc;
+  color: #ff8c00;
+}
+.row-content:last-child {
+  border: none;
+}
+.row-title {
+  color: #666666;
+}
+.btn-signup {
+  background: linear-gradient(90deg, #bd152a, #e91a35);
+  padding: 10px 60px;
+  border-radius: 100px;
+  margin: 10px 0;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.btn-signup:hover {
+  background: green;
+  color: black;
+  cursor: pointer;
+}
+.btn-detail {
+  color: #ed1a35;
+  padding: 10px 40px;
+  border: 1px solid #ed1a35;
+  border-radius: 100px;
+  margin: 10px 0 20px;
+  background-color: #fff;
+}
+.btn-detail:hover {
+  border: 1px solid black;
+  color: black;
+  background-color: green;
+}
+.btn-detail:hover i {
+  color: black;
+}
+i {
+  margin-right: 10px;
+}

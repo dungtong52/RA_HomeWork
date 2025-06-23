@@ -1,0 +1,75 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 10px 50px 0 20px;
+}
+h2 {
+  text-transform: uppercase;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.dashed {
+  border-top: 3px dashed #8c8c8c;
+}
+table {
+  width: 100%;
+  margin-top: 20px;
+  table-layout: fixed;
+}
+.post-section-thumbnail {
+  height: 150px;
+  width: 150px;
+}
+.post-section-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+}
+.post-div {
+  width: calc((100% - 310px) / 2);
+  height: 150px;
+  max-height: 150px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.post-div .post-time {
+  color: #8a83a2;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.post-time .bull {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.post-div .post-link {
+  font-size: 28px;
+  color: #231651;
+}
+.post-link a {
+  text-decoration: none;
+  color: #231651;
+  font-weight: bold;
+  line-height: 1.5;
+}
+.post-link a:hover {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+.space {
+  width: 10px;
+}
+.post-left {
+  border-right: 2px solid #cccccc;
+}
+.row-space {
+  height: 10px;
+}

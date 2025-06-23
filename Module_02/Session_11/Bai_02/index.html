@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Session 11 - Bài 02</title>
+  </head>
+  <body>
+    <h1>Session 11 - Bài 02</h1>
+
+    <div id="container">
+      <h1 id="title">Task Management</h1>
+      <form id="input-container">
+        <input type="text" id="content" name="content" placeholder="Content" />
+        <input type="date" id="due-date" name="due-date" />
+        <select name="status" id="status">
+          <option value="" disabled selected>Choose status</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+        </select>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username" />
+        <button type="submit" class="btn">Submit</button>
+      </form>
+      <div id="table-list-content">
+        <table>
+          <thead>
+            <tr id="header-table">
+              <th>#</th>
+              <th>Content</th>
+              <th>Due date</th>
+              <th>Status</th>
+              <th>Assigned to</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="body-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

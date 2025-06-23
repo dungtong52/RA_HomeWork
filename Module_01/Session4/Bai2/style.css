@@ -1,0 +1,38 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  background-color: #f6f5f8;
+  padding: 10px 5px;
+  text-align: center;
+}
+.container .card {
+  background-color: #fff;
+  padding: 20px 30px;
+  border: 1px solid #c1bcd1;
+  border-radius: 5px;
+  margin: 0 5px;
+  height: 200px;
+  vertical-align: middle;
+}
+.card h2 {
+  color: #bc2229;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.card p {
+  color: #231651;
+  font-size: 20px;
+  font-weight: 400;
+}
+td {
+  width: calc(100% - 50px) / 4;
+}
