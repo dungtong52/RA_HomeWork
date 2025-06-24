@@ -8,7 +8,7 @@ public class Main {
 			int sum = 0;
 			System.out.print("Nhập vào số nguyên N: ");
 			if(sc.hasNextInt()){
-				int n = sc.nextInt();
+				int n = Integer.parseInt(sc.nextLine());
 				n = Math.abs(n);
 				while (n != 0) {
 					sum += n % 10;

@@ -4,7 +4,7 @@ public class Main {
 	public static void main (String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhập vào 1 số nguyên từ 1 đến 7: ");
-		int n = sc.nextInt();
+		int n = Integer.parseInt(sc.nextLine());
 
 		switch (n){
 			case 1:

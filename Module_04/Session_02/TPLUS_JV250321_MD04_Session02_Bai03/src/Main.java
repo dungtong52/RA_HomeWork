@@ -4,9 +4,10 @@ public class Main {
 	public static void main (String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhập số nguyên dương N: ");
-		int n = sc.nextInt();
+		int n = Integer.parseInt(sc.nextLine());
 
-		if(n <= 0) System.out.println("Số nhập vào không hợp lệ");
+		if(n <= 0)
+			System.err.println("Số nhập vào không hợp lệ");
 		else {
 			int sum = 0;
 			for (int i = 1; i <= n; i++){
