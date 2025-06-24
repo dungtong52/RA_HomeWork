@@ -13,7 +13,7 @@ public class Main {
             // nhập giá trị cho mảng
             for (int i = 0; i < n; i++){
                 for (int j = 0; j < n; j++){
-                    originArr[i][j] = (int)Math.ceil(Math.random() * 10) - 1;
+                    originArr[i][j] = (int)(Math.random() * 10);
                 }
             }
             // Xoay ma trận
