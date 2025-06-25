@@ -17,12 +17,12 @@ public class Main {
 				originArr[i] = Integer.parseInt(sc.nextLine());
 			}
 
-			// Tao mang moi de luu tru so lan lap cho mang originArr
+			// Tạo mảng mới để lưu trữ số lần lặp của mỗi phần tử tương ứng trên originArr
 			int[] frequencyArr = new int[n];
-			for (int i = 0; i < n; i++) {
-				int count = 0;
-				for (int j = 0; j < n; j++){
-					if (originArr[i] == originArr[j]){
+			for (int i = 0; i < n - 1; i++) {
+				int count = 1;
+				for (int j = 1; j < n; j++) {
+					if (originArr[i] == originArr[j]) {
 						count++;
 					}
 				}
@@ -31,8 +31,8 @@ public class Main {
 
 			// Đếm số phần tử trong mảng mới có giá trị = 1 --> tạo ra mảng mới khác có số phần tử = uniqueCount
 			int uniqueCount = 0;
-			for(int i = 0; i < n; i++){
-				if(frequencyArr[i] == 1)
+			for (int i = 0; i < n; i++) {
+				if (frequencyArr[i] == 1)
 					uniqueCount++;
 			}
 			if (uniqueCount == 0)
@@ -40,16 +40,16 @@ public class Main {
 			else {
 				int[] outputArr = new int[uniqueCount];
 
-				// Gán các phần tử có số lần lặp = 1
+				// Gán các phần tử có số lần lặp = 1 từ mảng gốc originArr
 				int outputIndex = 0;
-				for(int i = 0; i < n; i++){
-					if(frequencyArr[i] == 1){
+				for (int i = 0; i < n; i++) {
+					if (frequencyArr[i] == 1) {
 						outputArr[outputIndex] = originArr[i];
 						outputIndex++;
 					}
 				}
 
-				// Output: In ra mảng sau khi loại bỏ trung lặp
+				// Output: In ra mảng sau khi loại bỏ trùng lặp
 				System.out.println(Arrays.toString(outputArr));
 			}
 		}

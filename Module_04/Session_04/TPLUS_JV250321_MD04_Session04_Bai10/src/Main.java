@@ -7,38 +7,48 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập vào chuỗi: ");
         String originStr = sc.nextLine();
-        String newStr = originStr;
 
-//		Xóa ký tự đặc biệt:
-//		Chỉ giữ lại các ký tự chữ cái (a-z, A-Z), số (0-9), và khoảng trắng.
-//		Sử dụng biểu thức chính quy để xác định các ký tự cần xóa.
+        if (originStr == "") System.err.println("Không có văn bản để xử lý.");
+        else {
+            String newStr = originStr;
 
-        newStr = originStr.replaceAll("[^a-zA-Z0-9\\s]", "");
-        System.out.println(newStr);
+            // Xóa ký tự đặc biệt
+            newStr = originStr.replaceAll("[^a-zA-Z0-9\\s]", "");
+            System.out.println("chuỗi sau khi bỏ ký tự đặc biệt: " + newStr);
 
-//		Chuẩn hóa văn bản:
-//		Chuyển toàn bộ văn bản về dạng chữ thường (toLowerCase()).
-//				Xóa các khoảng trắng dư thừa bằng cách:
-//		Sử dụng trim() để loại bỏ khoảng trắng ở đầu và cuối.
-//				Sử dụng Regex để thay thế nhiều khoảng trắng liên tiếp thành một khoảng trắng duy nhất.
+            // Xóa khoảng trắng liên tiếp
+            newStr = newStr.toLowerCase().trim();
+            newStr = newStr.replaceAll("[\\s]+", " ");
+            System.out.println("chuỗi sau khi bỏ nhiều khoảng trắng liên tiếp: " + newStr);
 
-        newStr = newStr.toLowerCase().trim();
-        newStr = newStr.replaceAll("[\\s]+", " ");
-        System.out.println(newStr);
+            // Trích xuất số
+            Pattern pattern = Pattern.compile("[0-9]+");
+            Matcher matcher = pattern.matcher(originStr);
 
-//		Trích xuất các số:
-//		Sử dụng biểu thức chính quy để tìm tất cả các số xuất hiện trong chuỗi.
-//		In các số dưới dạng một danh sách.
+            int count = 0;
+            while (matcher.find()) {
+                count++;
+            }
+            matcher.reset();
 
-        StringBuilder numberString = new StringBuilder("");
+            String[] numberArr = new String[count];
+            int index = 0;
+            while(matcher.find()){
+                numberArr[index] = matcher.group();
+                index++;
+            }
 
-        Pattern pattern = Pattern.compile("[0-9]");
-        Matcher matcher = pattern.matcher(originStr);
+            newStr = newStr.replaceAll("[0-9]+", "");
+            System.out.println("chuỗi sau khi bỏ số: " + newStr.trim());
 
-        while (matcher.find()) {
-            numberString.append(matcher.group());
+            // In các số trong array
+            for(int i = 0; i < numberArr.length; i++){
+                System.out.print(numberArr[i]);
+                if(i < numberArr.length - 1){
+                    System.out.print(", ");
+                }
+            }
         }
 
-        System.out.println(numberString);
     }
 }
