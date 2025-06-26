@@ -7,10 +7,9 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		String password = sc.nextLine();
 
-		Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%])[a-zA-Z\\d!@#$%]{8,}$");
-		Matcher matcher = pattern.matcher(password);
+		String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%])[a-zA-Z\\d!@#$%]{8,}$";
 
-		if (matcher.find()) {
+		if (Pattern.matches(passwordRegex, password)) {
 			System.out.println("Mật khẩu hợp lệ");
 		} else {
 			System.out.println("Mật khẩu không hợp lệ");

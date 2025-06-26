@@ -6,25 +6,22 @@ public class Main {
 	public static void main (String[] args) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Nhập vào URL: ");
-		String str = sc.nextLine();
+		String url = sc.nextLine();
 
-
-		Pattern pattern = Pattern.compile("^https?://[^/\s]+");
-		Matcher matcher = pattern.matcher(str);
-
-		if (matcher.find()) {
+		String urlRegex = "^https?://[^\\s]+";
+		if (Pattern.matches(urlRegex, url)) {
 			String protocol = "";
 			String domain = "";
 			String path = "";
 
 			// PROTOCOL
-			String noProtocol = str;
-			if(str.contains("https")){
+			String noProtocol = url;
+			if(url.contains("https")){
 				protocol += "https";
-				noProtocol = str.substring(8);
+				noProtocol = url.substring(8);
 			} else {
 				protocol += "http";
-				noProtocol = str.substring(7);
+				noProtocol = url.substring(7);
 			}
 
 			// DOMAIN + PATH

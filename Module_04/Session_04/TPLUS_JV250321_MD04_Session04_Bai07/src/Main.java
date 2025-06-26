@@ -10,7 +10,7 @@ public class Main {
 			System.err.println("N nằm trong giới hạn 1-1000");
 		} else {
 			String str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-			StringBuilder strBuilder = new StringBuilder("");
+			StringBuilder strBuilder = new StringBuilder();
 
 			for (int i = 0; i < n; i++) {
 				int inxRandom = (int)(Math.random() * str.length());

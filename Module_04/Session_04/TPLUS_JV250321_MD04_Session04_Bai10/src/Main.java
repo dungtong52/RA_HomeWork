@@ -8,18 +8,17 @@ public class Main {
         System.out.println("Nhập vào chuỗi: ");
         String originStr = sc.nextLine();
 
-        if (originStr == "") System.err.println("Không có văn bản để xử lý.");
+        if (originStr.isBlank())
+            System.err.println("Không có văn bản để xử lý.");
         else {
-            String newStr = originStr;
 
             // Xóa ký tự đặc biệt
-            newStr = originStr.replaceAll("[^a-zA-Z0-9\\s]", "");
-            System.out.println("chuỗi sau khi bỏ ký tự đặc biệt: " + newStr);
+            String strWithoutSpaceTwoSide = originStr.replaceAll("[^a-zA-Z0-9\\s]", "");
+            System.out.println("chuỗi sau khi bỏ ký tự đặc biệt: " + strWithoutSpaceTwoSide);
 
             // Xóa khoảng trắng liên tiếp
-            newStr = newStr.toLowerCase().trim();
-            newStr = newStr.replaceAll("[\\s]+", " ");
-            System.out.println("chuỗi sau khi bỏ nhiều khoảng trắng liên tiếp: " + newStr);
+            String strWithoutSpace = strWithoutSpaceTwoSide.toLowerCase().trim().replaceAll("[\\s]+", " ");
+            System.out.println("chuỗi sau khi bỏ nhiều khoảng trắng liên tiếp: " + strWithoutSpace);
 
             // Trích xuất số
             Pattern pattern = Pattern.compile("[0-9]+");
@@ -38,8 +37,8 @@ public class Main {
                 index++;
             }
 
-            newStr = newStr.replaceAll("[0-9]+", "");
-            System.out.println("chuỗi sau khi bỏ số: " + newStr.trim());
+            String resultStr = strWithoutSpace.replaceAll("[0-9]+", "");
+            System.out.println("chuỗi sau khi bỏ số: " + resultStr.trim());
 
             // In các số trong array
             for(int i = 0; i < numberArr.length; i++){

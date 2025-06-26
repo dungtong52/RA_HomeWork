@@ -5,7 +5,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Nhập chuỗi: ");
 		String str = sc.nextLine();
-		StringBuilder stringBuilder = new StringBuilder("");
+		StringBuilder stringBuilder = new StringBuilder();
 
 		int i = 0;
 		while (i < str.length()) {
