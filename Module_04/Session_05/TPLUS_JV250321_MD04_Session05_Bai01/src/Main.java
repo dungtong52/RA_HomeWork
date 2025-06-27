@@ -1,35 +1,41 @@
 import java.util.Scanner;
 
 public class Main {
-	public static boolean isPrime (int n) {
-		int count = 0;
-		if (n == 0) return false;
-		for (int i = 1; i <= n; i++) {
-			if (n % i == 0) count++;
-		}
-		return count == 2;
-	}
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		do {
+			System.out.println("***************************** MENU *****************************");
+			System.out.println("1. Nhập chuỗi");
+			System.out.println("2. Đếm số ký tự thường, hoa, số, đặc biệt");
+			System.out.println("3. Đảo ngược chuỗi");
+			System.out.println("4. Kiểm tra Palindrome");
+			System.out.println("5. Chuẩn hóa chuỗi (xóa khoảng trắng dư thừa, viết hoa chữ cái đầu)");
+			System.out.println("6. Thoát");
+			System.out.print("Lựa chọn của bạn: ");
+			int choice = Integer.parseInt(scanner.nextLine());
+			switch (choice){
+				case 1:
+					// Nhập chuỗi
+					String str = new String();
+					System.out.println("Hãy nhập chuỗi: ");
+					str = scanner.nextLine();
+					System.out.println("Chuỗi được thêm thành công!");
+					break;
+				case 2:
+					// Đếm số ký tự thường, hoa, số, đặc biệt
 
-	public static void main (String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Nhập vào số nguyên N: ");
-		int n = Integer.parseInt(sc.nextLine());
-
-		if (n <= 0 || n > 100) {
-			System.err.println("Số lượng phần tử không hợp lệ");
-		} else {
-			int[] arr = new int[n];
-			int sum = 0;
-
-			System.out.println("Nhập các phần tử của mảng:");
-			for (int i = 0; i < n; i++) {
-				arr[i] = Integer.parseInt(sc.nextLine());
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
+					System.exit(0);
+				default:
+					System.err.println("Hãy nhập các số từ 1-6");
 			}
-
-			for (int i = 0; i < n; i++) {
-				sum += isPrime(arr[i]) ? arr[i] : 0;
-			}
-			System.out.println("sum = " + sum);
-		}
+		} while (true);
 	}
 }
