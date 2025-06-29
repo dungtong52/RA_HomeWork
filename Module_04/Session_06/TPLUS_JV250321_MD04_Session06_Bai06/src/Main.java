@@ -148,7 +148,6 @@ public class Main {
 
 					break;
 				case 6:
-					scanner.close();
 					System.exit(0);
 				default:
 					System.err.println("Nhập các số từ 1-6");

@@ -39,6 +39,7 @@ public class Main {
 					}
 					if (idDuplicate) {
 						System.err.println("ID này đã tồn tại");
+						break;
 					}
 
 					System.out.print("Nhập tên sản phẩm: ");
@@ -48,9 +49,9 @@ public class Main {
 					double price = Double.parseDouble(scanner.nextLine());  // Cần kiểm tra nhập vào đúng định dạng
 
 					Product newProduct = new Product(id, name, price);
-
 					products[productCount] = newProduct;
 					productCount++;
+
 					System.out.println("Sản phẩm đã được thêm thành công!");
 					break;
 
