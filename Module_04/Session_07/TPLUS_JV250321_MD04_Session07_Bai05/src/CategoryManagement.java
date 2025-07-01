@@ -2,10 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryManagement implements ICRUD{
-	private List<Category> categories = new ArrayList <>();
+	Category[] categories = new Category[100];
 
-	@Override
-	public List<Category> findAll(){
-
-	}
 }
