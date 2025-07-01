@@ -1,4 +1,4 @@
-import java.util.List;
+package entity;
 
 public interface ICRUD {
 	Category[] findAll();

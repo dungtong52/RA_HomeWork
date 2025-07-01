@@ -1,3 +1,5 @@
+package entity;
+
 public class Category {
 	private int id;
 	private String name;
@@ -34,5 +36,10 @@ public class Category {
 
 	public void setDescription (String description) {
 		this.description = description;
+	}
+
+	public String display () {
+		return String.format("ID: %2d, Name: %5s, Description: %10s",
+				this.id, this.name, this.description);
 	}
 }
