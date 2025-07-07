@@ -77,6 +77,6 @@ public class Invoice {
     }
 
     public void displayInvoiceElement() {
-        System.out.printf("ID: %d - Invoice Code: %s - Amount: %.1f", this.id, this.invoiceCode, this.amount);
+        System.out.printf("ID: %d - Invoice Code: %s - Amount: %.1f\n", this.id, this.invoiceCode, this.amount);
     }
 }

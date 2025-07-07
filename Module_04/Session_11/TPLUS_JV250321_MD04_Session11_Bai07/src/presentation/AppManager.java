@@ -12,13 +12,13 @@ public class AppManager {
         Scanner scanner = new Scanner(System.in);
         InvoiceManager invoiceManager = new InvoiceManager();
         do {
-            System.out.println("------------ MENU QUẢN LÝ HÓA ĐƠN -------------");
+            System.out.println("\n------------ MENU QUẢN LÝ HÓA ĐƠN -------------");
             System.out.println("1. Thêm hóa đơn");
             System.out.println("2. Sửa hóa đơn");
             System.out.println("3. Xóa hóa đơn");
             System.out.println("4. Hiển thị thông tin hóa đơn");
             System.out.println("5. Thoát");
-            System.out.println("Lựa chọn của bạn: ");
+            System.out.print("Lựa chọn của bạn: ");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -27,6 +27,7 @@ public class AppManager {
                     invoiceManager.add(invoice);
                     break;
                 case 2:
+                    invoiceManager.display();
                     System.out.print("Nhập vào id hóa đơn muốn sửa: ");
                     int idUpdate = Integer.parseInt(scanner.nextLine());
                     int indexUpdate = invoiceManager.findIndexById(idUpdate);
@@ -36,7 +37,6 @@ public class AppManager {
                     updateInvoice.setAmount(updateInvoice.inputAmount(scanner));
 
                     invoiceManager.update(indexUpdate, updateInvoice);
-                    System.out.println("Cập nhật thành công!");
                     break;
                 case 3:
                     System.out.print("Nhập vào id hóa đơn muốn sửa: ");
@@ -44,7 +44,6 @@ public class AppManager {
                     int indexDelete = invoiceManager.findIndexById(idDelete);
 
                     invoiceManager.delete(indexDelete);
-                    System.out.println("Xóa thành công!");
                     break;
                 case 4:
                     invoiceManager.display();

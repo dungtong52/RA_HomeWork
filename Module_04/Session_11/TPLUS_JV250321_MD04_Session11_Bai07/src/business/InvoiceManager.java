@@ -22,6 +22,7 @@ public class InvoiceManager implements IManage<Invoice> {
         } else {
             invoiceList.get(index).setInvoiceCode(invoice.getInvoiceCode());
             invoiceList.get(index).setAmount(invoice.getAmount());
+            System.out.println("Cập nhật thành công!");
         }
     }
 
@@ -31,6 +32,7 @@ public class InvoiceManager implements IManage<Invoice> {
             System.err.println("Hóa đơn không tồn tại!");
         } else {
             invoiceList.remove(index);
+            System.out.println("Xóa thành công!");
         }
     }
 
@@ -40,6 +42,7 @@ public class InvoiceManager implements IManage<Invoice> {
         for (Invoice invoice : invoiceList) {
             invoice.displayInvoiceElement();
         }
+        System.out.println("---------------");
     }
 
     public int findIndexById(int id) {
