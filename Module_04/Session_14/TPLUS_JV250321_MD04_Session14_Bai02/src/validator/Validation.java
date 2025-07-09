@@ -29,16 +29,6 @@ public class Validation {
 		}
 	}
 
-	public static boolean isDouble (String input) {
-		if (isEmpty(input)) return false;
-		try {
-			double value = Double.parseDouble(input.trim());
-			return value >= 0 && value <= 10;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
-
 	public static boolean isValidDate (String input, String pattern) {
 		if (isEmpty(input)) return false;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);

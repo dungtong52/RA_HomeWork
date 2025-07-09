@@ -9,31 +9,21 @@ public class Validation {
 		return input == null || input.trim().isEmpty();
 	}
 
-	public static boolean isPositiveInteger (String input) {
-		if (isEmpty(input)) return false;
-		try {
-			int value = Integer.parseInt(input.trim());
-			return value > 0;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
-
 	public static boolean isIntegerInRange (String input, int min, int max) {
 		if (isEmpty(input)) return false;
 		try {
-			int value = Integer.parseInt(input.trim());
-			return value >= min && value <= max;
+			int number = Integer.parseInt(input);
+			return number >= min && number <= max;
 		} catch (NumberFormatException e) {
 			return false;
 		}
 	}
 
-	public static boolean isDouble (String input) {
+	public static boolean isPositiveInteger (String input) {
 		if (isEmpty(input)) return false;
 		try {
-			double value = Double.parseDouble(input.trim());
-			return value >= 0 && value <= 10;
+			int number = Integer.parseInt(input);
+			return number > 0;
 		} catch (NumberFormatException e) {
 			return false;
 		}

@@ -8,107 +8,141 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Movie {
-    private int id;
-    private String title;
-    private String director;
-    private LocalDate releaseDate;
-    private double rating;
+	private int id;
+	private String title;
+	private String director;
+	private LocalDate releaseDate;
+	private double rating;
 
-    public Movie() {
-    }
+	public Movie () {
+	}
 
-    public Movie(int id, String title, String director, LocalDate releaseDate, double rating) {
-        this.id = id;
-        this.title = title;
-        this.director = director;
-        this.releaseDate = releaseDate;
-        this.rating = rating;
-    }
+	public Movie (int id, String title, String director, LocalDate releaseDate, double rating) {
+		this.id = id;
+		this.title = title;
+		this.director = director;
+		this.releaseDate = releaseDate;
+		this.rating = rating;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId () {
+		return id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setId (int id) {
+		this.id = id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle () {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle (String title) {
+		this.title = title;
+	}
 
-    public String getDirector() {
-        return director;
-    }
+	public String getDirector () {
+		return director;
+	}
 
-    public void setDirector(String director) {
-        this.director = director;
-    }
+	public void setDirector (String director) {
+		this.director = director;
+	}
 
-    public LocalDate getReleaseDate() {
-        return releaseDate;
-    }
+	public LocalDate getReleaseDate () {
+		return releaseDate;
+	}
 
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
+	public void setReleaseDate (LocalDate releaseDate) {
+		this.releaseDate = releaseDate;
+	}
 
-    public double getRating() {
-        return rating;
-    }
+	public double getRating () {
+		return rating;
+	}
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
+	public void setRating (double rating) {
+		this.rating = rating;
+	}
 
-    @Override
-    public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return String.format("ID: %d - Title: %s - Director: %s - Release Date: %s - Rating: %1f",
-                this.id, this.title, this.director, formatter.format(this.releaseDate), this.rating);
-    }
+	@Override
+	public String toString () {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		return String.format("ID: %d - Title: %s - Director: %s - Release: %s - Rating: %1f",
+				this.id, this.title, this.director, formatter.format(this.releaseDate), this.rating);
+	}
 
-    public void inputData(Scanner scanner) {
-        this.id = inputId(scanner);
-        this.title = inputTitle(scanner);
-        this.director = inputDirector(scanner);
-        this.releaseDate = inputReleaseDate(scanner);
-        this.rating = inputRating(scanner);
-    }
+	public void inputData (Scanner scanner, MovieManager <? extends Movie> movieManager) {
+		this.id = inputId(scanner, movieManager);
+		this.title = inputTitle(scanner);
+		this.director = inputDirector(scanner);
+		this.releaseDate = inputReleaseDate(scanner);
+		this.rating = inputRating(scanner);
+	}
 
-    public int inputId(Scanner scanner, MovieManager<Movie> movieManager) {
-        do {
-            System.out.println("Nhập ID phim:");
-            String idInput = scanner.nextLine();
-            if (Validation.isPositiveInteger(idInput)) {
-                int id = Integer.parseInt(idInput);
-                boolean isExist = movieManager.movieList.stream()
-                        .anyMatch(item -> item.getId() == id);
-                if (!isExist) {
-                    return id;
-                } else {
-                    System.err.println("ID này đã tồn tại!");
-                }
-            } else {
-                System.err.println("Vui lòng nhập vào số nguyên");
-            }
-        } while (true);
-    }
+	public int inputId (Scanner scanner, MovieManager <? extends Movie> movieManager) {
+		do {
+			System.out.println("Nhập ID phim:");
+			String idInput = scanner.nextLine();
+			if (Validation.isPositiveInteger(idInput)) {
+				int id = Integer.parseInt(idInput);
+				if (!movieManager.isIdExists(id)) {
+					return id;
+				} else {
+					System.err.println("ID này đã tồn tại!");
+				}
+			} else {
+				System.err.println("Vui lòng nhập vào số nguyên");
+			}
+		} while (true);
+	}
 
-    public String inputTitle(Scanner scanner) {
-        
-    }
+	public String inputTitle (Scanner scanner) {
+		do {
+			System.out.println("Nhập tiêu đề phim:");
+			String title = scanner.nextLine();
+			if (!Validation.isEmpty(title)) {
+				return title;
+			} else {
+				System.err.println("Vui lòng không bỏ trống tiêu đề phim!");
+			}
+		} while (true);
+	}
 
-    public String inputDirector(Scanner scanner) {
-    }
+	public String inputDirector (Scanner scanner) {
+		do {
+			System.out.println("Nhập đạo diễn:");
+			String director = scanner.nextLine();
+			if (!Validation.isEmpty(director)) {
+				return director;
+			} else {
+				System.err.println("Vui lòng không bỏ trống đạo diễn!");
+			}
+		} while (true);
+	}
 
-    public LocalDate inputReleaseDate(Scanner scanner) {
-    }
+	public LocalDate inputReleaseDate (Scanner scanner) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		do {
+			System.out.println("Nhập ngày phát hành (dd-mm-yyyy):");
+			String releaseDate = scanner.nextLine();
+			if (Validation.isValidDate(releaseDate, "dd-MM-yyyy")) {
+				return LocalDate.parse(releaseDate.trim(), formatter);
+			} else {
+				System.err.println("Nhập sai định dạng ngày tháng!");
+			}
+		} while (true);
+	}
 
-    public double inputRating(Scanner scanner) {
-    }
+	public double inputRating (Scanner scanner) {
+		do {
+			System.out.println("Nhập rating (0-10):");
+			String ratingInput = scanner.nextLine();
+			if (Validation.isDouble(ratingInput)) {
+				return Double.parseDouble(ratingInput);
+			} else {
+				System.err.println("Rating là số thực >= 0 và <= 10!");
+			}
+		} while (true);
+	}
 }
