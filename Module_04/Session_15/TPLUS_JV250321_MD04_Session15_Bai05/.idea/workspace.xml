@@ -4,52 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d08cf76-5fc7-4c86-988a-4ab382fc18a8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/.idea/libraries/mysql_connector_j_9_3_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/TPLUS_JV250321_MD04_Session15_Bai01.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/.idea/libraries/mysql_connector_java_8_0_28.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/TPLUS_JV250321_MD04_Session15_Bai02.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/src/entry/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/src/presentation/StudentManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/src/validator/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai02/src/validator/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/.idea/libraries/mysql_connector_java_8_0_28.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/TPLUS_JV250321_MD04_Session15_Bai02.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/src/entry/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/src/presentation/StudentManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/src/validator/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai03/src/validator/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/.idea/libraries/mysql_connector_java_8_0_28.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/TPLUS_JV250321_MD04_Session15_Bai02.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/src/entry/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/src/presentation/StudentManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/src/validator/Validation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai04/src/validator/Validation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41f479b9-d994-4d44-b0e0-3847986c10d8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41f479b9-d994-4d44-b0e0-3847986c10d8/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41f479b9-d994-4d44-b0e0-3847986c10d8/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41f479b9-d994-4d44-b0e0-3847986c10d8/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41f479b9-d994-4d44-b0e0-3847986c10d8/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Student.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/ConnectionDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ConnectionDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai06/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai06/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai06/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai06/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai06/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TPLUS_JV250321_MD04_Session15_Bai06/TPLUS_JV250321_MD04_Session15_Bai06.iml" beforeDir="false" />
-    </list>
+    <list default="true" id="0d08cf76-5fc7-4c86-988a-4ab382fc18a8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,31 +33,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Admin/Documents/DungTong/Rikkei/RA_HomeWork/Module_04/Session_15/TPLUS_JV250321_MD04_Session15_Bai05",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/Admin/Documents/DungTong/Rikkei/RA_HomeWork/Module_04/Session_15/TPLUS_JV250321_MD04_Session15_Bai05/src/Main.java",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Documents/DungTong/Rikkei/RA_HomeWork/Module_04/Session_15/TPLUS_JV250321_MD04_Session15_Bai05&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Admin/Documents/DungTong/Rikkei/RA_HomeWork/Module_04/Session_15/TPLUS_JV250321_MD04_Session15_Bai05/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -121,6 +76,7 @@
       <workItem from="1752244109990" duration="4230000" />
       <workItem from="1752252869923" duration="3000" />
       <workItem from="1752285379101" duration="12047000" />
+      <workItem from="1752398503254" duration="107000" />
     </task>
     <servers />
   </component>
