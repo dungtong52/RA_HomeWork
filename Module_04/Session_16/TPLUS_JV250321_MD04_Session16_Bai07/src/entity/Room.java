@@ -59,4 +59,15 @@ public class Room {
     public void setBooked(boolean booked) {
         isBooked = booked;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", roomNumber='" + roomNumber + '\'' +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", isBooked=" + isBooked +
+                '}';
+    }
 }
