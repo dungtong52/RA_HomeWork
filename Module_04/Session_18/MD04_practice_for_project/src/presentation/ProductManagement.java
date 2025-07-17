@@ -3,27 +3,28 @@ package presentation;
 import business.ProductBusiness;
 import business.imp.ProductBusinessImp;
 import entity.Product;
+import pagination.PaginationBusiness;
 import validation.Validation;
-import pagination.Pagination;
+import pagination.PaginationPresentation;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
 
 public class ProductManagement {
-    private static final int ID_MAX_LENGTH = 5;
-    private static final int NAME_MAX_LENGTH = 150;
-    private static final int MANUFAC_MAX_LENGTH = 200;
+    private final int ID_MAX_LENGTH = 5;
+    private final int NAME_MAX_LENGTH = 150;
+    private final int MANUFAC_MAX_LENGTH = 200;
 
     private final ProductBusiness productBusiness;
+    private final PaginationBusiness<Product> paginationBusiness;
 
     public ProductManagement() {
         productBusiness = new ProductBusinessImp();
+        paginationBusiness = new ProductBusinessImp();
     }
 
     public void productMenu(Scanner scanner) {
-        Pagination pagination = new Pagination();
         boolean exit = false;
         while (!exit) {
             System.out.println("\n**************** PRODUCT MANAGEMENT ***************");
@@ -33,14 +34,12 @@ public class ProductManagement {
             System.out.println("4. Tìm kiếm sản phẩm theo tên");
             System.out.println("5. Cập nhật trạng thái sản phẩm");
             System.out.println("6. Thoát");
+            System.out.print("Lựa chọn của bạn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 6)) {
                 switch (Integer.parseInt(choice)) {
                     case 1:
-                        System.out.println("-----Danh sách sản phẩm-----");
-                        System.out.printf("| %6s | %10s | %10s | %5s | %5s | %5s | %5s |\n",
-                                "Product ID", "Product Name", "manufacturer", "Created", "Batch", "Quantity", "Status");
-                        pagination.getListPagination(scanner, 1);
+                        PaginationPresentation.getListPagination(scanner, paginationBusiness, "products", "");
                         break;
                     case 2:
                         addProduct(scanner);
@@ -80,50 +79,46 @@ public class ProductManagement {
     }
 
     public void updateProduct(Scanner scanner) {
-        System.out.print("Nhập vào mã sản phẩm muốn cập nhật: ");
-        String productId = scanner.nextLine();
-        if (Validation.isValidLength(productId, ID_MAX_LENGTH)) {
-            Product updateProduct = productBusiness.getProductById(productId);
-            boolean exit = false;
-            while (!exit) {
-                System.out.println("1. Cập nhật tên sản phẩm");
-                System.out.println("2. Cập nhật nhà sản xuất");
-                System.out.println("3. Cập nhật ngày tạo");
-                System.out.println("4. Cập nhật lô chứa sản phẩm");
-                System.out.println("5. Cập nhật số lượng sản phẩm");
-                System.out.println("6. Thoát cập nhật");
-                System.out.print("Lựa chọn: ");
-                String choice = scanner.nextLine();
-                if (Validation.isIntegerInRange(choice, 1, 6)) {
-                    switch (Integer.parseInt(choice)) {
-                        case 1:
-                            updateProduct.setProductName(inputProductName(scanner));
-                            break;
-                        case 2:
-                            updateProduct.setManufacturer(inputManufacturer(scanner));
-                            break;
-                        case 3:
-                            updateProduct.setCreated(inputCreated(scanner));
-                            break;
-                        case 4:
-                            updateProduct.setBatch(inputBatch(scanner));
-                            break;
-                        case 5:
-                            updateProduct.setQuantity(inputQuantity(scanner));
-                            break;
-                        default:
-                            exit = true;
-                    }
+        String productId = inputProductID(scanner);
+        Product updateProduct = productBusiness.getProductById(productId);
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("1. Cập nhật tên sản phẩm");
+            System.out.println("2. Cập nhật nhà sản xuất");
+            System.out.println("3. Cập nhật ngày tạo");
+            System.out.println("4. Cập nhật lô chứa sản phẩm");
+            System.out.println("5. Cập nhật số lượng sản phẩm");
+            System.out.println("6. Thoát cập nhật");
+            System.out.print("Lựa chọn: ");
+            String choice = scanner.nextLine();
+            if (Validation.isIntegerInRange(choice, 1, 6)) {
+                switch (Integer.parseInt(choice)) {
+                    case 1:
+                        updateProduct.setProductName(inputProductName(scanner));
+                        break;
+                    case 2:
+                        updateProduct.setManufacturer(inputManufacturer(scanner));
+                        break;
+                    case 3:
+                        updateProduct.setCreated(inputCreated(scanner));
+                        break;
+                    case 4:
+                        updateProduct.setBatch(inputBatch(scanner));
+                        break;
+                    case 5:
+                        updateProduct.setQuantity(inputQuantity(scanner));
+                        break;
+                    default:
+                        exit = true;
                 }
             }
-            if (productBusiness.updateProduct(updateProduct)) {
-                System.out.println("Cập nhật thành công");
-            } else {
-                System.err.println("Cập nhật thất bại!");
-            }
-        } else {
-            System.err.println("Mã sản phẩm nhập vào không hợp lệ");
         }
+        if (productBusiness.updateProduct(updateProduct)) {
+            System.out.println("Cập nhật thành công");
+        } else {
+            System.err.println("Cập nhật thất bại!");
+        }
+
     }
 
     public void getProductByName(Scanner scanner) {
@@ -131,44 +126,32 @@ public class ProductManagement {
             System.out.print("Nhập vào tên tương đối để tìm sản phẩm: ");
             String productName = scanner.nextLine();
             if (Validation.isNotEmpty(productName)) {
-                List<Product> productList = productBusiness.getProductByName(productName);
-                if (!productList.isEmpty()) {
-                    productList.forEach(System.out::println);
-                    break;
-                } else {
-                    System.err.println("Không có sản phẩm nào!");
-                }
+                PaginationPresentation.getListPagination(scanner, paginationBusiness, "products", productName);
+                break;
             }
             System.err.println("Không được để trống!");
         }
     }
 
     public void updateProductStatus(Scanner scanner) {
-        while (true) {
-            System.out.print("Nhập vào mã sản phẩm muốn cập nhật: ");
-            String productId = scanner.nextLine();
-            if (Validation.isValidLength(productId, ID_MAX_LENGTH)) {
-                Product updateProduct = productBusiness.getProductById(productId);
-                System.out.printf("Trạng thái hiện tại của sản phẩm có ID %s: %s\n",
-                        updateProduct.getProductId(),
-                        updateProduct.isProductStatus() ? "Hoạt động" : "Không hoạt động");
-                System.out.print("Cập nhật trạng thái mới (true | false): ");
-                String statusInput = scanner.nextLine();
-                if (Validation.isValidType(statusInput, "Boolean")) {
-                    boolean status = Boolean.parseBoolean(statusInput);
-                    if (productBusiness.updateProductStatus(productId, status)) {
-                        System.out.println("Cập nhật trạng thái thành công");
-                    } else {
-                        System.err.println("Cập nhật trạng thái thất bại!");
-                    }
-                    break;
-                } else {
-                    System.err.println("Trạng thái nhập vào không đúng!");
-                }
+        String productId = inputProductID(scanner);
+        Product updateProduct = productBusiness.getProductById(productId);
+        System.out.printf("Trạng thái hiện tại của sản phẩm có ID %s: %s\n",
+                updateProduct.getProductId(),
+                updateProduct.isProductStatus() ? "Hoạt động" : "Không hoạt động");
+        System.out.print("Cập nhật trạng thái mới (true | false): ");
+        String statusInput = scanner.nextLine();
+        if (Validation.isValidType(statusInput, "Boolean")) {
+            boolean status = Boolean.parseBoolean(statusInput);
+            if (productBusiness.updateProductStatus(productId, status)) {
+                System.out.println("Cập nhật trạng thái thành công");
             } else {
-                System.err.println("Mã sản phẩm nhập vào không hợp lệ");
+                System.err.println("Cập nhật trạng thái thất bại!");
             }
+        } else {
+            System.err.println("Trạng thái nhập vào không đúng!");
         }
+
     }
 
     public String inputProductID(Scanner scanner) {

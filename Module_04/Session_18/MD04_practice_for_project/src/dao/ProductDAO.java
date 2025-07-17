@@ -1,12 +1,12 @@
 package dao;
 
-import pagination.PaginationProduct;
+import pagination.PaginationResult;
 import entity.Product;
 
 import java.util.List;
 
 public interface ProductDAO {
-    PaginationProduct getProductPagination(int size, int currentPage);
+    PaginationResult<Product> getProductPagination(int size, int currentPage);
 
     Product getProductById(String productId);
 
@@ -14,7 +14,7 @@ public interface ProductDAO {
 
     boolean createProduct(Product product);
 
-    List<Product> getProductByName(String productName);
+    PaginationResult<Product> getProductByName(String productName, int size, int currentPage);
 
     boolean updateProduct(Product product);
 

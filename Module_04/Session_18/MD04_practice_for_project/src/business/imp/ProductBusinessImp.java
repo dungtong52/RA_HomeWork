@@ -3,12 +3,13 @@ package business.imp;
 import business.ProductBusiness;
 import dao.ProductDAO;
 import dao.imp.ProductDAOImp;
-import pagination.PaginationProduct;
+import pagination.PaginationBusiness;
+import pagination.PaginationResult;
 import entity.Product;
 
 import java.util.List;
 
-public class ProductBusinessImp implements ProductBusiness {
+public class ProductBusinessImp implements ProductBusiness, PaginationBusiness<Product> {
     private final ProductDAO productDAO;
 
     public ProductBusinessImp() {
@@ -16,8 +17,11 @@ public class ProductBusinessImp implements ProductBusiness {
     }
 
     @Override
-    public PaginationProduct getProductPagination(int size, int currentPage) {
-        return productDAO.getProductPagination(size, currentPage);
+    public PaginationResult<Product> getPaginationData(String key, int size, int currentPage) {
+        if (key == null) {
+            return productDAO.getProductPagination(size, currentPage);
+        }
+        return productDAO.getProductByName(key, size, currentPage);
     }
 
     @Override
@@ -33,11 +37,6 @@ public class ProductBusinessImp implements ProductBusiness {
     @Override
     public boolean createProduct(Product product) {
         return productDAO.createProduct(product);
-    }
-
-    @Override
-    public List<Product> getProductByName(String productName) {
-        return productDAO.getProductByName(productName);
     }
 
     @Override

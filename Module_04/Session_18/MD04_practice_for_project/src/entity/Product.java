@@ -82,7 +82,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("| %6s | %10s | %10s | %5s | %5s | %5s | %5s |",
+        return String.format("| %-10s | %-20s | %-20s | %-10s | %-10s | %-10s | %-15s |",
                 this.productId, this.productName, this.manufacturer,
                 this.created, this.batch, this.quantity, this.productStatus ? "Hoạt động" : "Không hoạt động");
     }

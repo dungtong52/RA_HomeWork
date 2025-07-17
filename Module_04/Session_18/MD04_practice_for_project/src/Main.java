@@ -27,10 +27,10 @@ public class Main {
                 if (account != null) {
                     return account.isPermission();
                 } else {
-                    System.out.println("Không tồn tại tài khoản: " + userName);
+                    System.err.println("Tên tài khoản hoặc mật khẩu không đúng. Vui lòng nhập lại");
                 }
             } else {
-                System.out.println("Tên người dùng và mật khẩu không được để trống, không quá 30 ký tự");
+                System.err.println("Tên người dùng và mật khẩu không hợp lệ. Vui lòng nhập lại");
             }
         }
     }

@@ -1,7 +1,7 @@
 package dao.imp;
 
 import dao.ProductDAO;
-import pagination.PaginationProduct;
+import pagination.PaginationResult;
 import entity.Product;
 import utils.ConnectionDB;
 
@@ -11,10 +11,10 @@ import java.util.List;
 
 public class ProductDAOImp implements ProductDAO {
     @Override
-    public PaginationProduct getProductPagination(int size, int currentPage) {
+    public PaginationResult<Product> getProductPagination(int size, int currentPage) {
         Connection connection = null;
         CallableStatement callableStatement = null;
-        PaginationProduct paginationProduct = null;
+        PaginationResult<Product> paginationResult = null;
         List<Product> productList = null;
         try {
             connection = ConnectionDB.openConnection();
@@ -23,7 +23,7 @@ public class ProductDAOImp implements ProductDAO {
             callableStatement.setInt(2, currentPage);
             callableStatement.registerOutParameter(3, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
-            paginationProduct = new PaginationProduct();
+            paginationResult = new PaginationResult<>();
             productList = new ArrayList<>();
 
             while (resultSet.next()) {
@@ -37,14 +37,14 @@ public class ProductDAOImp implements ProductDAO {
                 product.setProductStatus(resultSet.getBoolean("product_status"));
                 productList.add(product);
             }
-            paginationProduct.setTotalPages(callableStatement.getInt(3));
-            paginationProduct.setProductList(productList);
+            paginationResult.setTotalPages(callableStatement.getInt(3));
+            paginationResult.setDataList(productList);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(connection, callableStatement);
         }
-        return paginationProduct;
+        return paginationResult;
     }
 
     @Override
@@ -119,16 +119,22 @@ public class ProductDAOImp implements ProductDAO {
     }
 
     @Override
-    public List<Product> getProductByName(String productName) {
+    public PaginationResult<Product> getProductByName(String productName, int size, int currentPage) {
         Connection connection = null;
         CallableStatement callableStatement = null;
+        PaginationResult<Product> paginationResult = null;
         List<Product> productList = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_product_by_name(?)}");
+            callableStatement = connection.prepareCall("{call get_product_by_name(?,?,?,?)}");
             callableStatement.setString(1, productName);
+            callableStatement.setInt(2, size);
+            callableStatement.setInt(3, currentPage);
+            callableStatement.registerOutParameter(4, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
             productList = new ArrayList<>();
+            paginationResult = new PaginationResult<>();
+
             while (resultSet.next()) {
                 Product product = new Product();
                 product.setProductId(resultSet.getString("product_id"));
@@ -140,12 +146,14 @@ public class ProductDAOImp implements ProductDAO {
                 product.setProductStatus(resultSet.getBoolean("product_status"));
                 productList.add(product);
             }
+            paginationResult.setTotalPages(callableStatement.getInt(4));
+            paginationResult.setDataList(productList);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(connection, callableStatement);
         }
-        return productList;
+        return paginationResult;
     }
 
     @Override

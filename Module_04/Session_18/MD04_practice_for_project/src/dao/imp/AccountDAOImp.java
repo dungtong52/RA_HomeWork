@@ -19,9 +19,10 @@ public class AccountDAOImp implements AccountDAO {
             callableStatement = connection.prepareCall("{call get_account_by_user_name(?,?)}");
             callableStatement.setString(1, userName);
             callableStatement.setString(2, password);
-            account = new Account();
+
             ResultSet resultSet = callableStatement.executeQuery();
             if (resultSet.next()) {
+                account = new Account();
                 account.setAccId(resultSet.getInt("acc_id"));
                 account.setPermission(resultSet.getBoolean("permission"));
             }

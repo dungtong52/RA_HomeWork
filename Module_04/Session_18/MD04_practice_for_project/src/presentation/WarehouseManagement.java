@@ -33,6 +33,7 @@ public class WarehouseManagement {
             System.out.println("5. Quản lý phiếu xuất");
             System.out.println("6. Quản lý báo cáo");
             System.out.println("7. Thoát");
+            System.out.print("Lựa chọn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 7)) {
                 switch (Integer.parseInt(choice)) {
@@ -70,13 +71,14 @@ public class WarehouseManagement {
             System.out.println("\n**************** WAREHOUSE MANAGEMENT ***************");
             System.out.println("1. Danh sách phiếu nhập theo trạng thái");
             System.out.println("2. Tạo phiếu nhập");
-            System.out.println("3. Cập nhật phiếu nhập\n");
+            System.out.println("3. Cập nhật phiếu nhập");
             System.out.println("4. Tìm kiếm phiếu nhập");
             System.out.println("5. Danh sách phiếu xuất theo trạng thái");
             System.out.println("6. Tạo phiếu xuất");
             System.out.println("7. Cập nhật phiếu xuất");
             System.out.println("8. Tìm kiếm phiếu xuất");
             System.out.println("9. Thoát");
+            System.out.print("Lựa chọn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 9)) {
                 switch (Integer.parseInt(choice)) {
