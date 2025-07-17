@@ -79,4 +79,11 @@ public class Product {
     public void setProductStatus(boolean productStatus) {
         this.productStatus = productStatus;
     }
+
+    @Override
+    public String toString() {
+        return String.format("| %6s | %10s | %10s | %5s | %5s | %5s | %5s |",
+                this.productId, this.productName, this.manufacturer,
+                this.created, this.batch, this.quantity, this.productStatus ? "Hoạt động" : "Không hoạt động");
+    }
 }

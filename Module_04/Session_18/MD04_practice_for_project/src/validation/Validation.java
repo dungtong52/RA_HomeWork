@@ -18,21 +18,23 @@ public class Validation {
         }
     }
 
-    public static boolean isPositiveInteger(String input) {
+    public static boolean isValidType(String input, String type) {
         if (!isNotEmpty(input)) return false;
         try {
-            int number = Integer.parseInt(input);
-            return number > 0;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public static boolean isPositiveFloat(String input) {
-        if (!isNotEmpty(input)) return false;
-        try {
-            float number = Float.parseFloat(input);
-            return number > 0;
+            switch (type) {
+                case "Integer":
+                    return Integer.parseInt(input) > 0;
+                case "Float":
+                    return Float.parseFloat(input) > 0;
+                case "Short":
+                    return Short.parseShort(input) > 0;
+                case "Boolean":
+                    if (!input.equalsIgnoreCase("true") && !input.equalsIgnoreCase("false"))
+                        return false;
+                    return input.equalsIgnoreCase("true");
+                default:
+                    return false;
+            }
         } catch (Exception e) {
             return false;
         }
@@ -64,5 +66,13 @@ public class Validation {
 
     public static boolean isValidPassword(String input) {
         return isNotEmpty(input) && input.matches("^[a-zA-Z0-9$%]{1,30}$");
+    }
+
+    public static boolean isValidEmail(String input) {
+        return isNotEmpty(input) && input.matches("^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\\.[a-z]{2,}$");
+    }
+
+    public static boolean isValidPhone(String input) {
+        return isNotEmpty(input) && input.matches("^0[0-9]{9,10}$");
     }
 }

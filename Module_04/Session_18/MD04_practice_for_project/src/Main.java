@@ -23,13 +23,9 @@ public class Main {
             String password = scanner.nextLine();
 
             if (Validation.isValidUserName(userName) && Validation.isValidPassword(password)) {
-                Account account = accountDAO.getAccountByUserName(userName);
+                Account account = accountDAO.getAccountByUserName(userName, password);
                 if (account != null) {
-                    if (account.getPassword().equals(password)) {
-                        return account.isPermission();
-                    } else {
-                        System.out.println("Nhập sai mật khẩu!");
-                    }
+                    return account.isPermission();
                 } else {
                     System.out.println("Không tồn tại tài khoản: " + userName);
                 }

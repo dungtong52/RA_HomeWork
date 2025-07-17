@@ -10,19 +10,19 @@ import java.sql.ResultSet;
 
 public class AccountDAOImp implements AccountDAO {
     @Override
-    public Account getAccountByUserName(String userName) {
+    public Account getAccountByUserName(String userName, String password) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         Account account = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_account_by_user_name(?)}");
+            callableStatement = connection.prepareCall("{call get_account_by_user_name(?,?)}");
             callableStatement.setString(1, userName);
+            callableStatement.setString(2, password);
             account = new Account();
             ResultSet resultSet = callableStatement.executeQuery();
             if (resultSet.next()) {
-                account.setUserName(resultSet.getString("user_name"));
-                account.setPassword(resultSet.getString("password"));
+                account.setAccId(resultSet.getInt("acc_id"));
                 account.setPermission(resultSet.getBoolean("permission"));
             }
         } catch (Exception e) {

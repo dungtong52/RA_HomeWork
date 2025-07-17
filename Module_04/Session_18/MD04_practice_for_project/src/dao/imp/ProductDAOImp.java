@@ -1,0 +1,194 @@
+package dao.imp;
+
+import dao.ProductDAO;
+import pagination.PaginationProduct;
+import entity.Product;
+import utils.ConnectionDB;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductDAOImp implements ProductDAO {
+    @Override
+    public PaginationProduct getProductPagination(int size, int currentPage) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        PaginationProduct paginationProduct = null;
+        List<Product> productList = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call get_all_product_pagination(?,?,?)}");
+            callableStatement.setInt(1, size);
+            callableStatement.setInt(2, currentPage);
+            callableStatement.registerOutParameter(3, Types.INTEGER);
+            ResultSet resultSet = callableStatement.executeQuery();
+            paginationProduct = new PaginationProduct();
+            productList = new ArrayList<>();
+
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setProductId(resultSet.getString("product_id"));
+                product.setProductName(resultSet.getString("product_name"));
+                product.setManufacturer(resultSet.getString("manufacturer"));
+                product.setCreated(resultSet.getDate("created").toLocalDate());
+                product.setBatch(resultSet.getShort("batch"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setProductStatus(resultSet.getBoolean("product_status"));
+                productList.add(product);
+            }
+            paginationProduct.setTotalPages(callableStatement.getInt(3));
+            paginationProduct.setProductList(productList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return paginationProduct;
+    }
+
+    @Override
+    public Product getProductById(String productId) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        Product product = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call check_exist_product_id(?)}");
+            callableStatement.setString(1, productId);
+            ResultSet resultSet = callableStatement.executeQuery();
+            product = new Product();
+            if (resultSet.next()) {
+                product.setProductId(resultSet.getString("product_id"));
+                product.setProductName(resultSet.getString("product_name"));
+                product.setManufacturer(resultSet.getString("manufacturer"));
+                product.setCreated(resultSet.getDate("created").toLocalDate());
+                product.setBatch(resultSet.getShort("batch"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setProductStatus(resultSet.getBoolean("product_status"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return product;
+    }
+
+    @Override
+    public boolean checkExistProductName(String productName) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call check_exist_product_name(?)}");
+            callableStatement.setString(1, productName);
+            ResultSet resultSet = callableStatement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean createProduct(Product product) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call create_product(?,?,?,?,?,?)}");
+            callableStatement.setString(1, product.getProductId());
+            callableStatement.setString(2, product.getProductName());
+            callableStatement.setString(3, product.getManufacturer());
+            callableStatement.setDate(4, Date.valueOf(product.getCreated()));
+            callableStatement.setShort(5, product.getBatch());
+            callableStatement.setInt(6, product.getQuantity());
+            callableStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return false;
+    }
+
+    @Override
+    public List<Product> getProductByName(String productName) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        List<Product> productList = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call get_product_by_name(?)}");
+            callableStatement.setString(1, productName);
+            ResultSet resultSet = callableStatement.executeQuery();
+            productList = new ArrayList<>();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setProductId(resultSet.getString("product_id"));
+                product.setProductName(resultSet.getString("product_name"));
+                product.setManufacturer(resultSet.getString("manufacturer"));
+                product.setCreated(resultSet.getDate("created").toLocalDate());
+                product.setBatch(resultSet.getShort("batch"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setProductStatus(resultSet.getBoolean("product_status"));
+                productList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return productList;
+    }
+
+    @Override
+    public boolean updateProduct(Product product) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call update_product(?,?,?,?,?,?)}");
+            callableStatement.setString(1, product.getProductId());
+            callableStatement.setString(2, product.getProductName());
+            callableStatement.setString(3, product.getManufacturer());
+            callableStatement.setDate(4, Date.valueOf(product.getCreated()));
+            callableStatement.setShort(5, product.getBatch());
+            callableStatement.setInt(6, product.getQuantity());
+            callableStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateProductStatus(String productId, boolean status) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call update_product(?,?)}");
+            callableStatement.setString(1, productId);
+            callableStatement.setBoolean(2, status);
+            callableStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return false;
+    }
+
+}
+
