@@ -5,7 +5,7 @@ create table products
 (
     product_id     char(5) primary key,
     product_name   varchar(150) not null unique,
-    Manufacturer   varchar(200) not null,
+    manufacturer   varchar(200) not null,
     created        date,
     batch          smallint     not null,
     quantity       int          not null default 0,
@@ -59,13 +59,114 @@ create table bill_details
     foreign key (product_id) references products (product_id)
 );
 
-delimiter //
+# Chức năng kiểm tra tài khoản khi đăng nhập
 
-create procedure get_account_by_user_name(in_user_name varchar(30))
+DELIMITER //
+
+create procedure get_account_by_user_name(
+    in_user_name varchar(30),
+    in_user_password varchar(30)
+)
 begin
-    select ac.user_name, ac.password, ac.permission
-    from accounts ac
-    where ac.user_name = in_user_name;
+    select acc_id, permission
+    from accounts
+    where user_name = in_user_name
+      and password = in_user_password;
+
 end //
 
-delimiter ;
+DELIMITER ;
+
+# Procedure cho Product
+
+DELIMITER //
+
+create procedure get_all_product_pagination(
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_offset int;
+    declare v_total_product int;
+
+    -- Tính tổng số trang
+    select count(product_id) into v_total_product from products;
+    set total_page = v_total_product / in_size + 1;
+
+    -- Xuất list product
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    select product_id, product_name, manufacturer, created, batch, quantity, product_status
+    from products pr
+    limit in_size offset v_offset;
+end //
+
+create procedure create_product(
+    in_product_id char(5),
+    in_product_name varchar(150),
+    in_manufacturer varchar(200),
+    in_created date,
+    in_batch smallint,
+    in_quantity int
+)
+begin
+    insert into products(product_id, product_name, manufacturer, created, batch, quantity)
+    values (in_product_id, in_product_name, in_manufacturer,
+            in_created, in_batch, in_quantity);
+end //
+
+create procedure get_product_by_id(
+    in_product_id char(5)
+)
+begin
+    select product_id, product_name, manufacturer, created, batch, quantity, product_status
+    from products
+    where product_id = in_product_id;
+end //
+
+create procedure check_exist_product_name(
+    in_product_name varchar(150)
+)
+begin
+    select product_name from products where product_id = in_product_name;
+end //
+
+create procedure update_product(
+    in_product_id char(5),
+    in_product_name varchar(150),
+    in_manufacturer varchar(200),
+    in_created date,
+    in_batch smallint,
+    in_quantity int
+)
+begin
+    update products
+    set product_name = in_product_name,
+        manufacturer = in_manufacturer,
+        created      = in_created,
+        batch        = in_batch,
+        quantity     = in_quantity
+    where product_id = in_product_id;
+end //
+
+create procedure get_product_by_name(
+    in_product_name varchar(150)
+)
+begin
+    select product_id, product_name, manufacturer, created, batch, quantity, product_status
+    from products
+    where product_name like concat('%', in_product_name, '%');
+end //
+
+create procedure update_product_status(
+    in_product_id char(5),
+    in_status bit
+)
+begin
+    update products
+    set product_status = in_status
+    where product_id = in_product_id;
+end //
+
+DELIMITER ;
