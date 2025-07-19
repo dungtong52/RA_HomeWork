@@ -2,7 +2,7 @@ package dao.imp;
 
 import dao.EmployeeDAO;
 import entity.Employee;
-import pagination.PaginationResult;
+import entity.PaginationResult;
 import utils.ConnectionDB;
 
 import java.sql.*;
@@ -57,8 +57,8 @@ public class EmployeeDAOImp implements EmployeeDAO {
             callableStatement = connection.prepareCall("{call get_employee_by_id(?)}");
             callableStatement.setString(1, employeeId);
             ResultSet resultSet = callableStatement.executeQuery();
-            employee = new Employee();
             if (resultSet.next()) {
+                employee = new Employee();
                 employee.setEmpId(resultSet.getString("emp_id"));
                 employee.setEmpName(resultSet.getString("emp_name"));
                 employee.setBirthOfDate(resultSet.getDate("birth_of_date").toLocalDate());

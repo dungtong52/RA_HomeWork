@@ -1,5 +1,7 @@
-package pagination;
+package presentation;
 
+import dao.PaginationBusiness;
+import entity.PaginationResult;
 import validation.Validation;
 
 import java.util.List;

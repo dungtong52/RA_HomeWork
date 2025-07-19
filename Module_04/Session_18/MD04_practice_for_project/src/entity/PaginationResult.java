@@ -1,6 +1,4 @@
-package pagination;
-
-import entity.Product;
+package entity;
 
 import java.util.List;
 

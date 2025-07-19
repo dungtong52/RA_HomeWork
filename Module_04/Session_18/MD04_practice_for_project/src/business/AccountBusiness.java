@@ -1,12 +1,10 @@
-package dao;
+package business;
 
 import entity.Account;
 import entity.PaginationResult;
 
-public interface AccountDAO {
+public interface AccountBusiness {
     Account getAccountToLogin(String userName, String password);
-
-    PaginationResult<Account> getAllAccountPagination(int size, int currentPage);
 
     boolean createAccount(Account account);
 
@@ -17,7 +15,4 @@ public interface AccountDAO {
     boolean checkExistEmpId(String empId);
 
     boolean updateAccountStatus(Account account);
-
-    PaginationResult<Account> getAccountByUserName(String accountName, int size, int currentPage);
-
 }

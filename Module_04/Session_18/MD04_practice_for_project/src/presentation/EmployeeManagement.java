@@ -3,9 +3,7 @@ package presentation;
 import business.EmployeeBusiness;
 import business.imp.EmployeeBusinessImp;
 import entity.Employee;
-import entity.Product;
-import pagination.PaginationBusiness;
-import pagination.PaginationPresentation;
+import dao.PaginationBusiness;
 import validation.Validation;
 
 import java.time.LocalDate;
@@ -125,11 +123,11 @@ public class EmployeeManagement {
         while (true) {
             System.out.print("Nhập vào tên tương đối để tìm nhân viên: ");
             String employeeName = scanner.nextLine();
-            if (Validation.isNotEmpty(employeeName)) {
+            if (Validation.isValidLength(employeeName, MAX_LENGTH)) {
                 PaginationPresentation.getListPagination(scanner, paginationBusiness, "employees", employeeName);
                 break;
             }
-            System.err.println("Không được để trống!");
+            System.err.println("Tên nhập vào không được để trống hoặc quá 100 ký tự!");
         }
     }
 

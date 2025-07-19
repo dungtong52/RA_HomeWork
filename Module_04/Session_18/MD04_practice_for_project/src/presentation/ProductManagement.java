@@ -3,9 +3,8 @@ package presentation;
 import business.ProductBusiness;
 import business.imp.ProductBusinessImp;
 import entity.Product;
-import pagination.PaginationBusiness;
+import dao.PaginationBusiness;
 import validation.Validation;
-import pagination.PaginationPresentation;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

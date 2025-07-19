@@ -1,7 +1,7 @@
 package dao;
 
 import entity.Employee;
-import pagination.PaginationResult;
+import entity.PaginationResult;
 
 public interface EmployeeDAO {
     PaginationResult<Employee> getEmployeePagination(int size, int currentPage);

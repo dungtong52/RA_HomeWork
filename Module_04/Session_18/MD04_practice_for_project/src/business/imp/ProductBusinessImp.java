@@ -3,11 +3,9 @@ package business.imp;
 import business.ProductBusiness;
 import dao.ProductDAO;
 import dao.imp.ProductDAOImp;
-import pagination.PaginationBusiness;
-import pagination.PaginationResult;
+import dao.PaginationBusiness;
+import entity.PaginationResult;
 import entity.Product;
-
-import java.util.List;
 
 public class ProductBusinessImp implements ProductBusiness, PaginationBusiness<Product> {
     private final ProductDAO productDAO;

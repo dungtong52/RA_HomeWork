@@ -67,4 +67,10 @@ public class Account {
     public void setAccStatus(boolean accStatus) {
         this.accStatus = accStatus;
     }
+
+    @Override
+    public String toString() {
+        return String.format("| %-10s | %-15s | %-10s | %-10s |%-10s | %-10s |",
+                this.accId, this.userName, this.password, this.permission, this.empId, this.accStatus);
+    }
 }

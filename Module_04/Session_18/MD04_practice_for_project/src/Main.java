@@ -1,3 +1,5 @@
+import business.AccountBusiness;
+import business.imp.AccountBusinessImp;
 import dao.AccountDAO;
 import dao.imp.AccountDAOImp;
 import entity.Account;
@@ -7,11 +9,11 @@ import validation.Validation;
 import java.util.Scanner;
 
 public class Main {
-    private final AccountDAO accountDAO;
+    private final AccountBusiness accountBusiness;
     private final WarehouseManagement warehouseManagement;
 
     public Main() {
-        accountDAO = new AccountDAOImp();
+        accountBusiness = new AccountBusinessImp();
         warehouseManagement = new WarehouseManagement();
     }
 
@@ -23,7 +25,7 @@ public class Main {
             String password = scanner.nextLine();
 
             if (Validation.isValidUserName(userName) && Validation.isValidPassword(password)) {
-                Account account = accountDAO.getAccountByUserName(userName, password);
+                Account account = accountBusiness.getAccountToLogin(userName, password);
                 if (account != null) {
                     return account.isPermission();
                 } else {

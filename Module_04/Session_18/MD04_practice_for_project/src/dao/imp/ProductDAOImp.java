@@ -1,7 +1,7 @@
 package dao.imp;
 
 import dao.ProductDAO;
-import pagination.PaginationResult;
+import entity.PaginationResult;
 import entity.Product;
 import utils.ConnectionDB;
 
@@ -57,8 +57,8 @@ public class ProductDAOImp implements ProductDAO {
             callableStatement = connection.prepareCall("{call check_exist_product_id(?)}");
             callableStatement.setString(1, productId);
             ResultSet resultSet = callableStatement.executeQuery();
-            product = new Product();
             if (resultSet.next()) {
+                product = new Product();
                 product.setProductId(resultSet.getString("product_id"));
                 product.setProductName(resultSet.getString("product_name"));
                 product.setManufacturer(resultSet.getString("manufacturer"));

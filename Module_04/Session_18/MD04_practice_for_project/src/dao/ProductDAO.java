@@ -1,9 +1,7 @@
 package dao;
 
-import pagination.PaginationResult;
+import entity.PaginationResult;
 import entity.Product;
-
-import java.util.List;
 
 public interface ProductDAO {
     PaginationResult<Product> getProductPagination(int size, int currentPage);

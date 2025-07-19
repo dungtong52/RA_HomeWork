@@ -1,9 +1,6 @@
 package business;
 
-import pagination.PaginationResult;
 import entity.Product;
-
-import java.util.List;
 
 public interface ProductBusiness {
     Product getProductById(String productId);

@@ -65,7 +65,7 @@ public class Validation {
     }
 
     public static boolean isValidPassword(String input) {
-        return isNotEmpty(input) && input.matches("^[a-zA-Z0-9$%]{1,30}$");
+        return isNotEmpty(input) && input.matches("^[a-zA-Z0-9$%]{8,30}$");
     }
 
     public static boolean isValidEmail(String input) {
