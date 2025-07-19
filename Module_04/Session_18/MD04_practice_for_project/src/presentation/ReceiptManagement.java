@@ -11,6 +11,9 @@ import entity.Employee;
 import entity.Product;
 import validation.Validation;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -55,6 +58,7 @@ public class ReceiptManagement {
                         createReceipt(scanner);
                         break;
                     case 3:
+                        updateReceipt(scanner);
                         break;
                     case 4:
                         break;
@@ -103,6 +107,7 @@ public class ReceiptManagement {
                 boolean success = billReceiptDetailsBusiness.createBatchDetails(billDetailList);
                 if (success) {
                     System.out.println("Tạo chi tiết phiếu nhập thành công");
+                    break;
                 } else {
                     System.err.println("Tạo chi tiết phiếu nhập thất bại!");
                 }
@@ -112,12 +117,63 @@ public class ReceiptManagement {
         }
     }
 
-    public String inputBillCode(Scanner scanner) {
+    public void updateReceipt(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào mã code: ");
+            System.out.print("Nhập vào mã code phiếu nhập: ");
             String billCode = scanner.nextLine();
             if (Validation.isValidLength(billCode, CODE_MAX_LENGTH)) {
-                return billCode;
+                Bill receipt = receiptBusiness.findBillByCode(billCode);
+                if (receipt != null) {
+                    receipt.setEmpIdCreated(inputEmpIdCreated(scanner));
+                    receipt.setCreated(inputCreated(scanner));
+                    receipt.setEmpIdAuth(inputEmpIdAuth(scanner));
+                    receipt.setAuthDate(inputAuthDate(scanner));
+                    short status = inputStatus(scanner);
+                    if (status != 2) {
+                        receipt.setBillStatus(status);
+                        boolean success = receiptBusiness.updateBill(receipt);
+                        if (success) {
+                            System.out.println("Cập nhật phiếu nhập thành công.");
+                            System.out.println("Có tiếp tục cập nhật chi tiết phiếu nhập không? (0. No | 1. Yes)");
+                            String choice = scanner.nextLine();
+                            if (Validation.isIntegerInRange(choice, 1, 2)) {
+                                updateReceiptDetails(scanner, receipt.getBillId());
+                            } else {
+                                System.out.println("Kết thúc cập nhật");
+                                break;
+                            }
+                        } else {
+                            System.err.println("Cập nhật phiếu nhập thất bại!");
+                        }
+                    } else {
+                        System.err.println("Không thể cập nhật trạng thái sang 'Duyệt' ở chức năng này!");
+                    }
+                } else {
+                    System.err.println("Phiếu nhập này không tồn tại. Vui lòng nhập lại!");
+                }
+            } else {
+                System.err.println("Mã code nhập vào không hợp lệ. Vui lòng nhập lại!");
+            }
+        }
+    }
+
+    public void updateReceiptDetails(Scanner scanner, long billId) {
+        System.out.print("Danh sách chi tiết phiếu nhập: ");
+        PaginationPresentation.getListPagination(scanner, billPaginationBusiness, "bill details", billId + "");
+
+
+    }
+
+    public String inputBillCode(Scanner scanner) {
+        while (true) {
+            System.out.print("Nhập vào mã code phiếu nhập: ");
+            String billCode = scanner.nextLine();
+            if (Validation.isValidLength(billCode, CODE_MAX_LENGTH)) {
+                if (receiptBusiness.checkExistBillCode(billCode)) {
+                    return billCode;
+                } else {
+                    System.err.println("Mã Code này đã tồn tại. Hãy nhập vào mã khác!");
+                }
             } else {
                 System.err.println("Mã code nhập vào không hợp lệ. Vui lòng nhập lại!");
             }
@@ -137,6 +193,61 @@ public class ReceiptManagement {
                 }
             } else {
                 System.err.println("Thông tin nhập vào không hợp lệ. Vui lòng nhập lại!");
+            }
+        }
+    }
+
+    public LocalDate inputCreated(Scanner scanner) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        while (true) {
+            System.out.print("Nhập vào ngày tạo phiếu (yyyy-MM-dd): ");
+            String date = scanner.nextLine();
+            if (Validation.isValidDate(date, "yyyy-MM-dd")) {
+                return LocalDate.parse(date, formatter);
+            } else {
+                System.err.println("Ngày nhập vào không hợp lệ. Vui lòng nhập lại!");
+            }
+        }
+    }
+
+    public String inputEmpIdAuth(Scanner scanner) {
+        while (true) {
+            System.out.print("Nhập vào mã nhân viên duyệt: ");
+            String empIdAuth = scanner.nextLine();
+            if (Validation.isValidLength(empIdAuth, STR_MAX_LENGTH)) {
+                Employee employee = employeeBusiness.getEmployeeById(empIdAuth);
+                if (employee != null) {
+                    return empIdAuth;
+                } else {
+                    System.err.println("Không tồn tại nhân viên này. Vui lòng nhập lại!");
+                }
+            } else {
+                System.err.printf("Mã nhân viên nhập vào không được rỗng hoặc vượt quá %d ký tự\n", STR_MAX_LENGTH);
+            }
+        }
+    }
+
+    public LocalDate inputAuthDate(Scanner scanner) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        while (true) {
+            System.out.print("Nhập vào ngày duyệt phiếu (yyyy-MM-dd): ");
+            String date = scanner.nextLine();
+            if (Validation.isValidDate(date, "yyyy-MM-dd")) {
+                return LocalDate.parse(date, formatter);
+            } else {
+                System.err.println("Ngày nhập vào không hợp lệ. Vui lòng nhập lại!");
+            }
+        }
+    }
+
+    public short inputStatus(Scanner scanner) {
+        while (true) {
+            System.out.println("Nhập vào trạng thái phiếu nhập (0. Tạo || 1. Hủy || 2. Duyệt): ");
+            String status = scanner.nextLine();
+            if (Validation.isIntegerInRange(status, 0, 2)) {
+                return Short.parseShort(status);
+            } else {
+                System.err.println("Nhập vào số 0 (Tạo) hoặc 1 (Hủy) hoặc 2 (Duyệt)");
             }
         }
     }

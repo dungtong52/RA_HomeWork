@@ -51,8 +51,18 @@ public class BillDAOImp implements BillReceiptDAO {
     }
 
     @Override
+    public boolean checkExistBillCode(String billCode) {
+        return false;
+    }
+
+    @Override
     public long createBill(Bill bill) {
         return 0;
+    }
+
+    @Override
+    public Bill findBillByCode(String billCode) {
+        return null;
     }
 
     @Override

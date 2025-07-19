@@ -217,6 +217,8 @@ VALUES ('admin01', 'adminpass', 1, 'E0001', 1), -- Admin
 
 DELIMITER //
 
+# Procedure cho Employee
+
 create procedure get_all_employee_pagination_ASC(
     in_size int,
     in_curr_page int,
@@ -320,6 +322,12 @@ create procedure update_emp_status(
     in_status bit
 )
 begin
+    declare exit handler for sqlexception
+        begin
+            rollback ;
+        end;
+    start transaction ;
+
     update employees
     set emp_status = in_status
     where emp_id = in_emp_id;
@@ -329,6 +337,7 @@ begin
         set ac.acc_status = 0
         where ac.emp_id = in_emp_id;
     end if;
+    commit;
 end //
 
 DELIMITER ;
@@ -472,6 +481,44 @@ begin
     set out_bill_id = last_insert_id();
 end //
 
+create procedure check_exist_bill_code(in_bill_code varchar(10))
+begin
+    select 1 from bills where bill_code = in_bill_code;
+end //
+
+create procedure find_bill_by_code(in_bill_code varchar(10))
+begin
+    select bill_id,
+           bill_code,
+           bill_type,
+           emp_id_created,
+           created,
+           emp_id_auth,
+           auth_date,
+           bill_status
+    from bills
+    where bill_code = in_bill_code;
+end //
+
+create procedure update_receipt(
+    in_bill_code varchar(10),
+    in_emp_id_created char(5),
+    in_created date,
+    in_emp_id_auth char(5),
+    in_auth_date date,
+    in_bill_status smallint
+)
+begin
+    update bills
+    set emp_id_created = in_emp_id_created,
+        created        = in_created,
+        emp_id_auth    = in_emp_id_auth,
+        auth_date      = in_auth_date,
+        bill_status    = in_bill_status
+    where bill_code = in_bill_code
+      and (bill_status = 0 or bill_status = 1);
+end //
+
 DELIMITER ;
 
 # Procedure cho Receipt Details
@@ -485,25 +532,50 @@ create procedure create_receipt_detail(
     in_price float
 )
 begin
-    declare exit handler for sqlexception
-        begin
-            rollback ;
-        end;
-
-    start transaction ;
-
-    -- Thêm receipt_detail
     insert into bill_details(bill_id, product_id, quantity, price)
     values (in_bill_id, in_product_id, in_quantity, in_price);
-
-    -- Cập nhật số lượng trong products
-    update products
-    set quantity = quantity + in_quantity
-    where product_id = in_product_id;
-    commit;
-
 end //
 
+create procedure get_receipt_details_by_bill_id(
+    in_bill_id bigint,
+    in_size int,
+    in_curr_page int,
+    out total_pages int
+)
+begin
+    declare v_total_details int;
+    declare v_offset int;
+
+    -- Lay pagination
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    select bill_detail_id, bill_id, product_id, quantity, price
+    from bill_details
+    where bill_id = in_bill_id
+    limit in_size offset v_offset;
+
+    -- Lay tong so trang
+    select count(bill_detail_id)
+    into v_total_details
+    from bill_details
+    where bill_id = in_bill_id;
+
+    set total_pages = ceiling(v_total_details / in_size);
+end //
+
+create procedure update_receipt_detail(
+    in_bill_detail_id bigint,
+    in_product_id char(5),
+    in_quantity int,
+    in_price float
+)
+begin
+    update bill_details
+    set product_id = in_product_id,
+        quantity   = in_quantity,
+        price      = in_price
+    where bill_detail_id = in_bill_detail_id;
+end //
 DELIMITER ;
 
 # Procedure cho Bill
@@ -539,3 +611,21 @@ begin
 end //
 
 DELIMITER ;
+
+
+# declare exit handler for sqlexception
+# begin
+# rollback ;
+# end;
+#
+# start transaction ;
+#
+# -- Thêm receipt_detail
+# insert into bill_details(bill_id, product_id, quantity, price)
+# values (in_bill_id, in_product_id, in_quantity, in_price);
+#
+# -- Cập nhật số lượng trong products
+# update products
+# set quantity = quantity + in_quantity
+# where product_id = in_product_id;
+# commit;

@@ -32,6 +32,7 @@ public class Validation {
                     if (!input.equalsIgnoreCase("true") && !input.equalsIgnoreCase("false"))
                         return false;
                     return input.equalsIgnoreCase("true");
+
                 default:
                     return false;
             }

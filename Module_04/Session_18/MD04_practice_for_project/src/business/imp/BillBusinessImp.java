@@ -26,4 +26,19 @@ public class BillBusinessImp implements BillReceiptBusiness, PaginationBusiness<
     public long createBill(Bill bill) {
         return billReceiptDAO.createBill(bill);
     }
+
+    @Override
+    public boolean checkExistBillCode(String billCode) {
+        return false;
+    }
+
+    @Override
+    public Bill findBillByCode(String billCode) {
+        return null;
+    }
+
+    @Override
+    public boolean updateBill(Bill bill) {
+        return false;
+    }
 }
