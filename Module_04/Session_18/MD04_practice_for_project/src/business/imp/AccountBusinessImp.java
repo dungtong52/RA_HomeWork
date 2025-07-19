@@ -2,7 +2,7 @@ package business.imp;
 
 import business.AccountBusiness;
 import dao.AccountDAO;
-import dao.PaginationBusiness;
+import business.PaginationBusiness;
 import dao.imp.AccountDAOImp;
 import entity.Account;
 import entity.PaginationResult;

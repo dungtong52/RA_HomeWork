@@ -3,7 +3,7 @@ package presentation;
 import business.ProductBusiness;
 import business.imp.ProductBusinessImp;
 import entity.Product;
-import dao.PaginationBusiness;
+import business.PaginationBusiness;
 import validation.Validation;
 
 import java.time.LocalDate;
@@ -66,9 +66,7 @@ public class ProductManagement {
         product.setProductId(inputProductID(scanner));
         product.setProductName(inputProductName(scanner));
         product.setManufacturer(inputManufacturer(scanner));
-        product.setCreated(inputCreated(scanner));
         product.setBatch(inputBatch(scanner));
-        product.setQuantity(inputQuantity(scanner));
         boolean success = productBusiness.createProduct(product);
         if (success) {
             System.out.println("Thêm mới sản phẩm thành công.");

@@ -101,13 +101,11 @@ public class ProductDAOImp implements ProductDAO {
         CallableStatement callableStatement = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call create_product(?,?,?,?,?,?)}");
+            callableStatement = connection.prepareCall("{call create_product(?,?,?,?)}");
             callableStatement.setString(1, product.getProductId());
             callableStatement.setString(2, product.getProductName());
             callableStatement.setString(3, product.getManufacturer());
-            callableStatement.setDate(4, Date.valueOf(product.getCreated()));
-            callableStatement.setShort(5, product.getBatch());
-            callableStatement.setInt(6, product.getQuantity());
+            callableStatement.setShort(4, product.getBatch());
             callableStatement.executeUpdate();
             return true;
         } catch (Exception e) {

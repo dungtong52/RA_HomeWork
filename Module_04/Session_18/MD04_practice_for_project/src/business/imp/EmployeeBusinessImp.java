@@ -4,7 +4,7 @@ import business.EmployeeBusiness;
 import dao.EmployeeDAO;
 import dao.imp.EmployeeDAOImp;
 import entity.Employee;
-import dao.PaginationBusiness;
+import business.PaginationBusiness;
 import entity.PaginationResult;
 
 public class EmployeeBusinessImp implements EmployeeBusiness, PaginationBusiness<Employee> {

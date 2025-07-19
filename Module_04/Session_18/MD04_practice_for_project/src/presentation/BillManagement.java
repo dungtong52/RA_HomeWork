@@ -1,10 +1,22 @@
 package presentation;
 
+import business.BillReceiptBusiness;
+import business.PaginationBusiness;
+import business.imp.BillBusinessImp;
+import entity.Bill;
 import validation.Validation;
 
 import java.util.Scanner;
 
 public class BillManagement {
+    private final BillReceiptBusiness billReceiptBusiness;
+    private final PaginationBusiness<Bill> billPaginationBusiness;
+
+    public BillManagement() {
+        billReceiptBusiness = new BillBusinessImp();
+        billPaginationBusiness = new BillBusinessImp();
+    }
+
     public void billMenu(Scanner scanner) {
         boolean exit = false;
         while (!exit) {
@@ -16,10 +28,12 @@ public class BillManagement {
             System.out.println("5. Duyệt phiếu xuất");
             System.out.println("6. Tìm kiếm phiếu xuất");
             System.out.println("7. Thoát");
+            System.out.print("Lựa chọn của bạn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 7)) {
                 switch (Integer.parseInt(choice)) {
                     case 1:
+                        PaginationPresentation.getListPagination(scanner, billPaginationBusiness, "bills", null);
                         break;
                     case 2:
                         break;

@@ -1,6 +1,6 @@
 package presentation;
 
-import dao.PaginationBusiness;
+import business.PaginationBusiness;
 import entity.PaginationResult;
 import validation.Validation;
 
@@ -80,6 +80,24 @@ public class PaginationPresentation {
                 System.out.println("-".repeat(116));
                 System.out.printf("| %-10s | %-20s | %-15s | %-15s | %-10s | %-10s | %-15s |\n",
                         "Emp ID", "Emp Name", "Birth", "Email", "Phone", "Address", "Status");
+                System.out.println("-".repeat(116));
+                break;
+            case "accounts":
+                System.out.println("-".repeat(116));
+                System.out.printf("| %-15s | %-20s | %-20s | %-15s | %-10s | %-15s |\n",
+                        "Acc ID", "User Name", "Password", "Permission", "Emp ID", "Status");
+                System.out.println("-".repeat(116));
+                break;
+            case "bills":
+                System.out.println("-".repeat(116));
+                System.out.printf("| %-10s | %-10s | %-10s | %-15s | %-10s | %-15s | %-10s | %-10s |\n",
+                        "Bill ID", "Bill Code", "Bill Type", "Emp ID Created", "Created", "Emp ID Auth", "Auth Date", "Status");
+                System.out.println("-".repeat(116));
+                break;
+            case "bill details":
+                System.out.println("-".repeat(116));
+                System.out.printf("| %-20s | %-20s | %-20s | %-15s | %-20s |\n",
+                        "Bill Detail ID", "Bill ID", "Product ID", "Quantity", "Price");
                 System.out.println("-".repeat(116));
                 break;
             default:

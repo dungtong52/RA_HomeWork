@@ -57,4 +57,10 @@ public class BillDetail {
     public void setPrice(float price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return String.format("| %-20s | %-20s | %-20s | %-15s | %-20s |",
+                this.billDetailId, this.billId, this.productId, this.quantity, this.price);
+    }
 }

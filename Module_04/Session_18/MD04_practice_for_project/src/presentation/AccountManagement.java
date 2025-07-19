@@ -4,7 +4,7 @@ import business.AccountBusiness;
 import business.EmployeeBusiness;
 import business.imp.AccountBusinessImp;
 import business.imp.EmployeeBusinessImp;
-import dao.PaginationBusiness;
+import business.PaginationBusiness;
 import entity.Account;
 import validation.Validation;
 
@@ -79,6 +79,11 @@ public class AccountManagement {
                 if (account != null) {
                     System.out.printf("Trạng thái hiện tại của tài khoản %d: %s\n", accountId, account.isAccStatus());
                     account.setAccStatus(inputAccStatus(scanner));
+                    if (accountBusiness.updateAccountStatus(account)) {
+                        System.out.println("Cập nhật thành công");
+                    } else {
+                        System.err.println("Cập nhật thất bại");
+                    }
                     break;
                 } else {
                     System.err.println("Không tồn tại mã tài khoản này!");

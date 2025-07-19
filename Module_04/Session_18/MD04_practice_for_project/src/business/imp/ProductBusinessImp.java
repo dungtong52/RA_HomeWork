@@ -3,7 +3,7 @@ package business.imp;
 import business.ProductBusiness;
 import dao.ProductDAO;
 import dao.imp.ProductDAOImp;
-import dao.PaginationBusiness;
+import business.PaginationBusiness;
 import entity.PaginationResult;
 import entity.Product;
 

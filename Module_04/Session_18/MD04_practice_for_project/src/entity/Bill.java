@@ -89,4 +89,13 @@ public class Bill {
     public void setBillStatus(short billStatus) {
         this.billStatus = billStatus;
     }
+
+    @Override
+    public String toString() {
+        return String.format("| %-10s | %-10s | %-10s | %-15s | %-10s | %-15s | %-10s | %-10s |",
+                this.billId, this.billCode, this.billType, this.empIdCreated, this.created,
+                this.empIdAuth == null ? "" : this.empIdAuth,
+                this.empIdAuth == null ? "" : this.authDate,
+                this.billStatus == 0 ? "Tạo" : (this.billStatus == 1 ? "Hủy" : "Duyệt"));
+    }
 }

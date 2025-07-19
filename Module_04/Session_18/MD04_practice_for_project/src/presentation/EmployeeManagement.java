@@ -3,7 +3,7 @@ package presentation;
 import business.EmployeeBusiness;
 import business.imp.EmployeeBusinessImp;
 import entity.Employee;
-import dao.PaginationBusiness;
+import business.PaginationBusiness;
 import validation.Validation;
 
 import java.time.LocalDate;

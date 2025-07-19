@@ -41,7 +41,7 @@ create table bills
     bill_type      bit         not null,
     emp_id_created char(5)     not null,
     created        date,
-    emp_id_auth    char(5)     not null,
+    emp_id_auth    char(5),
     auth_date      date,
     bill_status    smallint    not null default 0,
     foreign key (emp_id_created) references employees (emp_id),
@@ -106,14 +106,12 @@ create procedure create_product(
     in_product_id char(5),
     in_product_name varchar(150),
     in_manufacturer varchar(200),
-    in_created date,
-    in_batch smallint,
-    in_quantity int
+    in_batch smallint
 )
 begin
-    insert into products(product_id, product_name, manufacturer, created, batch, quantity)
+    insert into products(product_id, product_name, manufacturer, created, batch)
     values (in_product_id, in_product_name, in_manufacturer,
-            in_created, in_batch, in_quantity);
+            current_date, in_batch);
 end //
 
 create procedure get_product_by_id(
@@ -217,8 +215,6 @@ VALUES ('admin01', 'adminpass', 1, 'E0001', 1), -- Admin
        ('user02', 'userpass2', 0, 'E0003', 1),  -- User
        ('blocked01', 'nopass', 0, 'E0004', 0);
 
-# Procedure cho Employee
-
 DELIMITER //
 
 create procedure get_all_employee_pagination_ASC(
@@ -315,6 +311,7 @@ begin
     into v_total_employee
     from employees
     where emp_name like concat('%', in_emp_name, '%');
+
     set total_page = ceiling(v_total_employee / in_size);
 end //
 
@@ -327,7 +324,7 @@ begin
     set emp_status = in_status
     where emp_id = in_emp_id;
 
-    if (in_status = 1 || in_status = 2) then
+    if (in_status = 1 || 2) then
         update accounts ac
         set ac.acc_status = 0
         where ac.emp_id = in_emp_id;
@@ -335,7 +332,6 @@ begin
 end //
 
 DELIMITER ;
-
 # Procedure cho Account
 
 DELIMITER //
@@ -426,6 +422,119 @@ begin
     where user_name like concat('%', in_user_name, '%');
 
     set total_pages = ceiling(v_total_acc / in_size);
+
+end //
+
+DELIMITER ;
+
+# Procedure cho Receipt
+DELIMITER //
+
+create procedure get_all_receipt_pagination(
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_total_receipt int;
+    declare v_offset int;
+
+    -- Tong so page
+    select count(bill_id) into v_total_receipt from bills where bill_type = 1;
+    set total_page = ceiling(v_total_receipt / in_size);
+
+    -- Xuat toan bo phieu nhap
+    set v_offset = (in_curr_page - 1) * in_size;
+    select bill_id,
+           bill_code,
+           bill_type,
+           emp_id_created,
+           created,
+           emp_id_auth,
+           auth_date,
+           bill_status
+    from bills
+    where bill_type = 1
+    limit in_size offset v_offset;
+
+end //
+
+create procedure create_receipt(
+    in_bill_code varchar(10),
+    in_bill_type bit,
+    in_emp_id_created char(5),
+    out out_bill_id bigint
+)
+begin
+    insert into bills (bill_code, bill_type, emp_id_created, created)
+    values (in_bill_code, in_bill_type, in_emp_id_created, current_date);
+
+    set out_bill_id = last_insert_id();
+end //
+
+DELIMITER ;
+
+# Procedure cho Receipt Details
+
+DELIMITER //
+
+create procedure create_receipt_detail(
+    in_bill_id bigint,
+    in_product_id char(5),
+    in_quantity int,
+    in_price float
+)
+begin
+    declare exit handler for sqlexception
+        begin
+            rollback ;
+        end;
+
+    start transaction ;
+
+    -- Thêm receipt_detail
+    insert into bill_details(bill_id, product_id, quantity, price)
+    values (in_bill_id, in_product_id, in_quantity, in_price);
+
+    -- Cập nhật số lượng trong products
+    update products
+    set quantity = quantity + in_quantity
+    where product_id = in_product_id;
+    commit;
+
+end //
+
+DELIMITER ;
+
+# Procedure cho Bill
+DELIMITER //
+
+create procedure get_all_bill_pagination(
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_total_bill int;
+    declare v_offset int;
+
+    -- Tong so page
+    select count(bill_id) into v_total_bill from bills where bill_type = 0;
+    set total_page = ceiling(v_total_bill / in_size);
+
+    -- Xuat toan bo phieu xuat
+    set v_offset = (in_curr_page - 1) * in_size;
+    select bill_id,
+           bill_code,
+           bill_type,
+           emp_id_created,
+           created,
+           emp_id_auth,
+           auth_date,
+           bill_status
+    from bills
+    where bill_type = 0
+    limit in_size offset v_offset;
 
 end //
 
