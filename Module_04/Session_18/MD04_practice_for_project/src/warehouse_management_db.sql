@@ -215,4 +215,218 @@ INSERT INTO accounts (user_name, password, permission, emp_id, acc_status)
 VALUES ('admin01', 'adminpass', 1, 'E0001', 1), -- Admin
        ('user01', 'userpass1', 0, 'E0002', 1),  -- User
        ('user02', 'userpass2', 0, 'E0003', 1),  -- User
-       ('blocked01', 'nopass', 0, 'E0004', 0); -- Tài khoản bị khóa
+       ('blocked01', 'nopass', 0, 'E0004', 0);
+
+# Procedure cho Employee
+
+DELIMITER //
+
+create procedure get_all_employee_pagination_ASC(
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_offset int;
+    declare v_total_employee int;
+
+    -- Tính tổng số trang
+    select count(emp_id) into v_total_employee from employees;
+    set total_page = ceiling(v_total_employee / in_size);
+
+    -- Xuất list product
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    select emp_id, emp_name, birth_of_date, email, phone, address, emp_status
+    from employees
+    order by emp_name
+    limit in_size offset v_offset;
+end //
+
+create procedure create_employee(
+    in_emp_id char(5),
+    in_emp_name varchar(100),
+    in_birth_of_date date,
+    in_email varchar(100),
+    in_phone varchar(100),
+    in_address text,
+    in_emp_status smallint
+)
+begin
+    insert into employees(emp_id, emp_name, birth_of_date, email, phone, address, emp_status)
+    values (in_emp_id, in_emp_name, in_birth_of_date, in_email,
+            in_phone, in_address, in_emp_status);
+end //
+
+create procedure get_employee_by_id(
+    in_emp_id char(5)
+)
+begin
+    select emp_id, emp_name, birth_of_date, email, phone, address, emp_status
+    from employees
+    where emp_id = in_emp_id;
+end //
+
+create procedure check_exist_employee_name(
+    in_emp_name varchar(100)
+)
+begin
+    select emp_name from employees where emp_name = in_emp_name;
+end //
+
+create procedure update_employee(
+    in_emp_id char(5),
+    in_emp_name varchar(100),
+    in_birth_of_date date,
+    in_email varchar(100),
+    in_phone varchar(100),
+    in_address text
+)
+begin
+    update employees
+    set emp_name      = in_emp_name,
+        birth_of_date = in_birth_of_date,
+        email         = in_email,
+        phone         = in_phone,
+        address       = in_address
+    where emp_id = in_emp_id;
+end //
+
+create procedure get_employee_by_name(
+    in_emp_name varchar(150),
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_offset int;
+    declare v_total_employee int;
+
+    -- Xuất list product
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    select emp_id, emp_name, birth_of_date, email, phone, address, emp_status
+    from employees
+    where emp_name like concat('%', in_emp_name, '%')
+    limit in_size offset v_offset;
+
+    -- Tính tổng số trang
+    select count(emp_id)
+    into v_total_employee
+    from employees
+    where emp_name like concat('%', in_emp_name, '%');
+    set total_page = ceiling(v_total_employee / in_size);
+end //
+
+create procedure update_emp_status(
+    in_emp_id char(5),
+    in_status bit
+)
+begin
+    update employees
+    set emp_status = in_status
+    where emp_id = in_emp_id;
+
+    if (in_status = 1 || in_status = 2) then
+        update accounts ac
+        set ac.acc_status = 0
+        where ac.emp_id = in_emp_id;
+    end if;
+end //
+
+DELIMITER ;
+
+# Procedure cho Account
+
+DELIMITER //
+
+create procedure get_all_account_pagination(
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_offset int;
+    declare v_total_account int;
+
+    -- Tính tổng số trang
+    select count(acc_id) into v_total_account from accounts;
+    set total_page = ceiling(v_total_account / in_size);
+
+    -- Xuất list product
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    select acc_id, user_name, password, permission, emp_id, acc_status
+    from accounts
+    limit in_size offset v_offset;
+
+end //
+
+create procedure create_account(
+    in_user_name varchar(30),
+    in_password varchar(30),
+    in_emp_id char(5)
+)
+begin
+    insert into accounts(user_name, password, emp_id)
+    values (in_user_name, in_password, in_emp_id);
+end //
+
+create procedure check_exist_account_name(in_name varchar(30))
+begin
+    select 1 from accounts where user_name = in_name;
+end//
+
+create procedure check_exist_emp_id(in_emp_id char(5))
+begin
+    select 1 from accounts where emp_id = in_emp_id;
+end//
+
+create procedure get_account_by_id(
+    in_account_id int
+)
+begin
+    select acc_id, user_name, password, permission, emp_id, acc_status
+    from accounts
+    where acc_id = in_account_id;
+end //
+
+create procedure update_account_status(
+    in_acc_id int,
+    in_status bit
+)
+begin
+    update accounts
+    set acc_status = in_status
+    where acc_id = in_acc_id;
+end //
+
+create procedure get_account_by_name(
+    in_user_name varchar(30),
+    in_size int,
+    in_curr_page int,
+    out total_pages int
+)
+begin
+    declare v_total_acc int;
+    declare v_offset int;
+
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    -- Tra ve danh sach
+    select acc_id, user_name, password, permission, emp_id, acc_status
+    from accounts
+    where user_name like concat('%', in_user_name, '%')
+    limit in_size offset v_offset;
+
+    -- Tra ve tong so trang
+    select count(acc_id)
+    into v_total_acc
+    from accounts
+    where user_name like concat('%', in_user_name, '%');
+
+    set total_pages = ceiling(v_total_acc / in_size);
+
+end //
+
+DELIMITER ;
