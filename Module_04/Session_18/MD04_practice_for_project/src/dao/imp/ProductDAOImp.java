@@ -54,7 +54,7 @@ public class ProductDAOImp implements ProductDAO {
         Product product = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call check_exist_product_id(?)}");
+            callableStatement = connection.prepareCall("{call get_product_by_id(?)}");
             callableStatement.setString(1, productId);
             ResultSet resultSet = callableStatement.executeQuery();
             if (resultSet.next()) {
@@ -160,13 +160,12 @@ public class ProductDAOImp implements ProductDAO {
         CallableStatement callableStatement = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call update_product(?,?,?,?,?,?)}");
+            callableStatement = connection.prepareCall("{call update_product(?,?,?,?,?)}");
             callableStatement.setString(1, product.getProductId());
             callableStatement.setString(2, product.getProductName());
             callableStatement.setString(3, product.getManufacturer());
             callableStatement.setDate(4, Date.valueOf(product.getCreated()));
             callableStatement.setShort(5, product.getBatch());
-            callableStatement.setInt(6, product.getQuantity());
             callableStatement.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -183,7 +182,7 @@ public class ProductDAOImp implements ProductDAO {
         CallableStatement callableStatement = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call update_product(?,?)}");
+            callableStatement = connection.prepareCall("{call update_product_status(?,?)}");
             callableStatement.setString(1, productId);
             callableStatement.setBoolean(2, status);
             callableStatement.executeUpdate();

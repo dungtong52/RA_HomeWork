@@ -6,17 +6,19 @@ public class Account {
     private String password;
     private boolean permission;
     private String empId;
+    private String empName;
     private boolean accStatus;
 
     public Account() {
     }
 
-    public Account(int accId, String userName, String password, boolean permission, String empId, boolean accStatus) {
+    public Account(int accId, String userName, String password, boolean permission, String empId, String empName, boolean accStatus) {
         this.accId = accId;
         this.userName = userName;
         this.password = password;
         this.permission = permission;
         this.empId = empId;
+        this.empName = empName;
         this.accStatus = accStatus;
     }
 
@@ -68,9 +70,17 @@ public class Account {
         this.accStatus = accStatus;
     }
 
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
     @Override
     public String toString() {
-        return String.format("| %-10s | %-15s | %-10s | %-10s |%-10s | %-10s |",
-                this.accId, this.userName, this.password, this.permission, this.empId, this.accStatus);
+        return String.format("| %-15s | %-15s | %-15s | %-15s | %-10s | %-15s | %-10s |",
+                this.accId, this.userName, this.password, this.permission, this.empId, this.empName, this.accStatus);
     }
 }

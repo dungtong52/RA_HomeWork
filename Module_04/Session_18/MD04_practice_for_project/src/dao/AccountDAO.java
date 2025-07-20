@@ -18,6 +18,8 @@ public interface AccountDAO {
 
     boolean updateAccountStatus(Account account);
 
-    PaginationResult<Account> getAccountByUserName(String accountName, int size, int currentPage);
+    Account getAccountByUserName(String userName);
+
+    Account getAccountByEmpName(String empName);
 
 }

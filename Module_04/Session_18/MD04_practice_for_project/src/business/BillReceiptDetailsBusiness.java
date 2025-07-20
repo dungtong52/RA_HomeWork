@@ -7,5 +7,9 @@ import java.util.List;
 public interface BillReceiptDetailsBusiness {
     boolean createBatchDetails(List<BillDetail> billDetailList);
 
-    boolean updateReceiptDetails(List<BillDetail> billDetailList);
+    BillDetail findBillDetailById(long billDetailId);
+
+    boolean updateReceiptDetails(BillDetail billDetail);
+
+    boolean acceptBill(long billId);
 }

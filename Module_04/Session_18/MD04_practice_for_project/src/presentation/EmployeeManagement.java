@@ -31,8 +31,9 @@ public class EmployeeManagement {
             System.out.println("2. Thêm mới nhân viên");
             System.out.println("3. Cập nhật thông tin nhân viên");
             System.out.println("4. Cập nhật trạng thái nhân viên");
-            System.out.println("5. Tìm kiếm nhân viên theo tên");
+            System.out.println("5. Tìm kiếm nhân viên theo tên nhân viên hoặc mã nhân viên");
             System.out.println("6. Thoát");
+            System.out.println("Lựa chọn của bạn:");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 6)) {
                 switch (Integer.parseInt(choice)) {
@@ -49,7 +50,20 @@ public class EmployeeManagement {
                         updateEmpStatus(scanner);
                         break;
                     case 5:
-                        getProductByName(scanner);
+                        System.out.println("Chọn cách thức tìm kiếm nhân viên");
+                        System.out.println("1. Tìm kiếm theo tên nhân viên");
+                        System.out.println("2. Tìm kiếm theo mã nhân viên");
+                        System.out.println("Lựa chọn: ");
+                        String numberChoice = scanner.nextLine();
+                        if (Validation.isIntegerInRange(numberChoice, 1, 2)) {
+                            if (Integer.parseInt(numberChoice) == 1) {
+                                getEmployeeByName(scanner);
+                            } else {
+                                getEmployeeById(scanner);
+                            }
+                        } else {
+                            System.out.println("Số nhập vào không hợp lệ");
+                        }
                         break;
                     default:
                         exit = true;
@@ -62,7 +76,7 @@ public class EmployeeManagement {
 
     public void addEmployee(Scanner scanner) {
         Employee employee = new Employee();
-        employee.setEmpId(inputEmployeeID(scanner));
+        employee.setEmpId(inputEmployeeIDForCreate(scanner));
         employee.setEmpName(inputEmployeeName(scanner));
         employee.setBirthOfDate(inputBirthOfDate(scanner));
         employee.setEmail(inputEmail(scanner));
@@ -78,7 +92,7 @@ public class EmployeeManagement {
     }
 
     public void updateEmployee(Scanner scanner) {
-        String employeeId = inputEmployeeID(scanner);
+        String employeeId = inputEmployeeIDForUpdate(scanner);
         Employee updateEmployee = employeeBusiness.getEmployeeById(employeeId);
         boolean exit = false;
         while (!exit) {
@@ -88,7 +102,7 @@ public class EmployeeManagement {
             System.out.println("4. Cập nhật số điện thoại");
             System.out.println("5. Cập nhật địa chỉ");
             System.out.println("6. Thoát cập nhật");
-            System.out.print("Lựa chọn: ");
+            System.out.println("Lựa chọn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 6)) {
                 switch (Integer.parseInt(choice)) {
@@ -119,43 +133,64 @@ public class EmployeeManagement {
         }
     }
 
-    public void getProductByName(Scanner scanner) {
+    public void getEmployeeByName(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào tên tương đối để tìm nhân viên: ");
+            System.out.println("Nhập vào tên tương đối để tìm nhân viên: ");
             String employeeName = scanner.nextLine();
             if (Validation.isValidLength(employeeName, MAX_LENGTH)) {
                 PaginationPresentation.getListPagination(scanner, paginationBusiness, "employees", employeeName);
                 break;
+            } else {
+                System.err.printf("Tên nhập vào không được để trống hoặc quá %d ký tự!\n", MAX_LENGTH);
             }
-            System.err.println("Tên nhập vào không được để trống hoặc quá 100 ký tự!");
+        }
+    }
+
+    public void getEmployeeById(Scanner scanner) {
+        while (true) {
+            System.out.println("Nhập vào mã nhân viên: ");
+            String employeeId = scanner.nextLine();
+            if (Validation.isValidLength(employeeId, ID_MAX_LENGTH)) {
+                Employee employee = employeeBusiness.getEmployeeById(employeeId);
+                if (employee != null) {
+                    System.out.println(employee);
+                    break;
+                } else {
+                    System.err.println("Không tìm thấy nhân viên có mã " + employeeId);
+                }
+            } else {
+                System.err.printf("Tên nhập vào không được để trống hoặc quá %d ký tự!\n", ID_MAX_LENGTH);
+            }
         }
     }
 
     public void updateEmpStatus(Scanner scanner) {
-
-        String employeeId = inputEmployeeID(scanner);
+        String employeeId = inputEmployeeIDForUpdate(scanner);
         Employee updateEmployee = employeeBusiness.getEmployeeById(employeeId);
-        short statusCurent = updateEmployee.getEmpStatus();
+        short statusCurrent = updateEmployee.getEmpStatus();
         System.out.printf("Trạng thái hiện tại của nhân viên có ID %s: %s\n",
                 updateEmployee.getEmpId(),
-                statusCurent == 0 ? "Hoạt động" : (statusCurent == 1 ? "Nghỉ chế độ" : "Nghỉ việc"));
-        System.out.print("Cập nhật trạng thái mới (0 | 1 | 2): ");
-        String statusInput = scanner.nextLine();
-        if (Validation.isIntegerInRange(statusInput, 0, 2)) {
-            short status = Short.parseShort(statusInput);
-            if (employeeBusiness.updateEmployeeStatus(employeeId, status)) {
-                System.out.println("Cập nhật trạng thái thành công");
+                statusCurrent == 0 ? "Hoạt động" : (statusCurrent == 1 ? "Nghỉ chế độ" : "Nghỉ việc"));
+        while (true) {
+            System.out.println("Cập nhật trạng thái mới (0. Hoạt động | 1. Nghỉ chế độ | 2. Nghỉ việc): ");
+            String statusInput = scanner.nextLine();
+            if (Validation.isIntegerInRange(statusInput, 0, 2)) {
+                short status = Short.parseShort(statusInput);
+                if (employeeBusiness.updateEmployeeStatus(employeeId, status)) {
+                    System.out.println("Cập nhật trạng thái thành công");
+                    break;
+                } else {
+                    System.err.println("Cập nhật trạng thái thất bại!");
+                }
             } else {
-                System.err.println("Cập nhật trạng thái thất bại!");
+                System.err.println("Trạng thái nhập vào không đúng!");
             }
-        } else {
-            System.err.println("Trạng thái nhập vào không đúng!");
         }
     }
 
-    public String inputEmployeeID(Scanner scanner) {
+    public String inputEmployeeIDForCreate(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập mã nhân viên: ");
+            System.out.println("Nhập mã nhân viên: ");
             String employeeID = scanner.nextLine();
             if (Validation.isValidLength(employeeID, ID_MAX_LENGTH)) {
                 if (employeeBusiness.getEmployeeById(employeeID) == null) {
@@ -169,9 +204,25 @@ public class EmployeeManagement {
         }
     }
 
+    public String inputEmployeeIDForUpdate(Scanner scanner) {
+        while (true) {
+            System.out.println("Nhập mã nhân viên: ");
+            String employeeID = scanner.nextLine();
+            if (Validation.isValidLength(employeeID, ID_MAX_LENGTH)) {
+                if (employeeBusiness.getEmployeeById(employeeID) != null) {
+                    return employeeID;
+                } else {
+                    System.err.println("Mã nhân viên này KHÔNG tồn tại. Vui lòng nhập mã khác!");
+                }
+            } else {
+                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", ID_MAX_LENGTH);
+            }
+        }
+    }
+
     public String inputEmployeeName(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập tên nhân viên: ");
+            System.out.println("Nhập tên nhân viên: ");
             String employeeName = scanner.nextLine();
             if (Validation.isValidLength(employeeName, MAX_LENGTH)) {
                 if (!employeeBusiness.checkExistEmployeeName(employeeName)) {
@@ -188,7 +239,7 @@ public class EmployeeManagement {
     public LocalDate inputBirthOfDate(Scanner scanner) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         while (true) {
-            System.out.print("Nhập vào ngày sinh (yyyy-MM-dd): ");
+            System.out.println("Nhập vào ngày sinh (yyyy-MM-dd): ");
             String date = scanner.nextLine();
             if (Validation.isValidDate(date, "yyyy-MM-dd")) {
                 return LocalDate.parse(date, formatter);
@@ -200,7 +251,7 @@ public class EmployeeManagement {
 
     public String inputEmail(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập địa chỉ email: ");
+            System.out.println("Nhập địa chỉ email: ");
             String email = scanner.nextLine();
             if (Validation.isValidEmail(email)) {
                 return email;
@@ -212,7 +263,7 @@ public class EmployeeManagement {
 
     public String inputPhone(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập số điện thoại: ");
+            System.out.println("Nhập số điện thoại: ");
             String phone = scanner.nextLine();
             if (Validation.isValidPhone(phone)) {
                 return phone;
@@ -224,7 +275,7 @@ public class EmployeeManagement {
 
     public String inputAddress(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập địa chỉ: ");
+            System.out.println("Nhập địa chỉ: ");
             String address = scanner.nextLine();
             if (Validation.isNotEmpty(address)) {
                 return address;
@@ -236,7 +287,7 @@ public class EmployeeManagement {
 
     public short inputStatus(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào trạng thái: ");
+            System.out.println("Nhập vào trạng thái: ");
             String status = scanner.nextLine();
             if (status.equals("0") || status.equals("1") || status.equals("2")) {
                 return Short.parseShort(status);

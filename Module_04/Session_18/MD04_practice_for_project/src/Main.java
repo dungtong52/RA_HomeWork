@@ -19,9 +19,9 @@ public class Main {
 
     public boolean accountLogin(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập tên tài khoản: ");
+            System.out.println("Nhập tên tài khoản: ");
             String userName = scanner.nextLine();
-            System.out.print("Nhập mật khẩu: ");
+            System.out.println("Nhập mật khẩu: ");
             String password = scanner.nextLine();
 
             if (Validation.isValidUserName(userName) && Validation.isValidPassword(password)) {

@@ -45,10 +45,20 @@ public class AccountBusinessImp implements AccountBusiness, PaginationBusiness<A
     }
 
     @Override
+    public Account getAccountByUserName(String userName) {
+        return accountDAO.getAccountByUserName(userName);
+    }
+
+    @Override
+    public Account getAccountByEmpName(String empName) {
+        return accountDAO.getAccountByEmpName(empName);
+    }
+
+    @Override
     public PaginationResult<Account> getPaginationData(String key, int size, int currentPage) {
-        if (key == null) {
+        if (key == null || key.trim().isEmpty()) {
             return accountDAO.getAllAccountPagination(size, currentPage);
         }
-        return accountDAO.getAccountByUserName(key, size, currentPage);
+        return null;
     }
 }

@@ -33,7 +33,7 @@ public class WarehouseManagement {
             System.out.println("5. Quản lý phiếu xuất");
             System.out.println("6. Quản lý báo cáo");
             System.out.println("7. Thoát");
-            System.out.print("Lựa chọn: ");
+            System.out.println("Lựa chọn của bạn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 7)) {
                 switch (Integer.parseInt(choice)) {
@@ -78,7 +78,7 @@ public class WarehouseManagement {
             System.out.println("7. Cập nhật phiếu xuất");
             System.out.println("8. Tìm kiếm phiếu xuất");
             System.out.println("9. Thoát");
-            System.out.print("Lựa chọn: ");
+            System.out.println("Lựa chọn của bạn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 9)) {
                 switch (Integer.parseInt(choice)) {

@@ -28,7 +28,7 @@ public class PaginationPresentation {
             System.out.println("2. Xem trang tiếp theo (NEXT)");
             System.out.println("3. Chọn trang muốn xem");
             System.out.println("4. Thoát (EXIT)");
-            System.out.print("Lựa chọn: ");
+            System.out.println("Lựa chọn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 4)) {
                 switch (Integer.parseInt(choice)) {
@@ -51,7 +51,7 @@ public class PaginationPresentation {
                         String input = scanner.nextLine();
                         if (Validation.isIntegerInRange(input, 1, totalPages)) {
                             if (Integer.parseInt(input) == currentPage) {
-                                System.err.println("Đây đang là trang " + currentPage);
+                                System.err.printf("Đây đang là trang %d rồi\n", currentPage);
                             } else {
                                 currentPage = Integer.parseInt(input);
                             }
@@ -84,8 +84,8 @@ public class PaginationPresentation {
                 break;
             case "accounts":
                 System.out.println("-".repeat(116));
-                System.out.printf("| %-15s | %-20s | %-20s | %-15s | %-10s | %-15s |\n",
-                        "Acc ID", "User Name", "Password", "Permission", "Emp ID", "Status");
+                System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-10s | %-15s | %-10s |\n",
+                        "Acc ID", "User Name", "Password", "Permission", "Emp ID", "Emp Name", "Status");
                 System.out.println("-".repeat(116));
                 break;
             case "bills":

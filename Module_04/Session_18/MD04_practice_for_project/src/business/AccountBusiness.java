@@ -15,4 +15,8 @@ public interface AccountBusiness {
     boolean checkExistEmpId(String empId);
 
     boolean updateAccountStatus(Account account);
+
+    Account getAccountByUserName(String userName);
+
+    Account getAccountByEmpName(String empName);
 }

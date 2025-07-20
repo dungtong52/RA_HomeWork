@@ -28,11 +28,12 @@ public class Validation {
                     return Float.parseFloat(input) > 0;
                 case "Short":
                     return Short.parseShort(input) > 0;
+                case "Long":
+                    return Long.parseLong(input) > 0;
                 case "Boolean":
                     if (!input.equalsIgnoreCase("true") && !input.equalsIgnoreCase("false"))
                         return false;
                     return input.equalsIgnoreCase("true");
-
                 default:
                     return false;
             }

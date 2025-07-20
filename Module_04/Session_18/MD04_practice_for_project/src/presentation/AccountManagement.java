@@ -11,8 +11,10 @@ import validation.Validation;
 import java.util.Scanner;
 
 public class AccountManagement {
+    private final int EMP_NAME_MAX_LENGTH = 100;
     private final int STR_MAX_LENGTH = 30;
     private final int ID_MAX_LENGTH = 5;
+
     private final AccountBusiness accountBusiness;
     private final EmployeeBusiness employeeBusiness;
     private final PaginationBusiness<Account> accountPaginationBusiness;
@@ -32,8 +34,9 @@ public class AccountManagement {
             System.out.println("3. Cập nhật trạng thái tài khoản");
             System.out.println("4. Tìm kiếm tài khoản");
             System.out.println("5. Thoát");
+            System.out.println("Lựa chọn của bạn:");
             String choice = scanner.nextLine();
-            if (Validation.isIntegerInRange(choice, 1, 6)) {
+            if (Validation.isIntegerInRange(choice, 1, 5)) {
                 switch (Integer.parseInt(choice)) {
                     case 1:
                         PaginationPresentation.getListPagination(scanner, accountPaginationBusiness, "accounts", "");
@@ -45,7 +48,29 @@ public class AccountManagement {
                         updateAccountStatus(scanner);
                         break;
                     case 4:
-                        getAccountByName(scanner);
+                        Account accountSearch = getAccountByName(scanner);
+                        if (accountSearch == null) {
+                            System.err.println("Không tìm thấy tài khoản nào!");
+                            break;
+                        }
+                        System.out.println("Bạn có muốn cập nhật trạng thái tài khoản không? (True|False)");
+                        while (true) {
+                            String input = scanner.nextLine();
+                            if (Validation.isValidType(input, "Boolean")) {
+                                if (Boolean.parseBoolean(input)) {
+                                    System.out.printf("Trạng thái hiện tại của tài khoản: %s\n", accountSearch.isAccStatus());
+                                    accountSearch.setAccStatus(inputAccStatus(scanner));
+                                    if (accountBusiness.updateAccountStatus(accountSearch)) {
+                                        System.out.println("Cập nhật thành công");
+                                        break;
+                                    } else {
+                                        System.err.println("Cập nhật thất bại");
+                                    }
+                                }
+                            } else {
+                                System.err.println("Giá trị nhập không hợp lệ. Vui lòng nhập lại!");
+                            }
+                        }
                         break;
                     default:
                         exit = true;
@@ -71,7 +96,7 @@ public class AccountManagement {
 
     public void updateAccountStatus(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào mã tài khoản muốn cập nhật: ");
+            System.out.println("Nhập vào mã tài khoản muốn cập nhật: ");
             String accountIdInput = scanner.nextLine();
             if (Validation.isValidType(accountIdInput, "Integer")) {
                 int accountId = Integer.parseInt(accountIdInput);
@@ -94,22 +119,31 @@ public class AccountManagement {
         }
     }
 
-    public void getAccountByName(Scanner scanner) {
+    public Account getAccountByName(Scanner scanner) {
+        Account account;
         while (true) {
-            System.out.print("Nhập vào tên đăng nhập muốn tìm: ");
-            String userName = scanner.nextLine();
-            if (Validation.isValidLength(userName, STR_MAX_LENGTH)) {
-                PaginationPresentation.getListPagination(scanner, accountPaginationBusiness, "accounts", userName);
-                break;
+            System.out.println("1. Tìm tài khoản theo tên đăng nhập");
+            System.out.println("2. Tìm tài khoản theo tên nhân viên");
+            System.out.println("Lựa chọn:");
+            String choice = scanner.nextLine();
+            if (Validation.isIntegerInRange(choice, 1, 2)) {
+                if (Integer.parseInt(choice) == 1) {
+                    String userName = inputUserNameForSearch(scanner);
+                    account = accountBusiness.getAccountByUserName(userName);
+                } else {
+                    String empName = inputEmpNameForSearch(scanner);
+                    account = accountBusiness.getAccountByEmpName(empName);
+                }
+                return account;
             } else {
-                System.err.printf("Tên đăng nhập không được để trống hoặc quá %d ký tự!\n", STR_MAX_LENGTH);
+                System.err.println("Số nhập vào không đúng!");
             }
         }
     }
 
     public String inputUserName(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào tên tài khoản: ");
+            System.out.println("Nhập vào tên tài khoản: ");
             String userName = scanner.nextLine();
             if (Validation.isValidLength(userName, STR_MAX_LENGTH)) {
                 boolean isExist = accountBusiness.checkExistAccountName(userName);
@@ -120,6 +154,40 @@ public class AccountManagement {
                 }
             } else {
                 System.err.printf("Thông tin nhập vào rỗng hoặc vượt quá %d ký tự. Vui lòng nhập lại!\n", STR_MAX_LENGTH);
+            }
+        }
+    }
+
+    public String inputUserNameForSearch(Scanner scanner) {
+        while (true) {
+            System.out.println("Nhập vào tên tài khoản: ");
+            String userName = scanner.nextLine();
+            if (Validation.isValidLength(userName, STR_MAX_LENGTH)) {
+                boolean isExist = accountBusiness.checkExistAccountName(userName);
+                if (isExist) {
+                    return userName;
+                } else {
+                    System.err.println("Tên tài khoản KHÔNG tồn tại. Vui lòng nhập lại!");
+                }
+            } else {
+                System.err.printf("Thông tin nhập vào rỗng hoặc vượt quá %d ký tự. Vui lòng nhập lại!\n", STR_MAX_LENGTH);
+            }
+        }
+    }
+
+    public String inputEmpNameForSearch(Scanner scanner) {
+        while (true) {
+            System.out.println("Nhập vào tên nhân viên: ");
+            String empName = scanner.nextLine();
+            if (Validation.isValidLength(empName, EMP_NAME_MAX_LENGTH)) {
+                boolean isExist = employeeBusiness.checkExistEmployeeName(empName);
+                if (isExist) {
+                    return empName;
+                } else {
+                    System.err.println("Tên nhân viên KHÔNG tồn tại. Vui lòng nhập lại!");
+                }
+            } else {
+                System.err.printf("Thông tin nhập vào rỗng hoặc vượt quá %d ký tự. Vui lòng nhập lại!\n", EMP_NAME_MAX_LENGTH);
             }
         }
     }
@@ -138,7 +206,7 @@ public class AccountManagement {
 
     public String inputEmpId(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào mã nhân viên: ");
+            System.out.println("Nhập vào mã nhân viên: ");
             String empId = scanner.nextLine();
             if (Validation.isValidLength(empId, ID_MAX_LENGTH)) {
                 boolean isExistInAccountTable = accountBusiness.checkExistEmpId(empId);
@@ -160,7 +228,7 @@ public class AccountManagement {
 
     public boolean inputAccStatus(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào trạng thái tài khoản (true | false): ");
+            System.out.println("Nhập vào trạng thái tài khoản (true - 'Active' | false - 'Block'): ");
             String status = scanner.nextLine();
             if (Validation.isValidType(status, "Boolean")) {
                 return Boolean.parseBoolean(status);

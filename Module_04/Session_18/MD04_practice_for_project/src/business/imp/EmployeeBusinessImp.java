@@ -16,7 +16,7 @@ public class EmployeeBusinessImp implements EmployeeBusiness, PaginationBusiness
 
     @Override
     public PaginationResult<Employee> getPaginationData(String key, int size, int currentPage) {
-        if (key == null) {
+        if (key == null || key.trim().isEmpty()) {
             return employeeDAO.getEmployeePagination(size, currentPage);
         }
         return employeeDAO.getEmployeeByName(key, size, currentPage);

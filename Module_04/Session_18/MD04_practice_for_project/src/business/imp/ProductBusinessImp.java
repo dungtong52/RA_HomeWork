@@ -16,7 +16,7 @@ public class ProductBusinessImp implements ProductBusiness, PaginationBusiness<P
 
     @Override
     public PaginationResult<Product> getPaginationData(String key, int size, int currentPage) {
-        if (key == null) {
+        if (key == null || key.trim().isEmpty()) {
             return productDAO.getProductPagination(size, currentPage);
         }
         return productDAO.getProductByName(key, size, currentPage);

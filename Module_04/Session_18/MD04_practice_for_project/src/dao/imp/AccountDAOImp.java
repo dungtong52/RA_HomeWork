@@ -20,7 +20,7 @@ public class AccountDAOImp implements AccountDAO {
         Account account = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_account_by_user_name(?,?)}");
+            callableStatement = connection.prepareCall("{call get_account_to_login(?,?)}");
             callableStatement.setString(1, userName);
             callableStatement.setString(2, password);
 
@@ -181,38 +181,58 @@ public class AccountDAOImp implements AccountDAO {
     }
 
     @Override
-    public PaginationResult<Account> getAccountByUserName(String accountName, int size, int currentPage) {
+    public Account getAccountByUserName(String userName) {
         Connection connection = null;
         CallableStatement callableStatement = null;
-        PaginationResult<Account> accountPaginationResult = null;
-        List<Account> accountList = null;
+        Account account = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_account_by_name(?,?,?,?)}");
-            callableStatement.setString(1, accountName);
-            callableStatement.setInt(2, size);
-            callableStatement.setInt(3, currentPage);
-            callableStatement.registerOutParameter(4, Types.INTEGER);
+            callableStatement = connection.prepareCall("{call get_account_by_user_name(?)}");
+            callableStatement.setString(1, userName);
             ResultSet resultSet = callableStatement.executeQuery();
-            accountList = new ArrayList<>();
-            accountPaginationResult = new PaginationResult<>();
-            while (resultSet.next()) {
-                Account account = new Account();
+            if (resultSet.next()) {
+                account = new Account();
                 account.setAccId(resultSet.getInt("acc_id"));
                 account.setUserName(resultSet.getString("user_name"));
                 account.setPassword(resultSet.getString("password"));
                 account.setPermission(resultSet.getBoolean("permission"));
                 account.setEmpId(resultSet.getString("emp_id"));
+                account.setEmpName(resultSet.getString("emp_name"));
                 account.setAccStatus(resultSet.getBoolean("acc_status"));
-                accountList.add(account);
             }
-            accountPaginationResult.setTotalPages(callableStatement.getInt(4));
-            accountPaginationResult.setDataList(accountList);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(connection, callableStatement);
         }
-        return accountPaginationResult;
+        return account;
+    }
+
+    @Override
+    public Account getAccountByEmpName(String empName) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        Account account = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call get_account_by_emp_name(?)}");
+            callableStatement.setString(1, empName);
+            ResultSet resultSet = callableStatement.executeQuery();
+            if (resultSet.next()) {
+                account = new Account();
+                account.setAccId(resultSet.getInt("acc_id"));
+                account.setUserName(resultSet.getString("user_name"));
+                account.setPassword(resultSet.getString("password"));
+                account.setPermission(resultSet.getBoolean("permission"));
+                account.setEmpId(resultSet.getString("emp_id"));
+                account.setEmpName(resultSet.getString("emp_name"));
+                account.setAccStatus(resultSet.getBoolean("acc_status"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return account;
     }
 }

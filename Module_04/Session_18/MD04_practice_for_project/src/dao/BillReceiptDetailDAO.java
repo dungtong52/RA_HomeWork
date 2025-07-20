@@ -8,7 +8,11 @@ import java.util.List;
 public interface BillReceiptDetailDAO {
     boolean createBatchDetails(List<BillDetail> billDetailList);
 
-    PaginationResult<BillDetail> getReceiptDetailsByBillId(long billId, int size, int currentPage);
+    BillDetail findBillDetailById(long billDetailId);
 
-    boolean updateReceiptDetails(List<BillDetail> billDetailList);
+    boolean updateBillDetails(BillDetail billDetail);
+
+    PaginationResult<BillDetail> getBillDetailsByBillId(long billId, int size, int currentPage);
+
+    boolean acceptBill(long billId);
 }

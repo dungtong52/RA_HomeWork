@@ -1,18 +1,15 @@
 package dao.imp;
 
-import dao.BillReceiptDAO;
+import dao.AbstractBillReceiptDAO;
 import entity.Bill;
 import entity.PaginationResult;
 import utils.ConnectionDB;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Types;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BillDAOImp implements BillReceiptDAO {
+public class BillDAOImp extends AbstractBillReceiptDAO {
     @Override
     public PaginationResult<Bill> getBillPagination(int size, int currentPage) {
         Connection connection = null;
@@ -48,25 +45,5 @@ public class BillDAOImp implements BillReceiptDAO {
             ConnectionDB.closeConnection(connection, callableStatement);
         }
         return billPaginationResult;
-    }
-
-    @Override
-    public boolean checkExistBillCode(String billCode) {
-        return false;
-    }
-
-    @Override
-    public long createBill(Bill bill) {
-        return 0;
-    }
-
-    @Override
-    public Bill findBillByCode(String billCode) {
-        return null;
-    }
-
-    @Override
-    public boolean updateBill(Bill bill) {
-        return false;
     }
 }

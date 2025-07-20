@@ -1,13 +1,13 @@
 package business.imp;
 
-import business.BillReceiptBusiness;
+import business.BaseBillReceiptBusinessImp;
 import business.PaginationBusiness;
 import dao.BillReceiptDAO;
 import dao.imp.ReceiptDAOImp;
 import entity.Bill;
 import entity.PaginationResult;
 
-public class ReceiptBusinessImp implements BillReceiptBusiness, PaginationBusiness<Bill> {
+public class ReceiptBusinessImp extends BaseBillReceiptBusinessImp implements PaginationBusiness<Bill> {
     private final BillReceiptDAO billReceiptDAO;
 
     public ReceiptBusinessImp() {
@@ -20,25 +20,5 @@ public class ReceiptBusinessImp implements BillReceiptBusiness, PaginationBusine
             return billReceiptDAO.getBillPagination(size, currentPage);
         }
         return null;
-    }
-
-    @Override
-    public long createBill(Bill bill) {
-        return billReceiptDAO.createBill(bill);
-    }
-
-    @Override
-    public boolean checkExistBillCode(String billCode) {
-        return billReceiptDAO.checkExistBillCode(billCode);
-    }
-
-    @Override
-    public Bill findBillByCode(String billCode) {
-        return billReceiptDAO.findBillByCode(billCode);
-    }
-
-    @Override
-    public boolean updateBill(Bill bill) {
-        return billReceiptDAO.updateBill(bill);
     }
 }

@@ -1,2 +1,0 @@
-bang product co created dang current date nhung sql khong co default, can xu ly
-sua lai phan them moi va update product, so luong se khong duoc them ma them thong qua phieu nhap xuat 

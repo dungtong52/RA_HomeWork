@@ -48,6 +48,30 @@ public class EmployeeDAOImp implements EmployeeDAO {
     }
 
     @Override
+    public boolean createEmployee(Employee employee) {
+        Connection connection = null;
+        CallableStatement callableStatement = null;
+        try {
+            connection = ConnectionDB.openConnection();
+            callableStatement = connection.prepareCall("{call create_employee(?,?,?,?,?,?,?)}");
+            callableStatement.setString(1, employee.getEmpId());
+            callableStatement.setString(2, employee.getEmpName());
+            callableStatement.setDate(3, Date.valueOf(employee.getBirthOfDate()));
+            callableStatement.setString(4, employee.getEmail());
+            callableStatement.setString(5, employee.getPhone());
+            callableStatement.setString(6, employee.getAddress());
+            callableStatement.setShort(7, employee.getEmpStatus());
+            callableStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionDB.closeConnection(connection, callableStatement);
+        }
+        return false;
+    }
+
+    @Override
     public Employee getEmployeeById(String employeeId) {
         Connection connection = null;
         CallableStatement callableStatement = null;
@@ -96,19 +120,18 @@ public class EmployeeDAOImp implements EmployeeDAO {
     }
 
     @Override
-    public boolean createEmployee(Employee employee) {
+    public boolean updateEmployee(Employee employee) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call create_employee(?,?,?,?,?,?,?)}");
+            callableStatement = connection.prepareCall("{call update_employee(?,?,?,?,?,?)}");
             callableStatement.setString(1, employee.getEmpId());
             callableStatement.setString(2, employee.getEmpName());
             callableStatement.setDate(3, Date.valueOf(employee.getBirthOfDate()));
             callableStatement.setString(4, employee.getEmail());
             callableStatement.setString(5, employee.getPhone());
             callableStatement.setString(6, employee.getAddress());
-            callableStatement.setShort(7, employee.getEmpStatus());
             callableStatement.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -155,29 +178,6 @@ public class EmployeeDAOImp implements EmployeeDAO {
             ConnectionDB.closeConnection(connection, callableStatement);
         }
         return paginationResult;
-    }
-
-    @Override
-    public boolean updateEmployee(Employee employee) {
-        Connection connection = null;
-        CallableStatement callableStatement = null;
-        try {
-            connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call update_employee(?,?,?,?,?,?)}");
-            callableStatement.setString(1, employee.getEmpId());
-            callableStatement.setString(2, employee.getEmpName());
-            callableStatement.setDate(3, Date.valueOf(employee.getBirthOfDate()));
-            callableStatement.setString(4, employee.getEmail());
-            callableStatement.setString(5, employee.getPhone());
-            callableStatement.setString(6, employee.getAddress());
-            callableStatement.executeUpdate();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionDB.closeConnection(connection, callableStatement);
-        }
-        return false;
     }
 
     @Override
