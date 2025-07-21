@@ -80,8 +80,8 @@ public class ReceiptManagement {
     public void createReceipt(Scanner scanner) {
         Bill bill = new Bill();
         bill.setBillCode(inputNewBillCode(scanner));
-        bill.setBillType(true);
-        bill.setEmpIdCreated(inputEmpIdCreated(scanner));
+        bill.setBillType(false);
+        bill.setEmpIdCreated(AccountManagement.currentAccount.getEmpId());
         long billId = receiptBusiness.createBill(bill);
         if (billId > 0) {
             createReceiptDetails(scanner, billId);
@@ -234,8 +234,8 @@ public class ReceiptManagement {
         String billCode = inputExistBillCode(scanner);
         Bill receipt = receiptBusiness.findBillByCode(billCode);
 
-        receipt.setEmpIdAuth(inputEmpIdAuth(scanner));
-        receipt.setAuthDate(inputAuthDate(scanner));
+        receipt.setEmpIdAuth(AccountManagement.currentAccount.getEmpId());
+        receipt.setAuthDate(LocalDate.now());
 
         long billId = receipt.getBillId();
         boolean accepted = billReceiptDetailsBusiness.acceptBill(billId);

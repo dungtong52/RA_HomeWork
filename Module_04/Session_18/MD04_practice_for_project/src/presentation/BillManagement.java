@@ -79,7 +79,7 @@ public class BillManagement {
 
         bill.setBillCode(inputNewBillCode(scanner));
         bill.setBillType(true);
-        bill.setEmpIdCreated(inputEmpIdCreated(scanner));
+        bill.setEmpIdCreated(AccountManagement.currentAccount.getEmpId());
         long billId = billBusiness.createBill(bill);
         if (billId > 0) {
             createBillDetails(scanner, billId);
@@ -232,8 +232,8 @@ public class BillManagement {
         String billCode = inputExistBillCode(scanner);
         Bill bill = billBusiness.findBillByCode(billCode);
 
-        bill.setEmpIdAuth(inputEmpIdAuth(scanner));
-        bill.setAuthDate(inputAuthDate(scanner));
+        bill.setEmpIdAuth(AccountManagement.currentAccount.getEmpId());
+        bill.setAuthDate(LocalDate.now());
 
         long billId = bill.getBillId();
         boolean accepted = billReceiptDetailsBusiness.acceptBill(billId);

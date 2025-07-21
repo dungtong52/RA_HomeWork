@@ -85,6 +85,7 @@ public class WarehouseManagement {
                     case 1:
                         break;
                     case 2:
+                        receiptManagement.createReceipt(scanner);
                         break;
                     case 3:
                         break;
@@ -93,6 +94,11 @@ public class WarehouseManagement {
                     case 5:
                         break;
                     case 6:
+                        billManagement.createBills(scanner);
+                        break;
+                    case 7:
+                        break;
+                    case 8:
                         break;
                     default:
                         System.exit(0);

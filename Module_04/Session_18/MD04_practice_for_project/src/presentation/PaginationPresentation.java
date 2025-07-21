@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PaginationPresentation {
-    final static int PRODUCT_PER_PAGE = 10;
+    private final static int PRODUCT_PER_PAGE = 10;
 
     public static <T> void getListPagination(Scanner scanner, PaginationBusiness<T> paginationBusiness, String tableName, String key) {
         boolean exit = false;

@@ -68,7 +68,7 @@ create procedure get_account_to_login(
     in_password varchar(30)
 )
 begin
-    select acc_id, permission
+    select acc_id, permission, emp_id
     from accounts
     where user_name = in_user_name
       and password = in_password;
@@ -538,7 +538,6 @@ begin
     set bill_status = 2
     where bill_id = in_bill_id
       and bill_status = 0;
-
     commit;
 end //
 
@@ -827,3 +826,134 @@ VALUES
 
 -- Chi tiết B005 - Nhập sản phẩm (đã hủy)
 (10, 5, 'P008', 30, 12500);
+
+
+# Procedure cho USER
+
+DELIMITER //
+
+create procedure get_all_receipt_for_user(
+    in_emp_id char(5),
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_total_receipt int;
+    declare v_offset int;
+
+    -- Tinh tong so trang
+    select count(bill_id)
+    into v_total_receipt
+    from bills
+    where emp_id_created = in_emp_id
+      and bill_type = 1;
+
+    set total_page = ceiling(v_total_receipt / in_size);
+
+    -- Phan trang
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    select bill_id,
+           bill_code,
+           bill_type,
+           emp_id_created,
+           created,
+           emp_id_auth,
+           auth_date,
+           bill_status
+    from bills
+    where emp_id_created = in_emp_id
+      and bill_type = 1
+    limit in_size offset v_offset;
+
+end //
+
+create procedure get_all_bill_for_user(
+    in_emp_id char(5),
+    in_size int,
+    in_curr_page int,
+    out total_page int
+)
+begin
+    declare v_total_bill int;
+    declare v_offset int;
+
+    -- Tinh tong so trang
+    select count(bill_id)
+    into v_total_bill
+    from bills
+    where emp_id_created = in_emp_id
+      and bill_type = 0;
+
+    set total_page = ceiling(v_total_bill / in_size);
+
+    -- Phan trang
+    set v_offset = (in_curr_page - 1) * in_size;
+
+    select bill_id,
+           bill_code,
+           bill_type,
+           emp_id_created,
+           created,
+           emp_id_auth,
+           auth_date,
+           bill_status
+    from bills
+    where emp_id_created = in_emp_id
+      and bill_type = 0
+    limit in_size offset v_offset;
+
+end //
+
+# chua lam
+
+create procedure update_bill(
+    in_bill_code varchar(10),
+    in_emp_id_created char(5),
+    in_created date,
+    in_emp_id_auth char(5),
+    in_auth_date date,
+    in_bill_status smallint
+)
+begin
+    update bills
+    set emp_id_created = in_emp_id_created,
+        created        = in_created,
+        emp_id_auth    = in_emp_id_auth,
+        auth_date      = in_auth_date,
+        bill_status    = in_bill_status
+    where bill_code = in_bill_code
+      and (bill_status = 0 or bill_status = 1);
+end //
+
+create procedure update_bill_detail(
+    in_bill_detail_id bigint,
+    in_product_id char(5),
+    in_quantity int,
+    in_price float
+)
+begin
+    update bill_details
+    set product_id = in_product_id,
+        quantity   = in_quantity,
+        price      = in_price
+    where bill_detail_id = in_bill_detail_id;
+end //
+
+create procedure find_bill_by_code(in_bill_code varchar(10))
+begin
+    select bill_id,
+           bill_code,
+           bill_type,
+           emp_id_created,
+           created,
+           emp_id_auth,
+           auth_date,
+           bill_status
+    from bills
+    where bill_code = in_bill_code
+    limit 1;
+end //
+
+DELIMITER ;

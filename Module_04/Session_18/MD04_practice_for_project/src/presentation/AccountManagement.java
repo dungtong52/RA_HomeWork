@@ -11,6 +11,8 @@ import validation.Validation;
 import java.util.Scanner;
 
 public class AccountManagement {
+    public static Account currentAccount = new Account();
+
     private final int EMP_NAME_MAX_LENGTH = 100;
     private final int STR_MAX_LENGTH = 30;
     private final int ID_MAX_LENGTH = 5;
@@ -237,4 +239,6 @@ public class AccountManagement {
             }
         }
     }
+
+
 }

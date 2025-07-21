@@ -3,6 +3,7 @@ import business.imp.AccountBusinessImp;
 import dao.AccountDAO;
 import dao.imp.AccountDAOImp;
 import entity.Account;
+import presentation.AccountManagement;
 import presentation.WarehouseManagement;
 import validation.Validation;
 
@@ -27,6 +28,7 @@ public class Main {
             if (Validation.isValidUserName(userName) && Validation.isValidPassword(password)) {
                 Account account = accountBusiness.getAccountToLogin(userName, password);
                 if (account != null) {
+                    AccountManagement.currentAccount = account;
                     return account.isPermission();
                 } else {
                     System.err.println("Tên tài khoản hoặc mật khẩu không đúng. Vui lòng nhập lại");
