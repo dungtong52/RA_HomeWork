@@ -7,7 +7,7 @@ import entity.Employee;
 import business.PaginationBusiness;
 import entity.PaginationResult;
 
-public class EmployeeBusinessImp implements EmployeeBusiness, PaginationBusiness<Employee> {
+public class EmployeeBusinessImp implements EmployeeBusiness {
     private final EmployeeDAO employeeDAO;
 
     public EmployeeBusinessImp() {
@@ -15,11 +15,8 @@ public class EmployeeBusinessImp implements EmployeeBusiness, PaginationBusiness
     }
 
     @Override
-    public PaginationResult<Employee> getPaginationData(String key, int size, int currentPage) {
-        if (key == null || key.trim().isEmpty()) {
-            return employeeDAO.getEmployeePagination(size, currentPage);
-        }
-        return employeeDAO.getEmployeeByName(key, size, currentPage);
+    public PaginationResult<Employee> getPaginationData(Employee employeeSearch, int size, int currentPage) {
+        return employeeDAO.getEmployeeBySearchKey(employeeSearch.getEmpName(), size, currentPage);
     }
 
     @Override

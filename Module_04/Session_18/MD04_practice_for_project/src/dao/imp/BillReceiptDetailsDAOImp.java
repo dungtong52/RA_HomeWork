@@ -133,10 +133,9 @@ public class BillReceiptDetailsDAOImp implements BillReceiptDetailDAO {
             callableStatement.setString(2, billDetail.getProductId());
             callableStatement.setInt(3, billDetail.getQuantity());
             callableStatement.setFloat(4, billDetail.getPrice());
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            return rows > 0;
         } catch (Exception e) {
-
             e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(connection, callableStatement);

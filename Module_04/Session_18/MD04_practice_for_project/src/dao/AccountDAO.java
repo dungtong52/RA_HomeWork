@@ -6,7 +6,7 @@ import entity.PaginationResult;
 public interface AccountDAO {
     Account getAccountToLogin(String userName, String password);
 
-    PaginationResult<Account> getAllAccountPagination(int size, int currentPage);
+    PaginationResult<Account> getAccountBySearchKey(Account accountSearch, int size, int currentPage);
 
     boolean createAccount(Account account);
 
@@ -17,9 +17,5 @@ public interface AccountDAO {
     boolean checkExistEmpId(String empId);
 
     boolean updateAccountStatus(Account account);
-
-    Account getAccountByUserName(String userName);
-
-    Account getAccountByEmpName(String empName);
 
 }

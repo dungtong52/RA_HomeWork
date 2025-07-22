@@ -81,6 +81,10 @@ public class Account {
     @Override
     public String toString() {
         return String.format("| %-15s | %-15s | %-15s | %-15s | %-10s | %-15s | %-10s |",
-                this.accId, this.userName, this.password, this.permission, this.empId, this.empName, this.accStatus);
+                this.accId, this.userName, this.password,
+                this.permission ? "User" : "Admin",
+                this.empId, this.empName,
+                this.accStatus ? "Active" : "Block"
+        );
     }
 }

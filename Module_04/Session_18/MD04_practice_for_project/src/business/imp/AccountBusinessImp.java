@@ -7,7 +7,7 @@ import dao.imp.AccountDAOImp;
 import entity.Account;
 import entity.PaginationResult;
 
-public class AccountBusinessImp implements AccountBusiness, PaginationBusiness<Account> {
+public class AccountBusinessImp implements AccountBusiness {
     private final AccountDAO accountDAO;
 
     public AccountBusinessImp() {
@@ -45,20 +45,7 @@ public class AccountBusinessImp implements AccountBusiness, PaginationBusiness<A
     }
 
     @Override
-    public Account getAccountByUserName(String userName) {
-        return accountDAO.getAccountByUserName(userName);
-    }
-
-    @Override
-    public Account getAccountByEmpName(String empName) {
-        return accountDAO.getAccountByEmpName(empName);
-    }
-
-    @Override
-    public PaginationResult<Account> getPaginationData(String key, int size, int currentPage) {
-        if (key == null || key.trim().isEmpty()) {
-            return accountDAO.getAllAccountPagination(size, currentPage);
-        }
-        return null;
+    public PaginationResult<Account> getPaginationData(Account accountSearch, int size, int currentPage) {
+        return accountDAO.getAccountBySearchKey(accountSearch, size, currentPage);
     }
 }

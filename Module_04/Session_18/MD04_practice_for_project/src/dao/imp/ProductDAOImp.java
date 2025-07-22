@@ -11,20 +11,21 @@ import java.util.List;
 
 public class ProductDAOImp implements ProductDAO {
     @Override
-    public PaginationResult<Product> getProductPagination(int size, int currentPage) {
+    public PaginationResult<Product> getProductBySearchKey(String productName, int size, int currentPage) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         PaginationResult<Product> paginationResult = null;
         List<Product> productList = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_all_product_pagination(?,?,?)}");
-            callableStatement.setInt(1, size);
-            callableStatement.setInt(2, currentPage);
-            callableStatement.registerOutParameter(3, Types.INTEGER);
+            callableStatement = connection.prepareCall("{call get_list_product_by_key(?,?,?,?)}");
+            callableStatement.setString(1, productName);
+            callableStatement.setInt(2, size);
+            callableStatement.setInt(3, currentPage);
+            callableStatement.registerOutParameter(4, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
-            paginationResult = new PaginationResult<>();
             productList = new ArrayList<>();
+            paginationResult = new PaginationResult<>();
 
             while (resultSet.next()) {
                 Product product = new Product();
@@ -37,7 +38,7 @@ public class ProductDAOImp implements ProductDAO {
                 product.setProductStatus(resultSet.getBoolean("product_status"));
                 productList.add(product);
             }
-            paginationResult.setTotalPages(callableStatement.getInt(3));
+            paginationResult.setTotalPages(callableStatement.getInt(4));
             paginationResult.setDataList(productList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,52 +107,14 @@ public class ProductDAOImp implements ProductDAO {
             callableStatement.setString(2, product.getProductName());
             callableStatement.setString(3, product.getManufacturer());
             callableStatement.setShort(4, product.getBatch());
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            return rows > 0;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(connection, callableStatement);
         }
         return false;
-    }
-
-    @Override
-    public PaginationResult<Product> getProductByName(String productName, int size, int currentPage) {
-        Connection connection = null;
-        CallableStatement callableStatement = null;
-        PaginationResult<Product> paginationResult = null;
-        List<Product> productList = null;
-        try {
-            connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_product_by_name(?,?,?,?)}");
-            callableStatement.setString(1, productName);
-            callableStatement.setInt(2, size);
-            callableStatement.setInt(3, currentPage);
-            callableStatement.registerOutParameter(4, Types.INTEGER);
-            ResultSet resultSet = callableStatement.executeQuery();
-            productList = new ArrayList<>();
-            paginationResult = new PaginationResult<>();
-
-            while (resultSet.next()) {
-                Product product = new Product();
-                product.setProductId(resultSet.getString("product_id"));
-                product.setProductName(resultSet.getString("product_name"));
-                product.setManufacturer(resultSet.getString("manufacturer"));
-                product.setCreated(resultSet.getDate("created").toLocalDate());
-                product.setBatch(resultSet.getShort("batch"));
-                product.setQuantity(resultSet.getInt("quantity"));
-                product.setProductStatus(resultSet.getBoolean("product_status"));
-                productList.add(product);
-            }
-            paginationResult.setTotalPages(callableStatement.getInt(4));
-            paginationResult.setDataList(productList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionDB.closeConnection(connection, callableStatement);
-        }
-        return paginationResult;
     }
 
     @Override
@@ -166,8 +129,8 @@ public class ProductDAOImp implements ProductDAO {
             callableStatement.setString(3, product.getManufacturer());
             callableStatement.setDate(4, Date.valueOf(product.getCreated()));
             callableStatement.setShort(5, product.getBatch());
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            return rows > 0;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -185,8 +148,8 @@ public class ProductDAOImp implements ProductDAO {
             callableStatement = connection.prepareCall("{call update_product_status(?,?)}");
             callableStatement.setString(1, productId);
             callableStatement.setBoolean(2, status);
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            return rows > 0;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

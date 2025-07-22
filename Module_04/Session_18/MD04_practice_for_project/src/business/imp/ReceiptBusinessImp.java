@@ -7,7 +7,7 @@ import dao.imp.ReceiptDAOImp;
 import entity.Bill;
 import entity.PaginationResult;
 
-public class ReceiptBusinessImp extends BaseBillReceiptBusinessImp implements PaginationBusiness<Bill> {
+public class ReceiptBusinessImp extends BaseBillReceiptBusinessImp {
     private final BillReceiptDAO billReceiptDAO;
 
     public ReceiptBusinessImp() {
@@ -15,10 +15,9 @@ public class ReceiptBusinessImp extends BaseBillReceiptBusinessImp implements Pa
     }
 
     @Override
-    public PaginationResult<Bill> getPaginationData(String key, int size, int currentPage) {
-        if (key == null) {
-            return billReceiptDAO.getBillPagination(size, currentPage);
-        }
-        return null;
+    public boolean acceptBill(long billId) {
+        return billReceiptDAO.acceptBill(billId);
     }
+
+
 }

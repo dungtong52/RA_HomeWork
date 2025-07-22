@@ -11,17 +11,18 @@ import java.util.List;
 
 public class EmployeeDAOImp implements EmployeeDAO {
     @Override
-    public PaginationResult<Employee> getEmployeePagination(int size, int currentPage) {
+    public PaginationResult<Employee> getEmployeeBySearchKey(String empName, int size, int currentPage) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         PaginationResult<Employee> paginationResult = null;
         List<Employee> employeeList = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_all_employee_pagination_ASC(?,?,?)}");
-            callableStatement.setInt(1, size);
-            callableStatement.setInt(2, currentPage);
-            callableStatement.registerOutParameter(3, Types.INTEGER);
+            callableStatement = connection.prepareCall("{call get_list_employee_by_search_key(?,?,?,?)}");
+            callableStatement.setString(1, empName);
+            callableStatement.setInt(2, size);
+            callableStatement.setInt(3, currentPage);
+            callableStatement.registerOutParameter(4, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
             paginationResult = new PaginationResult<>();
             employeeList = new ArrayList<>();
@@ -37,7 +38,7 @@ public class EmployeeDAOImp implements EmployeeDAO {
                 employee.setEmpStatus(resultSet.getShort("emp_status"));
                 employeeList.add(employee);
             }
-            paginationResult.setTotalPages(callableStatement.getInt(3));
+            paginationResult.setTotalPages(callableStatement.getInt(4));
             paginationResult.setDataList(employeeList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,8 +62,8 @@ public class EmployeeDAOImp implements EmployeeDAO {
             callableStatement.setString(5, employee.getPhone());
             callableStatement.setString(6, employee.getAddress());
             callableStatement.setShort(7, employee.getEmpStatus());
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            return rows > 0;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -132,8 +133,8 @@ public class EmployeeDAOImp implements EmployeeDAO {
             callableStatement.setString(4, employee.getEmail());
             callableStatement.setString(5, employee.getPhone());
             callableStatement.setString(6, employee.getAddress());
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            return rows > 0;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -143,55 +144,28 @@ public class EmployeeDAOImp implements EmployeeDAO {
     }
 
     @Override
-    public PaginationResult<Employee> getEmployeeByName(String employeeName, int size, int currentPage) {
-        Connection connection = null;
-        CallableStatement callableStatement = null;
-        PaginationResult<Employee> paginationResult = null;
-        List<Employee> employeeList = null;
-        try {
-            connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_employee_by_name(?,?,?,?)}");
-            callableStatement.setString(1, employeeName);
-            callableStatement.setInt(2, size);
-            callableStatement.setInt(3, currentPage);
-            callableStatement.registerOutParameter(4, Types.INTEGER);
-            ResultSet resultSet = callableStatement.executeQuery();
-            paginationResult = new PaginationResult<>();
-            employeeList = new ArrayList<>();
-
-            while (resultSet.next()) {
-                Employee employee = new Employee();
-                employee.setEmpId(resultSet.getString("emp_id"));
-                employee.setEmpName(resultSet.getString("emp_name"));
-                employee.setBirthOfDate(resultSet.getDate("birth_of_date").toLocalDate());
-                employee.setEmail(resultSet.getString("email"));
-                employee.setPhone(resultSet.getString("phone"));
-                employee.setAddress(resultSet.getString("address"));
-                employee.setEmpStatus(resultSet.getShort("emp_status"));
-                employeeList.add(employee);
-            }
-            paginationResult.setTotalPages(callableStatement.getInt(4));
-            paginationResult.setDataList(employeeList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionDB.closeConnection(connection, callableStatement);
-        }
-        return paginationResult;
-    }
-
-    @Override
     public boolean updateEmployeeStatus(String employeeId, short status) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         try {
             connection = ConnectionDB.openConnection();
+            connection.setAutoCommit(false);
             callableStatement = connection.prepareCall("{call update_emp_status(?,?)}");
             callableStatement.setString(1, employeeId);
             callableStatement.setShort(2, status);
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            if (rows > 0) {
+                connection.commit();
+                return true;
+            }
         } catch (Exception e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
             e.printStackTrace();
         } finally {
             ConnectionDB.closeConnection(connection, callableStatement);

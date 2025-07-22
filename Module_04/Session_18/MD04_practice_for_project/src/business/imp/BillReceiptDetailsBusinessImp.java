@@ -9,7 +9,7 @@ import entity.PaginationResult;
 
 import java.util.List;
 
-public class BillReceiptDetailsBusinessImp implements BillReceiptDetailsBusiness, PaginationBusiness<BillDetail> {
+public class BillReceiptDetailsBusinessImp implements BillReceiptDetailsBusiness {
     private final BillReceiptDetailDAO billReceiptDetailDAO;
 
     public BillReceiptDetailsBusinessImp() {
@@ -27,7 +27,7 @@ public class BillReceiptDetailsBusinessImp implements BillReceiptDetailsBusiness
     }
 
     @Override
-    public boolean updateReceiptDetails(BillDetail billDetail) {
+    public boolean updateBillDetails(BillDetail billDetail) {
         return billReceiptDetailDAO.updateBillDetails(billDetail);
     }
 
@@ -37,7 +37,7 @@ public class BillReceiptDetailsBusinessImp implements BillReceiptDetailsBusiness
     }
 
     @Override
-    public PaginationResult<BillDetail> getPaginationData(String key, int size, int currentPage) {
-        return billReceiptDetailDAO.getBillDetailsByBillId(Long.parseLong(key), size, currentPage);
+    public PaginationResult<BillDetail> getPaginationData(BillDetail item, int size, int currentPage) {
+        return billReceiptDetailDAO.getBillDetailsByBillId(item.getBillId(), size, currentPage);
     }
 }

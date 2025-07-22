@@ -3,7 +3,7 @@ package business;
 import entity.Account;
 import entity.PaginationResult;
 
-public interface AccountBusiness {
+public interface AccountBusiness extends PaginationBusiness<Account> {
     Account getAccountToLogin(String userName, String password);
 
     boolean createAccount(Account account);
@@ -15,8 +15,4 @@ public interface AccountBusiness {
     boolean checkExistEmpId(String empId);
 
     boolean updateAccountStatus(Account account);
-
-    Account getAccountByUserName(String userName);
-
-    Account getAccountByEmpName(String empName);
 }

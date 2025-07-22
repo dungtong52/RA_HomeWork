@@ -16,11 +16,9 @@ public class EmployeeManagement {
 
 
     private final EmployeeBusiness employeeBusiness;
-    private final PaginationBusiness<Employee> paginationBusiness;
 
     public EmployeeManagement() {
         employeeBusiness = new EmployeeBusinessImp();
-        paginationBusiness = new EmployeeBusinessImp();
     }
 
     public void employeeMenu(Scanner scanner) {
@@ -33,12 +31,12 @@ public class EmployeeManagement {
             System.out.println("4. Cập nhật trạng thái nhân viên");
             System.out.println("5. Tìm kiếm nhân viên theo tên nhân viên hoặc mã nhân viên");
             System.out.println("6. Thoát");
-            System.out.println("Lựa chọn của bạn:");
+            System.out.print("Lựa chọn của bạn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 6)) {
                 switch (Integer.parseInt(choice)) {
                     case 1:
-                        PaginationPresentation.getListPagination(scanner, paginationBusiness, "employees", "");
+                        PaginationPresentation.getListPagination(scanner, employeeBusiness, "employees", new Employee());
                         break;
                     case 2:
                         addEmployee(scanner);
@@ -53,7 +51,7 @@ public class EmployeeManagement {
                         System.out.println("Chọn cách thức tìm kiếm nhân viên");
                         System.out.println("1. Tìm kiếm theo tên nhân viên");
                         System.out.println("2. Tìm kiếm theo mã nhân viên");
-                        System.out.println("Lựa chọn: ");
+                        System.out.print("Lựa chọn: ");
                         String numberChoice = scanner.nextLine();
                         if (Validation.isIntegerInRange(numberChoice, 1, 2)) {
                             if (Integer.parseInt(numberChoice) == 1) {
@@ -62,7 +60,7 @@ public class EmployeeManagement {
                                 getEmployeeById(scanner);
                             }
                         } else {
-                            System.out.println("Số nhập vào không hợp lệ");
+                            System.err.println("Số nhập vào không hợp lệ");
                         }
                         break;
                     default:
@@ -94,6 +92,10 @@ public class EmployeeManagement {
     public void updateEmployee(Scanner scanner) {
         String employeeId = inputEmployeeIDForUpdate(scanner);
         Employee updateEmployee = employeeBusiness.getEmployeeById(employeeId);
+        PaginationPresentation.printTableHeader("employees");
+        System.out.println(updateEmployee);
+        PaginationPresentation.printDivider();
+
         boolean exit = false;
         while (!exit) {
             System.out.println("1. Cập nhật tên nhân viên");
@@ -102,7 +104,7 @@ public class EmployeeManagement {
             System.out.println("4. Cập nhật số điện thoại");
             System.out.println("5. Cập nhật địa chỉ");
             System.out.println("6. Thoát cập nhật");
-            System.out.println("Lựa chọn: ");
+            System.out.print("Lựa chọn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 6)) {
                 switch (Integer.parseInt(choice)) {
@@ -135,25 +137,29 @@ public class EmployeeManagement {
 
     public void getEmployeeByName(Scanner scanner) {
         while (true) {
+            Employee employeeSearch = new Employee();
             System.out.println("Nhập vào tên tương đối để tìm nhân viên: ");
             String employeeName = scanner.nextLine();
-            if (Validation.isValidLength(employeeName, MAX_LENGTH)) {
-                PaginationPresentation.getListPagination(scanner, paginationBusiness, "employees", employeeName);
+            if (Validation.isNotEmpty(employeeName)) {
+                employeeSearch.setEmpName(employeeName);
+                PaginationPresentation.getListPagination(scanner, employeeBusiness, "employees", employeeSearch);
                 break;
             } else {
-                System.err.printf("Tên nhập vào không được để trống hoặc quá %d ký tự!\n", MAX_LENGTH);
+                System.err.println("Tên nhập vào không được để trống");
             }
         }
     }
 
     public void getEmployeeById(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập vào mã nhân viên: ");
+            System.out.println("Nhập vào mã nhân viên để tìm kiếm: ");
             String employeeId = scanner.nextLine();
             if (Validation.isValidLength(employeeId, ID_MAX_LENGTH)) {
                 Employee employee = employeeBusiness.getEmployeeById(employeeId);
                 if (employee != null) {
-                    System.out.println(employee);
+                    PaginationPresentation.printTableHeader("employees");
+                    System.out.printf("| %-5s %s\n", 1, employee);
+                    PaginationPresentation.printDivider();
                     break;
                 } else {
                     System.err.println("Không tìm thấy nhân viên có mã " + employeeId);
@@ -171,13 +177,17 @@ public class EmployeeManagement {
         System.out.printf("Trạng thái hiện tại của nhân viên có ID %s: %s\n",
                 updateEmployee.getEmpId(),
                 statusCurrent == 0 ? "Hoạt động" : (statusCurrent == 1 ? "Nghỉ chế độ" : "Nghỉ việc"));
+
         while (true) {
-            System.out.println("Cập nhật trạng thái mới (0. Hoạt động | 1. Nghỉ chế độ | 2. Nghỉ việc): ");
+            System.out.print("Cập nhật trạng thái mới (0. Hoạt động | 1. Nghỉ chế độ | 2. Nghỉ việc): ");
             String statusInput = scanner.nextLine();
             if (Validation.isIntegerInRange(statusInput, 0, 2)) {
                 short status = Short.parseShort(statusInput);
                 if (employeeBusiness.updateEmployeeStatus(employeeId, status)) {
                     System.out.println("Cập nhật trạng thái thành công");
+                    PaginationPresentation.printTableHeader("employees");
+                    System.out.printf("| %-5s %s\n", 1, updateEmployee);
+                    PaginationPresentation.printDivider();
                     break;
                 } else {
                     System.err.println("Cập nhật trạng thái thất bại!");

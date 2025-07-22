@@ -3,5 +3,5 @@ package business;
 import entity.PaginationResult;
 
 public interface PaginationBusiness<T> {
-    PaginationResult<T> getPaginationData(String key, int size, int currentPage);
+    PaginationResult<T> getPaginationData(T item, int size, int currentPage);
 }

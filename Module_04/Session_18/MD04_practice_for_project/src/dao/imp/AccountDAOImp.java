@@ -40,17 +40,20 @@ public class AccountDAOImp implements AccountDAO {
     }
 
     @Override
-    public PaginationResult<Account> getAllAccountPagination(int size, int currentPage) {
+    public PaginationResult<Account> getAccountBySearchKey(Account accountSearch, int size, int currentPage) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         PaginationResult<Account> paginationResult = null;
         List<Account> accountList = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_all_account_pagination(?,?,?)}");
-            callableStatement.setInt(1, size);
-            callableStatement.setInt(2, currentPage);
-            callableStatement.registerOutParameter(3, Types.INTEGER);
+            callableStatement = connection.prepareCall("{call get_list_account_by_search_key(?,?,?,?,?)}");
+
+            callableStatement.setString(1, accountSearch.getUserName() != null ? accountSearch.getUserName() : null);
+            callableStatement.setString(2, accountSearch.getEmpName() != null ? accountSearch.getEmpName() : null);
+            callableStatement.setInt(3, size);
+            callableStatement.setInt(4, currentPage);
+            callableStatement.registerOutParameter(5, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
             paginationResult = new PaginationResult<>();
             accountList = new ArrayList<>();
@@ -62,10 +65,11 @@ public class AccountDAOImp implements AccountDAO {
                 account.setPassword(resultSet.getString("password"));
                 account.setPermission(resultSet.getBoolean("permission"));
                 account.setEmpId(resultSet.getString("emp_id"));
+                account.setEmpName(resultSet.getString("emp_name"));
                 account.setAccStatus(resultSet.getBoolean("acc_status"));
                 accountList.add(account);
             }
-            paginationResult.setTotalPages(callableStatement.getInt(3));
+            paginationResult.setTotalPages(callableStatement.getInt(5));
             paginationResult.setDataList(accountList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,8 +89,8 @@ public class AccountDAOImp implements AccountDAO {
             callableStatement.setString(1, account.getUserName());
             callableStatement.setString(2, account.getPassword());
             callableStatement.setString(3, account.getEmpId());
-            callableStatement.executeUpdate();
-            return true;
+            int rows = callableStatement.executeUpdate();
+            return rows > 0;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -179,61 +183,5 @@ public class AccountDAOImp implements AccountDAO {
             ConnectionDB.closeConnection(connection, callableStatement);
         }
         return false;
-    }
-
-    @Override
-    public Account getAccountByUserName(String userName) {
-        Connection connection = null;
-        CallableStatement callableStatement = null;
-        Account account = null;
-        try {
-            connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_account_by_user_name(?)}");
-            callableStatement.setString(1, userName);
-            ResultSet resultSet = callableStatement.executeQuery();
-            if (resultSet.next()) {
-                account = new Account();
-                account.setAccId(resultSet.getInt("acc_id"));
-                account.setUserName(resultSet.getString("user_name"));
-                account.setPassword(resultSet.getString("password"));
-                account.setPermission(resultSet.getBoolean("permission"));
-                account.setEmpId(resultSet.getString("emp_id"));
-                account.setEmpName(resultSet.getString("emp_name"));
-                account.setAccStatus(resultSet.getBoolean("acc_status"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionDB.closeConnection(connection, callableStatement);
-        }
-        return account;
-    }
-
-    @Override
-    public Account getAccountByEmpName(String empName) {
-        Connection connection = null;
-        CallableStatement callableStatement = null;
-        Account account = null;
-        try {
-            connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call get_account_by_emp_name(?)}");
-            callableStatement.setString(1, empName);
-            ResultSet resultSet = callableStatement.executeQuery();
-            if (resultSet.next()) {
-                account = new Account();
-                account.setAccId(resultSet.getInt("acc_id"));
-                account.setUserName(resultSet.getString("user_name"));
-                account.setPassword(resultSet.getString("password"));
-                account.setPermission(resultSet.getBoolean("permission"));
-                account.setEmpId(resultSet.getString("emp_id"));
-                account.setEmpName(resultSet.getString("emp_name"));
-                account.setAccStatus(resultSet.getBoolean("acc_status"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ConnectionDB.closeConnection(connection, callableStatement);
-        }
-        return account;
     }
 }

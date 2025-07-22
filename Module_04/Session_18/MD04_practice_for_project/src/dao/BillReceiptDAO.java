@@ -4,14 +4,18 @@ import entity.Bill;
 import entity.PaginationResult;
 
 public interface BillReceiptDAO {
-    PaginationResult<Bill> getBillPagination(int size, int currentPage);
+    PaginationResult<Bill> getBillBySearchKey(boolean billType, int size, int currentPage);
 
-    boolean checkExistBillCode(String billCode);
+    boolean checkExistBillCode(String billCode, boolean billType);
 
-    long createBill(Bill bill);
+    boolean checkExistBillId(long billId, boolean billType);
+
+    boolean createBill(Bill bill);
 
     Bill findBillByCode(String billCode);
 
     boolean updateBill(Bill bill);
+
+    boolean acceptBill(long billId);
 
 }

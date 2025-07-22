@@ -16,11 +16,9 @@ public class ProductManagement {
     private final int MANUFAC_MAX_LENGTH = 200;
 
     private final ProductBusiness productBusiness;
-    private final PaginationBusiness<Product> paginationBusiness;
 
     public ProductManagement() {
         productBusiness = new ProductBusinessImp();
-        paginationBusiness = new ProductBusinessImp();
     }
 
     public void productMenu(Scanner scanner) {
@@ -38,7 +36,7 @@ public class ProductManagement {
             if (Validation.isIntegerInRange(choice, 1, 6)) {
                 switch (Integer.parseInt(choice)) {
                     case 1:
-                        PaginationPresentation.getListPagination(scanner, paginationBusiness, "products", "");
+                        PaginationPresentation.getListPagination(scanner, productBusiness, "products", new Product());
                         break;
                     case 2:
                         addProduct(scanner);
@@ -78,16 +76,18 @@ public class ProductManagement {
     public void updateProduct(Scanner scanner) {
         String productId = inputProductIdForUpdate(scanner);
         Product updateProduct = productBusiness.getProductById(productId);
+        PaginationPresentation.printTableHeader("products");
+        System.out.printf("| %-5s %s\n", 1, updateProduct);
+        PaginationPresentation.printDivider();
 
         boolean exit = false;
         while (!exit) {
-            System.out.println("------------------------");
             System.out.println("1. Cập nhật tên sản phẩm");
             System.out.println("2. Cập nhật nhà sản xuất");
             System.out.println("3. Cập nhật ngày tạo");
             System.out.println("4. Cập nhật lô chứa sản phẩm");
             System.out.println("5. Thoát cập nhật");
-            System.out.println("Lựa chọn của bạn: ");
+            System.out.print("Lựa chọn của bạn: ");
             String choice = scanner.nextLine();
             if (Validation.isIntegerInRange(choice, 1, 5)) {
                 switch (Integer.parseInt(choice)) {
@@ -117,10 +117,12 @@ public class ProductManagement {
 
     public void getProductByName(Scanner scanner) {
         while (true) {
+            Product product = new Product();
             System.out.println("Nhập vào tên tương đối để tìm sản phẩm: ");
             String productName = scanner.nextLine();
             if (Validation.isNotEmpty(productName)) {
-                PaginationPresentation.getListPagination(scanner, paginationBusiness, "products", productName);
+                product.setProductName(productName);
+                PaginationPresentation.getListPagination(scanner, productBusiness, "products", product);
                 break;
             }
             System.err.println("Không được để trống!");
@@ -130,17 +132,20 @@ public class ProductManagement {
     public void updateProductStatus(Scanner scanner) {
         String productId = inputProductIdForUpdate(scanner);
         Product updateProduct = productBusiness.getProductById(productId);
-
         System.out.printf("Trạng thái hiện tại của sản phẩm có ID %s: %s\n",
                 updateProduct.getProductId(),
                 updateProduct.isProductStatus() ? "Hoạt động" : "Không hoạt động");
+
         while (true) {
-            System.out.println("Cập nhật trạng thái mới (1. Hoạt động | 2. Không hoạt động): ");
+            System.out.print("Cập nhật trạng thái mới (1. Hoạt động | 2. Không hoạt động): ");
             String statusInput = scanner.nextLine();
             if (Validation.isIntegerInRange(statusInput, 1, 2)) {
                 boolean status = Integer.parseInt(statusInput) == 1;
                 if (productBusiness.updateProductStatus(productId, status)) {
                     System.out.println("Cập nhật trạng thái thành công");
+                    PaginationPresentation.printTableHeader("products");
+                    System.out.printf("| %-5s %s\n", 1, updateProduct);
+                    PaginationPresentation.printDivider();
                     break;
                 } else {
                     System.err.println("Cập nhật trạng thái thất bại!");

@@ -7,7 +7,7 @@ import business.PaginationBusiness;
 import entity.PaginationResult;
 import entity.Product;
 
-public class ProductBusinessImp implements ProductBusiness, PaginationBusiness<Product> {
+public class ProductBusinessImp implements ProductBusiness {
     private final ProductDAO productDAO;
 
     public ProductBusinessImp() {
@@ -15,11 +15,8 @@ public class ProductBusinessImp implements ProductBusiness, PaginationBusiness<P
     }
 
     @Override
-    public PaginationResult<Product> getPaginationData(String key, int size, int currentPage) {
-        if (key == null || key.trim().isEmpty()) {
-            return productDAO.getProductPagination(size, currentPage);
-        }
-        return productDAO.getProductByName(key, size, currentPage);
+    public PaginationResult<Product> getPaginationData(Product productSearch, int size, int currentPage) {
+        return productDAO.getProductBySearchKey(productSearch.getProductName(), size, currentPage);
     }
 
     @Override

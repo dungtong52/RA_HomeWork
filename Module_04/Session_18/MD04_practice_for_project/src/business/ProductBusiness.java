@@ -2,7 +2,8 @@ package business;
 
 import entity.Product;
 
-public interface ProductBusiness {
+public interface ProductBusiness extends PaginationBusiness<Product>{
+
     Product getProductById(String productId);
 
     boolean checkExistProductName(String productName);
@@ -12,6 +13,4 @@ public interface ProductBusiness {
     boolean updateProduct(Product product);
 
     boolean updateProductStatus(String productId, boolean status);
-
-
 }

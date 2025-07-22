@@ -3,8 +3,9 @@ package business;
 import dao.BillReceiptDAO;
 import dao.imp.ReceiptDAOImp;
 import entity.Bill;
+import entity.PaginationResult;
 
-public class BaseBillReceiptBusinessImp implements BillReceiptBusiness {
+public abstract class BaseBillReceiptBusinessImp implements BillReceiptBusiness {
     private final BillReceiptDAO billReceiptDAO;
 
     public BaseBillReceiptBusinessImp() {
@@ -12,13 +13,23 @@ public class BaseBillReceiptBusinessImp implements BillReceiptBusiness {
     }
 
     @Override
-    public long createBill(Bill bill) {
+    public PaginationResult<Bill> getPaginationData(Bill item, int size, int currentPage) {
+        return billReceiptDAO.getBillBySearchKey(item.isBillType(), size, currentPage);
+    }
+
+    @Override
+    public boolean createBill(Bill bill) {
         return billReceiptDAO.createBill(bill);
     }
 
     @Override
-    public boolean checkExistBillCode(String billCode) {
-        return billReceiptDAO.checkExistBillCode(billCode);
+    public boolean checkExistBillCode(String billCode, boolean billType) {
+        return billReceiptDAO.checkExistBillCode(billCode, billType);
+    }
+
+    @Override
+    public boolean checkExistBillId(long billId, boolean billType) {
+        return billReceiptDAO.checkExistBillId(billId, billType);
     }
 
     @Override
@@ -26,9 +37,11 @@ public class BaseBillReceiptBusinessImp implements BillReceiptBusiness {
         return billReceiptDAO.findBillByCode(billCode);
     }
 
-
     @Override
     public boolean updateBill(Bill bill) {
         return billReceiptDAO.updateBill(bill);
     }
+
+    @Override
+    public abstract boolean acceptBill(long billId);
 }

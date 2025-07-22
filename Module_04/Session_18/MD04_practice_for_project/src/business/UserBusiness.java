@@ -3,8 +3,10 @@ package business;
 import entity.Bill;
 import entity.PaginationResult;
 
-public interface UserBusiness {
-    PaginationResult<Bill> getAllReceiptForUser(String empId, int size, int currentPage);
+public interface UserBusiness extends PaginationBusiness<Bill> {
+    boolean checkExistBillCode(String billCode, boolean billType, String empId);
 
-    PaginationResult<Bill> getAllBillForUser(String empId, int size, int currentPage);
+    boolean updateBillForUser(Bill bill);
+
+    Bill findBillByCodeForUser(String billCode, boolean billType, String empId);
 }
