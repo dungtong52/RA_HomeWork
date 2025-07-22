@@ -25,7 +25,7 @@ public class StatisticEmployee {
 
     @Override
     public String toString() {
-        return String.format("%-15s: %10d",
+        return String.format("%-15s: %5d",
                 this.status == 0 ? "Hoạt động" : (this.status == 1 ? "Nghỉ chế độ" : "Nghỉ việc"),
                 this.countEmp);
     }

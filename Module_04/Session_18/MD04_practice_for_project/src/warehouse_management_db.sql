@@ -565,26 +565,24 @@ end //
 
 DELIMITER ;
 
-# Procedure cho Statistic
+# Procedure cho Statistic (Làm gọn lại, ít procedure và DAO đi)
 
 DELIMITER //
 
 create procedure statistic_revenue_cost_by_date(
-    in_bill_type int
+    in_bill_type bit
 )
 begin
-    select date(b.created)             as `Ngày`,
-           month(b.created)            as `Tháng`,
-           year(b.created)             as `Năm`,
+    select b.created,
            sum(bd.quantity * bd.price) as `Tổng số tiền`
     from bills b
              join bill_details bd on b.bill_id = bd.bill_id
     where b.bill_type = in_bill_type
-    group by date(b.created), month(b.created), year(b.created)
-    order by date(b.created), month(b.created), year(b.created);
+    group by b.created
+    order by b.created;
 end //
 
-create procedure statistic_revenue_cost_by_month(in_bill_type int)
+create procedure statistic_revenue_cost_by_month(in_bill_type bit)
 begin
     select month(b.created)            as `Tháng`,
            year(b.created)             as `Năm`,
@@ -596,7 +594,7 @@ begin
     order by month(b.created), year(b.created);
 end //
 
-create procedure statistic_revenue_cost_by_year(in_bill_type int)
+create procedure statistic_revenue_cost_by_year(in_bill_type bit)
 begin
     select year(b.created)             as `Năm`,
            sum(bd.quantity * bd.price) as `Tổng số tiền`
@@ -608,14 +606,12 @@ begin
 end //
 
 create procedure statistic_revenue_cost_in_date_range(
-    in_bill_type int,
+    in_bill_type bit,
     in_start_date date,
     in_end_date date
 )
 begin
-    select date(b.created)             as `Ngày`,
-           month(b.created)            as `Tháng`,
-           year(b.created)             as `Năm`,
+    select b.created,
            sum(bd.quantity * bd.price) as `Tổng số tiền`
     from bills b
              join bill_details bd on b.bill_id = bd.bill_id
@@ -634,7 +630,7 @@ begin
 end //
 
 create procedure statistic_product_max_trade_in_date_range(
-    in_bill_type int,
+    in_bill_type bit,
     in_start_date date,
     in_end_date date
 )
@@ -652,7 +648,7 @@ begin
 end //
 
 create procedure statistic_product_min_trade_in_date_range(
-    in_bill_type int,
+    in_bill_type bit,
     in_start_date date,
     in_end_date date
 )
@@ -670,62 +666,6 @@ begin
 end //
 
 DELIMITER ;
-
-INSERT INTO products (product_id, product_name, manufacturer, created, batch, quantity, product_status)
-VALUES ('P001', 'Product 1', 'Manufacturer 1', '2023-03-15', 3, 150, 1),
-       ('P002', 'Product 2', 'Manufacturer 2', '2022-07-20', 2, 90, 1),
-       ('P003', 'Product 3', 'Manufacturer 3', '2024-01-11', 1, 120, 0),
-       ('P004', 'Product 4', 'Manufacturer 1', '2023-12-05', 5, 80, 1),
-       ('P005', 'Product 5', 'Manufacturer 2', '2023-05-25', 4, 60, 1),
-       ('P006', 'Product 6', 'Manufacturer 3', '2022-09-18', 2, 200, 0),
-       ('P007', 'Product 7', 'Manufacturer 1', '2023-10-01', 3, 75, 1),
-       ('P008', 'Product 8', 'Manufacturer 2', '2024-03-03', 1, 130, 1),
-       ('P009', 'Product 9', 'Manufacturer 3', '2022-12-29', 2, 55, 0),
-       ('P010', 'Product 10', 'Manufacturer 1', '2023-08-08', 4, 100, 1);
-
-INSERT INTO employees (emp_id, emp_name, birth_of_date, email, phone, address, emp_status)
-VALUES ('E001', 'Employee 1', '1990-06-15', 'employee1@example.com', '0123456789', '123 Main St, District 1', 0),
-       ('E002', 'Employee 2', '1988-11-22', 'employee2@example.com', '0987654321', '456 2nd Ave, District 3', 1),
-       ('E003', 'Employee 3', '1995-03-05', 'employee3@example.com', '0901234567', '789 3rd Blvd, District 5', 0),
-       ('E004', 'Employee 4', '1992-08-30', 'employee4@example.com', '0912345678', '234 4th St, District 7', 2),
-       ('E005', 'Employee 5', '1985-01-19', 'employee5@example.com', '0934567890', '567 5th Ave, District 9', 0);
-
-INSERT INTO accounts (acc_id, user_name, password, permission, emp_id, acc_status)
-VALUES (1, 'user1', 'User111$', 0, 'E001', 1),
-       (2, 'user2', 'User222$', 1, 'E002', 1),
-       (3, 'user3', 'User333$', 1, 'E003', 1),
-       (4, 'user4', 'User444$', 0, 'E004', 0),
-       (5, 'user5', 'User555$', 1, 'E005', 1);
-
-INSERT INTO bills (bill_id, bill_code, bill_type, emp_id_created, created, emp_id_auth, auth_date, bill_status)
-VALUES (1, 'B001', 0, 'E001', '2024-05-10', 'E002', '2024-05-11', 2), -- phiếu nhập đã duyệt
-       (2, 'B002', 1, 'E002', '2024-05-12', NULL, NULL, 0),           -- phiếu xuất chờ duyệt
-       (3, 'B003', 0, 'E003', '2024-06-01', NULL, NULL, 0),           -- phiếu nhập chờ duyệt
-       (4, 'B004', 1, 'E001', '2024-06-03', 'E003', '2024-06-04', 2), -- phiếu xuất đã duyệt
-       (5, 'B005', 0, 'E002', '2024-06-10', NULL, NULL, 1); -- phiếu nhập đã hủy
-
-INSERT INTO bill_details (bill_detail_id, bill_id, product_id, quantity, price)
-VALUES
--- Chi tiết B001 - Nhập sản phẩm
-(1, 1, 'P001', 50, 12000),
-(2, 1, 'P002', 30, 15000),
-(3, 1, 'P003', 20, 10000),
-
--- Chi tiết B002 - Xuất sản phẩm (chưa duyệt)
-(4, 2, 'P001', 10, 15000),
-(5, 2, 'P004', 5, 20000),
-
--- Chi tiết B003 - Nhập sản phẩm (chờ duyệt)
-(6, 3, 'P005', 40, 11000),
-(7, 3, 'P006', 25, 13000),
-
--- Chi tiết B004 - Xuất sản phẩm
-(8, 4, 'P002', 15, 15000),
-(9, 4, 'P007', 10, 18000),
-
--- Chi tiết B005 - Nhập sản phẩm (đã hủy)
-(10, 5, 'P008', 30, 12500);
-
 
 # Procedure cho USER
 
@@ -824,3 +764,58 @@ begin
 end //
 
 DELIMITER ;
+
+INSERT INTO products (product_id, product_name, manufacturer, created, batch, quantity, product_status)
+VALUES ('P001', 'Product 1', 'Manufacturer 1', '2023-03-15', 3, 150, 1),
+       ('P002', 'Product 2', 'Manufacturer 2', '2022-07-20', 2, 90, 1),
+       ('P003', 'Product 3', 'Manufacturer 3', '2024-01-11', 1, 120, 0),
+       ('P004', 'Product 4', 'Manufacturer 1', '2023-12-05', 5, 80, 1),
+       ('P005', 'Product 5', 'Manufacturer 2', '2023-05-25', 4, 60, 1),
+       ('P006', 'Product 6', 'Manufacturer 3', '2022-09-18', 2, 200, 0),
+       ('P007', 'Product 7', 'Manufacturer 1', '2023-10-01', 3, 75, 1),
+       ('P008', 'Product 8', 'Manufacturer 2', '2024-03-03', 1, 130, 1),
+       ('P009', 'Product 9', 'Manufacturer 3', '2022-12-29', 2, 55, 0),
+       ('P010', 'Product 10', 'Manufacturer 1', '2023-08-08', 4, 100, 1);
+
+INSERT INTO employees (emp_id, emp_name, birth_of_date, email, phone, address, emp_status)
+VALUES ('E001', 'Employee 1', '1990-06-15', 'employee1@example.com', '0123456789', '123 Main St, District 1', 0),
+       ('E002', 'Employee 2', '1988-11-22', 'employee2@example.com', '0987654321', '456 2nd Ave, District 3', 1),
+       ('E003', 'Employee 3', '1995-03-05', 'employee3@example.com', '0901234567', '789 3rd Blvd, District 5', 0),
+       ('E004', 'Employee 4', '1992-08-30', 'employee4@example.com', '0912345678', '234 4th St, District 7', 2),
+       ('E005', 'Employee 5', '1985-01-19', 'employee5@example.com', '0934567890', '567 5th Ave, District 9', 0);
+
+INSERT INTO accounts (acc_id, user_name, password, permission, emp_id, acc_status)
+VALUES (1, 'user1', 'User111$', 0, 'E001', 1),
+       (2, 'user2', 'User222$', 1, 'E002', 1),
+       (3, 'user3', 'User333$', 1, 'E003', 1),
+       (4, 'user4', 'User444$', 0, 'E004', 0),
+       (5, 'user5', 'User555$', 1, 'E005', 1);
+
+INSERT INTO bills (bill_id, bill_code, bill_type, emp_id_created, created, emp_id_auth, auth_date, bill_status)
+VALUES (1, 'B001', 0, 'E001', '2024-05-10', 'E002', '2024-05-11', 2), -- phiếu nhập đã duyệt
+       (2, 'B002', 1, 'E002', '2024-05-12', NULL, NULL, 0),           -- phiếu xuất chờ duyệt
+       (3, 'B003', 0, 'E003', '2024-06-01', NULL, NULL, 0),           -- phiếu nhập chờ duyệt
+       (4, 'B004', 1, 'E001', '2024-06-03', 'E003', '2024-06-04', 2), -- phiếu xuất đã duyệt
+       (5, 'B005', 0, 'E002', '2024-06-10', NULL, NULL, 1); -- phiếu nhập đã hủy
+
+INSERT INTO bill_details (bill_detail_id, bill_id, product_id, quantity, price)
+VALUES
+-- Chi tiết B001 - Nhập sản phẩm
+(1, 1, 'P001', 50, 12000),
+(2, 1, 'P002', 30, 15000),
+(3, 1, 'P003', 20, 10000),
+
+-- Chi tiết B002 - Xuất sản phẩm (chưa duyệt)
+(4, 2, 'P001', 10, 15000),
+(5, 2, 'P004', 5, 20000),
+
+-- Chi tiết B003 - Nhập sản phẩm (chờ duyệt)
+(6, 3, 'P005', 40, 11000),
+(7, 3, 'P006', 25, 13000),
+
+-- Chi tiết B004 - Xuất sản phẩm
+(8, 4, 'P002', 15, 15000),
+(9, 4, 'P007', 10, 18000),
+
+-- Chi tiết B005 - Nhập sản phẩm (đã hủy)
+(10, 5, 'P008', 30, 12500);

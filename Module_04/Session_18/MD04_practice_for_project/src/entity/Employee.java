@@ -82,7 +82,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return String.format("| %-10s | %-20s | %-15s | %-20s | %-10s | %-20s | %-15s |",
+        return String.format("| %-10s | %-15s | %-15s | %-25s | %-10s | %-25s | %-15s |",
                 this.empId, this.empName, this.birthOfDate,
                 this.email, this.phone, this.address,
                 this.empStatus == 0 ? "Hoạt động" : (this.empStatus == 1 ? "Nghỉ chế độ" : "Nghỉ việc"));

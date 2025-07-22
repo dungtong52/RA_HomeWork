@@ -4,14 +4,14 @@ import java.time.LocalDate;
 
 public class StatisticRevenueCost {
     private float totalAmount;
-    private int date;
+    private LocalDate date;
     private int month;
     private int year;
 
     public StatisticRevenueCost() {
     }
 
-    public StatisticRevenueCost(float totalAmount, int date, int month, int year) {
+    public StatisticRevenueCost(float totalAmount, LocalDate date, int month, int year) {
         this.totalAmount = totalAmount;
         this.date = date;
         this.month = month;
@@ -26,11 +26,11 @@ public class StatisticRevenueCost {
         this.totalAmount = totalAmount;
     }
 
-    public int getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -50,8 +50,4 @@ public class StatisticRevenueCost {
         this.year = year;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%2d/%2d/%2d: %6.1f", this.date, this.month, this.year, this.totalAmount);
-    }
 }

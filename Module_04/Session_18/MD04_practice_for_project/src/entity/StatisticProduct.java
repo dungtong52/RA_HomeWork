@@ -25,6 +25,6 @@ public class StatisticProduct {
 
     @Override
     public String toString() {
-        return String.format("%-10s: %6d", this.productName, this.quantity);
+        return String.format("%-15s: %6d sản phẩm", this.productName, this.quantity);
     }
 }

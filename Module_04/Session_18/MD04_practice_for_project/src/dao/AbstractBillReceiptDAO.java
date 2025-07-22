@@ -37,7 +37,7 @@ public abstract class AbstractBillReceiptDAO implements BillReceiptDAO {
                 bill.setBillStatus(resultSet.getShort("bill_status"));
                 billList.add(bill);
             }
-            billPaginationResult.setTotalPages(callableStatement.getInt(3));
+            billPaginationResult.setTotalPages(callableStatement.getInt(4));
             billPaginationResult.setDataList(billList);
         } catch (Exception e) {
             e.printStackTrace();

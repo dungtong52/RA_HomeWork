@@ -92,7 +92,7 @@ public class Bill {
 
     @Override
     public String toString() {
-        return String.format("| %-10s | %-10s | %-10s | %-15s | %-10s | %-15s | %-10s | %-10s |",
+        return String.format("| %-10s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |",
                 this.billId, this.billCode, this.billType, this.empIdCreated, this.created,
                 this.empIdAuth == null ? "" : this.empIdAuth,
                 this.empIdAuth == null ? "" : this.authDate,

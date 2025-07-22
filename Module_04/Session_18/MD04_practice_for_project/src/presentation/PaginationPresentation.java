@@ -71,7 +71,7 @@ public class PaginationPresentation {
                                 currentPage = Integer.parseInt(input);
                             }
                         } else {
-                            System.out.println(ANSI_RED + "Thông tin nhập vào không hợp lệ" + ANSI_RESET);
+                            System.out.println(ANSI_RED + "Số nhập vào vượt quá số trang hiện có" + ANSI_RESET);
                             printRepeat = false;
                         }
                         break;
@@ -89,31 +89,31 @@ public class PaginationPresentation {
         switch (tableName.toLowerCase()) {
             case "products":
                 printDivider();
-                System.out.printf("| %-5s | %-10s | %-20s | %-20s | %-10s | %-10s | %-10s | %-15s |\n",
+                System.out.printf("| %-5s | %-10s | %-30s | %-25s | %-15s | %-5s | %-10s | %-20s |\n",
                         "STT", "Product ID", "Product Name", "Manufacturer", "Created", "Batch", "Quantity", "Status");
                 printDivider();
                 break;
             case "employees":
                 printDivider();
-                System.out.printf("| %-5s | %-10s | %-20s | %-15s | %-25s | %-10s | %-25s | %-15s |\n",
+                System.out.printf("| %-5s | %-10s | %-15s | %-15s | %-25s | %-10s | %-25s | %-15s |\n",
                         "STT", "Emp ID", "Emp Name", "Birth", "Email", "Phone", "Address", "Status");
                 printDivider();
                 break;
             case "accounts":
                 printDivider();
-                System.out.printf("| %-5s | %-15s | %-15s | %-15s | %-15s | %-10s | %-15s | %-10s |\n",
+                System.out.printf("| %-5s | %-15s | %-20s | %-20s | %-15s | %-10s | %-20s | %-15s |\n",
                         "STT", "Acc ID", "User Name", "Password", "Permission", "Emp ID", "Emp Name", "Status");
                 printDivider();
                 break;
             case "bills":
                 printDivider();
-                System.out.printf("| %-5s | %-10s | %-10s | %-10s | %-15s | %-10s | %-15s | %-10s | %-10s |\n",
+                System.out.printf("| %-5s | %-10s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n",
                         "STT", "Bill ID", "Bill Code", "Bill Type", "Emp ID Created", "Created", "Emp ID Auth", "Auth Date", "Status");
                 printDivider();
                 break;
             case "bill details":
                 printDivider();
-                System.out.printf("| %-5s | %-20s | %-20s | %-20s | %-15s | %-20s |\n",
+                System.out.printf("| %-5s | %-25s | %-20s | %-20s | %-25s | %-25s |\n",
                         "STT", "Bill Detail ID", "Bill ID", "Product ID", "Quantity", "Price");
                 printDivider();
                 break;
@@ -123,6 +123,6 @@ public class PaginationPresentation {
     }
 
     public static void printDivider() {
-        System.out.println("-".repeat(125));
+        System.out.println("-".repeat(145));
     }
 }

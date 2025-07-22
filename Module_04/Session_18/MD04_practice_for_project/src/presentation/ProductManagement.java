@@ -11,6 +11,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class ProductManagement {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
     private final int ID_MAX_LENGTH = 5;
     private final int NAME_MAX_LENGTH = 150;
     private final int MANUFAC_MAX_LENGTH = 200;
@@ -54,7 +58,7 @@ public class ProductManagement {
                         exit = true;
                 }
             } else {
-                System.err.println("Nhập vào số nguyên trong phạm vi 1-6");
+                System.out.println(ANSI_RED + "Nhập vào số nguyên trong phạm vi 1-6" + ANSI_RESET);
             }
         }
     }
@@ -67,9 +71,9 @@ public class ProductManagement {
         product.setBatch(inputBatch(scanner));
         boolean success = productBusiness.createProduct(product);
         if (success) {
-            System.out.println("Thêm mới sản phẩm thành công.");
+            System.out.println(ANSI_BLUE + "Thêm mới sản phẩm thành công." + ANSI_RESET);
         } else {
-            System.err.println("Có lỗi trong quá trình thêm mới sản phẩm.");
+            System.err.println(ANSI_RED + "Có lỗi trong quá trình thêm mới sản phẩm." + ANSI_RESET);
         }
     }
 
@@ -109,23 +113,23 @@ public class ProductManagement {
             }
         }
         if (productBusiness.updateProduct(updateProduct)) {
-            System.out.println("Cập nhật thành công");
+            System.out.println(ANSI_BLUE + "Cập nhật thành công" + ANSI_RESET);
         } else {
-            System.err.println("Cập nhật thất bại!");
+            System.out.println(ANSI_RED + "Cập nhật thất bại!" + ANSI_RESET);
         }
     }
 
     public void getProductByName(Scanner scanner) {
         while (true) {
             Product product = new Product();
-            System.out.println("Nhập vào tên tương đối để tìm sản phẩm: ");
+            System.out.print("Nhập vào tên tương đối để tìm sản phẩm: ");
             String productName = scanner.nextLine();
             if (Validation.isNotEmpty(productName)) {
                 product.setProductName(productName);
                 PaginationPresentation.getListPagination(scanner, productBusiness, "products", product);
                 break;
             }
-            System.err.println("Không được để trống!");
+            System.out.println(ANSI_RED + "Không được để trống!" + ANSI_RESET);
         }
     }
 
@@ -142,76 +146,76 @@ public class ProductManagement {
             if (Validation.isIntegerInRange(statusInput, 1, 2)) {
                 boolean status = Integer.parseInt(statusInput) == 1;
                 if (productBusiness.updateProductStatus(productId, status)) {
-                    System.out.println("Cập nhật trạng thái thành công");
+                    System.out.println(ANSI_BLUE + "Cập nhật trạng thái thành công" + ANSI_RESET);
                     PaginationPresentation.printTableHeader("products");
                     System.out.printf("| %-5s %s\n", 1, updateProduct);
                     PaginationPresentation.printDivider();
                     break;
                 } else {
-                    System.err.println("Cập nhật trạng thái thất bại!");
+                    System.out.println(ANSI_RED + "Cập nhật trạng thái thất bại!" + ANSI_RESET);
                 }
             } else {
-                System.err.println("Trạng thái nhập vào không đúng!");
+                System.out.println(ANSI_RED + "Trạng thái nhập vào không đúng!" + ANSI_RESET);
             }
         }
     }
 
     public String inputProductIdForCreate(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập mã sản phẩm: ");
+            System.out.print("Nhập mã sản phẩm: ");
             String productId = scanner.nextLine();
             if (Validation.isValidLength(productId, ID_MAX_LENGTH)) {
                 if (productBusiness.getProductById(productId) == null) {
                     return productId;
                 } else {
-                    System.err.println("Mã sản phẩm này đã tồn tại. Vui lòng nhập mã khác!");
+                    System.out.println(ANSI_RED + "Mã sản phẩm này đã tồn tại. Vui lòng nhập mã khác!" + ANSI_RESET);
                 }
             } else {
-                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", ID_MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n" + ANSI_RESET, ID_MAX_LENGTH);
             }
         }
     }
 
     public String inputProductIdForUpdate(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập mã sản phẩm: ");
+            System.out.print("Nhập mã sản phẩm: ");
             String productId = scanner.nextLine();
             if (Validation.isValidLength(productId, ID_MAX_LENGTH)) {
                 if (productBusiness.getProductById(productId) != null) {
                     return productId;
                 } else {
-                    System.err.println("Mã sản phẩm này KHÔNG tồn tại. Vui lòng nhập mã khác!");
+                    System.out.println(ANSI_RED + "Mã sản phẩm này KHÔNG tồn tại. Vui lòng nhập mã khác!" + ANSI_RESET);
                 }
             } else {
-                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", ID_MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n" + ANSI_RESET, ID_MAX_LENGTH);
             }
         }
     }
 
     public String inputProductName(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập tên sản phẩm: ");
+            System.out.print("Nhập tên sản phẩm: ");
             String productName = scanner.nextLine();
             if (Validation.isValidLength(productName, NAME_MAX_LENGTH)) {
                 if (!productBusiness.checkExistProductName(productName)) {
                     return productName;
                 } else {
-                    System.err.println("Tên sản phẩm đã tồn tại. Vui lòng nhập nhập lại!");
+                    System.out.println(ANSI_RED + "Tên sản phẩm đã tồn tại. Vui lòng nhập nhập lại!" + ANSI_RESET);
                 }
             } else {
-                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", NAME_MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n" + ANSI_RESET, NAME_MAX_LENGTH);
             }
         }
     }
 
     public String inputManufacturer(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập tên nhà sản xuất: ");
+            System.out.print("Nhập tên nhà sản xuất: ");
             String manufacturer = scanner.nextLine();
             if (Validation.isValidLength(manufacturer, MANUFAC_MAX_LENGTH)) {
                 return manufacturer;
             } else {
-                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", MANUFAC_MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n" + ANSI_RESET, MANUFAC_MAX_LENGTH);
             }
         }
     }
@@ -219,24 +223,24 @@ public class ProductManagement {
     public LocalDate inputCreated(Scanner scanner) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         while (true) {
-            System.out.println("Nhập vào ngày tạo (yyyy-MM-dd): ");
+            System.out.print("Nhập vào ngày tạo (yyyy-MM-dd): ");
             String date = scanner.nextLine();
             if (Validation.isValidDate(date, "yyyy-MM-dd")) {
                 return LocalDate.parse(date, formatter);
             } else {
-                System.err.println("Thông tin nhập vào không đúng định dạng. Vui lòng nhập lại!");
+                System.out.println(ANSI_RED + "Thông tin nhập vào không đúng định dạng. Vui lòng nhập lại!" + ANSI_RESET);
             }
         }
     }
 
     public short inputBatch(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập vào lô chứa sản phẩm: ");
+            System.out.print("Nhập vào lô chứa sản phẩm: ");
             String batch = scanner.nextLine();
             if (Validation.isValidType(batch, "Short")) {
                 return Short.parseShort(batch);
             } else {
-                System.err.println("Thông tin nhập vào không đúng định dạng. Vui lòng nhập lại!");
+                System.out.println(ANSI_RED + "Thông tin nhập vào không đúng định dạng. Vui lòng nhập lại!" + ANSI_RESET);
             }
         }
     }

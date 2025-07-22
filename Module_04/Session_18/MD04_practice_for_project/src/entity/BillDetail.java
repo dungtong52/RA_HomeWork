@@ -60,7 +60,7 @@ public class BillDetail {
 
     @Override
     public String toString() {
-        return String.format("| %-20s | %-20s | %-20s | %-15s | %-20s |",
+        return String.format("| %-25s | %-20s | %-20s | %-25s | %,-25.1f |",
                 this.billDetailId, this.billId, this.productId, this.quantity, this.price);
     }
 }

@@ -11,6 +11,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class EmployeeManagement {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+
     private final int ID_MAX_LENGTH = 5;
     private final int MAX_LENGTH = 100;
 
@@ -60,14 +64,14 @@ public class EmployeeManagement {
                                 getEmployeeById(scanner);
                             }
                         } else {
-                            System.err.println("Số nhập vào không hợp lệ");
+                            System.out.println(ANSI_RED + "Số nhập vào không hợp lệ" + ANSI_RESET);
                         }
                         break;
                     default:
                         exit = true;
                 }
             } else {
-                System.err.println("Nhập vào số nguyên trong phạm vi 1-6");
+                System.out.println(ANSI_RED + "Nhập vào số nguyên trong phạm vi 1-6" + ANSI_RESET);
             }
         }
     }
@@ -83,9 +87,9 @@ public class EmployeeManagement {
         employee.setEmpStatus(inputStatus(scanner));
         boolean success = employeeBusiness.createEmployee(employee);
         if (success) {
-            System.out.println("Thêm mới nhân viên thành công.");
+            System.out.println(ANSI_BLUE + "Thêm mới nhân viên thành công." + ANSI_RESET);
         } else {
-            System.err.println("Có lỗi trong quá trình thêm mới.");
+            System.out.println(ANSI_RED + "Có lỗi trong quá trình thêm mới." + ANSI_RESET);
         }
     }
 
@@ -126,33 +130,35 @@ public class EmployeeManagement {
                     default:
                         exit = true;
                 }
+            } else {
+                System.out.println(ANSI_RED + "Nhập vào số nguyên 1-6" + ANSI_RESET);
             }
         }
         if (employeeBusiness.updateEmployee(updateEmployee)) {
-            System.out.println("Cập nhật thành công");
+            System.out.println(ANSI_BLUE + "Cập nhật thành công" + ANSI_RESET);
         } else {
-            System.err.println("Cập nhật thất bại!");
+            System.out.println(ANSI_BLUE + "Cập nhật thất bại!" + ANSI_RESET);
         }
     }
 
     public void getEmployeeByName(Scanner scanner) {
         while (true) {
             Employee employeeSearch = new Employee();
-            System.out.println("Nhập vào tên tương đối để tìm nhân viên: ");
+            System.out.print("Nhập vào tên tương đối để tìm nhân viên: ");
             String employeeName = scanner.nextLine();
             if (Validation.isNotEmpty(employeeName)) {
                 employeeSearch.setEmpName(employeeName);
                 PaginationPresentation.getListPagination(scanner, employeeBusiness, "employees", employeeSearch);
                 break;
             } else {
-                System.err.println("Tên nhập vào không được để trống");
+                System.out.println(ANSI_RED + "Tên nhập vào không được để trống" + ANSI_RESET);
             }
         }
     }
 
     public void getEmployeeById(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập vào mã nhân viên để tìm kiếm: ");
+            System.out.print("Nhập vào mã nhân viên để tìm kiếm: ");
             String employeeId = scanner.nextLine();
             if (Validation.isValidLength(employeeId, ID_MAX_LENGTH)) {
                 Employee employee = employeeBusiness.getEmployeeById(employeeId);
@@ -162,10 +168,10 @@ public class EmployeeManagement {
                     PaginationPresentation.printDivider();
                     break;
                 } else {
-                    System.err.println("Không tìm thấy nhân viên có mã " + employeeId);
+                    System.out.println(ANSI_RED + "Không tìm thấy nhân viên có mã " + employeeId + ANSI_RESET);
                 }
             } else {
-                System.err.printf("Tên nhập vào không được để trống hoặc quá %d ký tự!\n", ID_MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Tên nhập vào không được để trống hoặc quá %d ký tự!\n" + ANSI_RESET, ID_MAX_LENGTH);
             }
         }
     }
@@ -184,64 +190,64 @@ public class EmployeeManagement {
             if (Validation.isIntegerInRange(statusInput, 0, 2)) {
                 short status = Short.parseShort(statusInput);
                 if (employeeBusiness.updateEmployeeStatus(employeeId, status)) {
-                    System.out.println("Cập nhật trạng thái thành công");
+                    System.out.println(ANSI_BLUE + "Cập nhật trạng thái thành công" + ANSI_RESET);
                     PaginationPresentation.printTableHeader("employees");
                     System.out.printf("| %-5s %s\n", 1, updateEmployee);
                     PaginationPresentation.printDivider();
                     break;
                 } else {
-                    System.err.println("Cập nhật trạng thái thất bại!");
+                    System.out.println(ANSI_RED + "Cập nhật trạng thái thất bại!" + ANSI_RESET);
                 }
             } else {
-                System.err.println("Trạng thái nhập vào không đúng!");
+                System.out.println(ANSI_RED + "Trạng thái nhập vào không đúng!" + ANSI_RESET);
             }
         }
     }
 
     public String inputEmployeeIDForCreate(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập mã nhân viên: ");
+            System.out.print("Nhập mã nhân viên: ");
             String employeeID = scanner.nextLine();
             if (Validation.isValidLength(employeeID, ID_MAX_LENGTH)) {
                 if (employeeBusiness.getEmployeeById(employeeID) == null) {
                     return employeeID;
                 } else {
-                    System.err.println("Mã nhân viên này đã tồn tại. Vui lòng nhập mã khác!");
+                    System.out.println(ANSI_RED + "Mã nhân viên này đã tồn tại. Vui lòng nhập mã khác!" + ANSI_RESET);
                 }
             } else {
-                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", ID_MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n" + ANSI_RESET, ID_MAX_LENGTH);
             }
         }
     }
 
     public String inputEmployeeIDForUpdate(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập mã nhân viên: ");
+            System.out.print("Nhập mã nhân viên: ");
             String employeeID = scanner.nextLine();
             if (Validation.isValidLength(employeeID, ID_MAX_LENGTH)) {
                 if (employeeBusiness.getEmployeeById(employeeID) != null) {
                     return employeeID;
                 } else {
-                    System.err.println("Mã nhân viên này KHÔNG tồn tại. Vui lòng nhập mã khác!");
+                    System.out.println(ANSI_RED + "Mã nhân viên này KHÔNG tồn tại. Vui lòng nhập mã khác!" + ANSI_RESET);
                 }
             } else {
-                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", ID_MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n" + ANSI_RESET, ID_MAX_LENGTH);
             }
         }
     }
 
     public String inputEmployeeName(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập tên nhân viên: ");
+            System.out.print("Nhập tên nhân viên: ");
             String employeeName = scanner.nextLine();
             if (Validation.isValidLength(employeeName, MAX_LENGTH)) {
                 if (!employeeBusiness.checkExistEmployeeName(employeeName)) {
                     return employeeName;
                 } else {
-                    System.err.println("Tên nhân viên đã tồn tại. Vui lòng nhập lại!");
+                    System.out.println(ANSI_RED + "Tên nhân viên đã tồn tại. Vui lòng nhập lại!" + ANSI_RESET);
                 }
             } else {
-                System.err.printf("Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n", MAX_LENGTH);
+                System.out.printf(ANSI_RED + "Thông tin nhập không được để trống hoặc có độ dài quá %d ký tự. Vui lòng nhập lại!\n" + ANSI_RESET, MAX_LENGTH);
             }
         }
     }
@@ -249,60 +255,60 @@ public class EmployeeManagement {
     public LocalDate inputBirthOfDate(Scanner scanner) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         while (true) {
-            System.out.println("Nhập vào ngày sinh (yyyy-MM-dd): ");
+            System.out.print("Nhập vào ngày sinh (yyyy-MM-dd): ");
             String date = scanner.nextLine();
             if (Validation.isValidDate(date, "yyyy-MM-dd")) {
                 return LocalDate.parse(date, formatter);
             } else {
-                System.err.println("Thông tin nhập vào không đúng định dạng. Vui lòng nhập lại!");
+                System.out.println(ANSI_RED + "Thông tin nhập vào không đúng định dạng. Vui lòng nhập lại!" + ANSI_RESET);
             }
         }
     }
 
     public String inputEmail(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập địa chỉ email: ");
+            System.out.print("Nhập địa chỉ email: ");
             String email = scanner.nextLine();
             if (Validation.isValidEmail(email)) {
                 return email;
             } else {
-                System.err.println("Thông tin nhập không hợp lệ. Vui lòng nhập lại!");
+                System.out.println(ANSI_RED + "Thông tin nhập không hợp lệ. Vui lòng nhập lại!" + ANSI_RESET);
             }
         }
     }
 
     public String inputPhone(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập số điện thoại: ");
+            System.out.print("Nhập số điện thoại: ");
             String phone = scanner.nextLine();
             if (Validation.isValidPhone(phone)) {
                 return phone;
             } else {
-                System.err.println("Thông tin nhập không hợp lệ. Vui lòng nhập lại!");
+                System.out.println(ANSI_RED + "Thông tin nhập không hợp lệ. Vui lòng nhập lại!" + ANSI_RESET);
             }
         }
     }
 
     public String inputAddress(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập địa chỉ: ");
+            System.out.print("Nhập địa chỉ: ");
             String address = scanner.nextLine();
             if (Validation.isNotEmpty(address)) {
                 return address;
             } else {
-                System.err.println("Thông tin nhập không hợp lệ. Vui lòng nhập lại!");
+                System.out.println(ANSI_RED + "Thông tin nhập không hợp lệ. Vui lòng nhập lại!" + ANSI_RESET);
             }
         }
     }
 
     public short inputStatus(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập vào trạng thái: ");
+            System.out.print("Nhập vào trạng thái (0. Hoạt động | 1. Nghỉ chế độ | 2. Nghỉ việc): ");
             String status = scanner.nextLine();
-            if (status.equals("0") || status.equals("1") || status.equals("2")) {
+            if (Validation.isIntegerInRange(status, 0, 2)) {
                 return Short.parseShort(status);
             } else {
-                System.err.println("Thông tin nhập vào không đúng định dạng. Vui lòng nhập lại!");
+                System.out.println(ANSI_RED + "Nhập vào số nguyên từ 0-2. Vui lòng nhập lại!" + ANSI_RESET);
             }
         }
     }

@@ -10,6 +10,9 @@ import validation.Validation;
 import java.util.Scanner;
 
 public class Main {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+
     private final AccountBusiness accountBusiness;
     private final WarehouseManagement warehouseManagement;
 
@@ -20,9 +23,10 @@ public class Main {
 
     public boolean accountLogin(Scanner scanner) {
         while (true) {
-            System.out.println("Nhập tên tài khoản: ");
+            System.out.println("*************** LOGIN ***************");
+            System.out.print("Nhập tên tài khoản: ");
             String userName = scanner.nextLine();
-            System.out.println("Nhập mật khẩu: ");
+            System.out.print("Nhập mật khẩu: ");
             String password = scanner.nextLine();
 
             if (Validation.isValidUserName(userName) && Validation.isValidPassword(password)) {
@@ -31,10 +35,10 @@ public class Main {
                     AccountManagement.currentAccount = account;
                     return account.isPermission();
                 } else {
-                    System.err.println("Tên tài khoản hoặc mật khẩu không đúng. Vui lòng nhập lại");
+                    System.out.println(ANSI_RED + "Tên tài khoản hoặc mật khẩu không đúng. Vui lòng nhập lại!" + ANSI_RESET);
                 }
             } else {
-                System.err.println("Tên người dùng và mật khẩu không hợp lệ. Vui lòng nhập lại");
+                System.out.println(ANSI_RED + "Tên người dùng và mật khẩu không hợp lệ. Vui lòng nhập lại" + ANSI_RESET);
             }
         }
     }

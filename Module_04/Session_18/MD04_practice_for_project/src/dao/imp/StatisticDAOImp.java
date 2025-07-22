@@ -16,21 +16,19 @@ import java.util.List;
 
 public class StatisticDAOImp implements StatisticDAO {
     @Override
-    public List<StatisticRevenueCost> statisticRevenueCostByDate(int billType) {
+    public List<StatisticRevenueCost> statisticRevenueCostByDate(boolean billType) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         List<StatisticRevenueCost> statisticRevenueCostList = null;
         try {
             connection = ConnectionDB.openConnection();
             callableStatement = connection.prepareCall("{call statistic_revenue_cost_by_date(?)}");
-            callableStatement.setInt(1, billType);
+            callableStatement.setBoolean(1, billType);
             ResultSet resultSet = callableStatement.executeQuery();
             statisticRevenueCostList = new ArrayList<>();
             while (resultSet.next()) {
                 StatisticRevenueCost statisticRevenueCost = new StatisticRevenueCost();
-                statisticRevenueCost.setDate(resultSet.getInt("Ngày"));
-                statisticRevenueCost.setMonth(resultSet.getInt("Tháng"));
-                statisticRevenueCost.setYear(resultSet.getInt("Năm"));
+                statisticRevenueCost.setDate(resultSet.getDate("created").toLocalDate());
                 statisticRevenueCost.setTotalAmount(resultSet.getFloat("Tổng số tiền"));
                 statisticRevenueCostList.add(statisticRevenueCost);
             }
@@ -43,14 +41,14 @@ public class StatisticDAOImp implements StatisticDAO {
     }
 
     @Override
-    public List<StatisticRevenueCost> statisticRevenueCostByMonth(int billType) {
+    public List<StatisticRevenueCost> statisticRevenueCostByMonth(boolean billType) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         List<StatisticRevenueCost> statisticRevenueCostList = null;
         try {
             connection = ConnectionDB.openConnection();
             callableStatement = connection.prepareCall("{call statistic_revenue_cost_by_month(?)}");
-            callableStatement.setInt(1, billType);
+            callableStatement.setBoolean(1, billType);
             ResultSet resultSet = callableStatement.executeQuery();
             statisticRevenueCostList = new ArrayList<>();
             while (resultSet.next()) {
@@ -69,14 +67,14 @@ public class StatisticDAOImp implements StatisticDAO {
     }
 
     @Override
-    public List<StatisticRevenueCost> statisticRevenueCostByYear(int billType) {
+    public List<StatisticRevenueCost> statisticRevenueCostByYear(boolean billType) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         List<StatisticRevenueCost> statisticRevenueCostList = null;
         try {
             connection = ConnectionDB.openConnection();
             callableStatement = connection.prepareCall("{call statistic_revenue_cost_by_year(?)}");
-            callableStatement.setInt(1, billType);
+            callableStatement.setBoolean(1, billType);
             ResultSet resultSet = callableStatement.executeQuery();
             statisticRevenueCostList = new ArrayList<>();
             while (resultSet.next()) {
@@ -94,23 +92,21 @@ public class StatisticDAOImp implements StatisticDAO {
     }
 
     @Override
-    public List<StatisticRevenueCost> statisticRevenueCostInRange(int billType, LocalDate startDate, LocalDate endDate) {
+    public List<StatisticRevenueCost> statisticRevenueCostInRange(boolean billType, LocalDate startDate, LocalDate endDate) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         List<StatisticRevenueCost> statisticRevenueCostList = null;
         try {
             connection = ConnectionDB.openConnection();
             callableStatement = connection.prepareCall("{call statistic_revenue_cost_in_date_range(?,?,?)}");
-            callableStatement.setInt(1, billType);
+            callableStatement.setBoolean(1, billType);
             callableStatement.setDate(2, Date.valueOf(startDate));
             callableStatement.setDate(3, Date.valueOf(endDate));
             ResultSet resultSet = callableStatement.executeQuery();
             statisticRevenueCostList = new ArrayList<>();
             while (resultSet.next()) {
                 StatisticRevenueCost statisticRevenueCost = new StatisticRevenueCost();
-                statisticRevenueCost.setDate(resultSet.getInt("Ngày"));
-                statisticRevenueCost.setMonth(resultSet.getInt("Tháng"));
-                statisticRevenueCost.setYear(resultSet.getInt("Năm"));
+                statisticRevenueCost.setDate(resultSet.getDate("created").toLocalDate());
                 statisticRevenueCost.setTotalAmount(resultSet.getFloat("Tổng số tiền"));
                 statisticRevenueCostList.add(statisticRevenueCost);
             }
@@ -147,14 +143,14 @@ public class StatisticDAOImp implements StatisticDAO {
     }
 
     @Override
-    public StatisticProduct statisticProductMaxTradeInRange(int billType, LocalDate startDate, LocalDate endDate) {
+    public StatisticProduct statisticProductMaxTradeInRange(boolean billType, LocalDate startDate, LocalDate endDate) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         StatisticProduct statisticProduct = null;
         try {
             connection = ConnectionDB.openConnection();
             callableStatement = connection.prepareCall("{call statistic_product_max_trade_in_date_range(?,?,?)}");
-            callableStatement.setInt(1, billType);
+            callableStatement.setBoolean(1, billType);
             callableStatement.setDate(2, Date.valueOf(startDate));
             callableStatement.setDate(3, Date.valueOf(endDate));
             ResultSet resultSet = callableStatement.executeQuery();
@@ -172,14 +168,14 @@ public class StatisticDAOImp implements StatisticDAO {
     }
 
     @Override
-    public StatisticProduct statisticProductMinTradeInRange(int billType, LocalDate startDate, LocalDate endDate) {
+    public StatisticProduct statisticProductMinTradeInRange(boolean billType, LocalDate startDate, LocalDate endDate) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         StatisticProduct statisticProduct = null;
         try {
             connection = ConnectionDB.openConnection();
             callableStatement = connection.prepareCall("{call statistic_product_min_trade_in_date_range(?,?,?)}");
-            callableStatement.setInt(1, billType);
+            callableStatement.setBoolean(1, billType);
             callableStatement.setDate(2, Date.valueOf(startDate));
             callableStatement.setDate(3, Date.valueOf(endDate));
             ResultSet resultSet = callableStatement.executeQuery();

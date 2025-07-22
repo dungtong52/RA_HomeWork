@@ -8,11 +8,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface StatisticBusiness {
-    List<StatisticRevenueCost> statisticRevenueCostByDate(String type, int billType);
+    List<StatisticRevenueCost> statisticRevenueCostByDate(String type, boolean billType);
 
-    List<StatisticRevenueCost> statisticRevenueCostInRange(int billType, LocalDate startDate, LocalDate endDate);
+    List<StatisticRevenueCost> statisticRevenueCostInRange(boolean billType, LocalDate startDate, LocalDate endDate);
 
     List<StatisticEmployee> statisticEmployeeByStatus();
 
-    StatisticProduct statisticProductInRange(String type, int billType, LocalDate startDate, LocalDate endDate);
+    StatisticProduct statisticProductInRange(String type, boolean billType, LocalDate startDate, LocalDate endDate);
 }

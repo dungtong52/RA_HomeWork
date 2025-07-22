@@ -18,7 +18,7 @@ public class StatisticBusinessImp implements StatisticBusiness {
     }
 
     @Override
-    public List<StatisticRevenueCost> statisticRevenueCostByDate(String type, int billType) {
+    public List<StatisticRevenueCost> statisticRevenueCostByDate(String type, boolean billType) {
         switch (type) {
             case "date":
                 return statisticDAO.statisticRevenueCostByDate(billType);
@@ -32,7 +32,7 @@ public class StatisticBusinessImp implements StatisticBusiness {
     }
 
     @Override
-    public List<StatisticRevenueCost> statisticRevenueCostInRange(int billType, LocalDate startDate, LocalDate endDate) {
+    public List<StatisticRevenueCost> statisticRevenueCostInRange(boolean billType, LocalDate startDate, LocalDate endDate) {
         return statisticDAO.statisticRevenueCostInRange(billType, startDate, endDate);
     }
 
@@ -42,7 +42,7 @@ public class StatisticBusinessImp implements StatisticBusiness {
     }
 
     @Override
-    public StatisticProduct statisticProductInRange(String key, int billType, LocalDate startDate, LocalDate endDate) {
+    public StatisticProduct statisticProductInRange(String key, boolean billType, LocalDate startDate, LocalDate endDate) {
         switch (key) {
             case "max":
                 return statisticDAO.statisticProductMaxTradeInRange(billType, startDate, endDate);
