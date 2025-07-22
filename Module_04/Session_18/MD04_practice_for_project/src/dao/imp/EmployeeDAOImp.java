@@ -54,14 +54,13 @@ public class EmployeeDAOImp implements EmployeeDAO {
         CallableStatement callableStatement = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call create_employee(?,?,?,?,?,?,?)}");
+            callableStatement = connection.prepareCall("{call create_employee(?,?,?,?,?,?)}");
             callableStatement.setString(1, employee.getEmpId());
             callableStatement.setString(2, employee.getEmpName());
             callableStatement.setDate(3, Date.valueOf(employee.getBirthOfDate()));
             callableStatement.setString(4, employee.getEmail());
             callableStatement.setString(5, employee.getPhone());
             callableStatement.setString(6, employee.getAddress());
-            callableStatement.setShort(7, employee.getEmpStatus());
             int rows = callableStatement.executeUpdate();
             return rows > 0;
         } catch (Exception e) {
@@ -153,11 +152,11 @@ public class EmployeeDAOImp implements EmployeeDAO {
             callableStatement = connection.prepareCall("{call update_emp_status(?,?)}");
             callableStatement.setString(1, employeeId);
             callableStatement.setShort(2, status);
-            int rows = callableStatement.executeUpdate();
-            if (rows > 0) {
-                connection.commit();
-                return true;
-            }
+            callableStatement.execute();
+
+            connection.commit();
+            return true;
+
         } catch (Exception e) {
             if (connection != null) {
                 try {

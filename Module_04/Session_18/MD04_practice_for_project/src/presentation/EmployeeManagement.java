@@ -53,8 +53,8 @@ public class EmployeeManagement {
                         break;
                     case 5:
                         System.out.println("Chọn cách thức tìm kiếm nhân viên");
-                        System.out.println("1. Tìm kiếm theo tên nhân viên");
-                        System.out.println("2. Tìm kiếm theo mã nhân viên");
+                        System.out.println("1. Tìm kiếm theo tên nhân viên (nhập tên tương đối)");
+                        System.out.println("2. Tìm kiếm theo mã nhân viên ( nhập mã chính xác");
                         System.out.print("Lựa chọn: ");
                         String numberChoice = scanner.nextLine();
                         if (Validation.isIntegerInRange(numberChoice, 1, 2)) {
@@ -84,7 +84,6 @@ public class EmployeeManagement {
         employee.setEmail(inputEmail(scanner));
         employee.setPhone(inputPhone(scanner));
         employee.setAddress(inputAddress(scanner));
-        employee.setEmpStatus(inputStatus(scanner));
         boolean success = employeeBusiness.createEmployee(employee);
         if (success) {
             System.out.println(ANSI_BLUE + "Thêm mới nhân viên thành công." + ANSI_RESET);
@@ -97,7 +96,7 @@ public class EmployeeManagement {
         String employeeId = inputEmployeeIDForUpdate(scanner);
         Employee updateEmployee = employeeBusiness.getEmployeeById(employeeId);
         PaginationPresentation.printTableHeader("employees");
-        System.out.println(updateEmployee);
+        System.out.printf("| %-5s %s\n", 1, updateEmployee);
         PaginationPresentation.printDivider();
 
         boolean exit = false;
@@ -184,23 +183,14 @@ public class EmployeeManagement {
                 updateEmployee.getEmpId(),
                 statusCurrent == 0 ? "Hoạt động" : (statusCurrent == 1 ? "Nghỉ chế độ" : "Nghỉ việc"));
 
-        while (true) {
-            System.out.print("Cập nhật trạng thái mới (0. Hoạt động | 1. Nghỉ chế độ | 2. Nghỉ việc): ");
-            String statusInput = scanner.nextLine();
-            if (Validation.isIntegerInRange(statusInput, 0, 2)) {
-                short status = Short.parseShort(statusInput);
-                if (employeeBusiness.updateEmployeeStatus(employeeId, status)) {
-                    System.out.println(ANSI_BLUE + "Cập nhật trạng thái thành công" + ANSI_RESET);
-                    PaginationPresentation.printTableHeader("employees");
-                    System.out.printf("| %-5s %s\n", 1, updateEmployee);
-                    PaginationPresentation.printDivider();
-                    break;
-                } else {
-                    System.out.println(ANSI_RED + "Cập nhật trạng thái thất bại!" + ANSI_RESET);
-                }
-            } else {
-                System.out.println(ANSI_RED + "Trạng thái nhập vào không đúng!" + ANSI_RESET);
-            }
+        short statusUpdate = inputStatus(scanner);
+        if (employeeBusiness.updateEmployeeStatus(employeeId, statusUpdate)) {
+            System.out.println(ANSI_BLUE + "Cập nhật trạng thái thành công" + ANSI_RESET);
+            PaginationPresentation.printTableHeader("employees");
+            System.out.printf("| %-5s %s\n", 1, updateEmployee);
+            PaginationPresentation.printDivider();
+        } else {
+            System.out.println(ANSI_RED + "Cập nhật trạng thái thất bại!" + ANSI_RESET);
         }
     }
 

@@ -88,12 +88,15 @@ public class ReceiptManagement {
 
     public void createReceipt(Scanner scanner) {
         Bill receipt = new Bill();
-        receipt.setBillCode(inputNewBillCode(scanner));
+        String billCode = inputNewBillCode(scanner);
+
+        receipt.setBillCode(billCode);
         receipt.setBillType(false);
         receipt.setEmpIdCreated(AccountManagement.currentAccount.getEmpId());
 
         boolean success = receiptBusiness.createBill(receipt);
         if (success) {
+            receipt = receiptBusiness.findBillByCode(billCode);
             System.out.println(ANSI_BLUE + "Tạo phiếu nhập thành công. Tiếp tục tạo chi tiết phiếu nhập." + ANSI_RESET);
             createReceiptDetails(scanner, receipt.getBillId());
         } else {
@@ -110,10 +113,13 @@ public class ReceiptManagement {
                 int number = Integer.parseInt(numberInput);
                 for (int i = 0; i < number; i++) {
                     BillDetail billDetail = new BillDetail();
+                    System.out.println("Nhập vào sản phẩm thứ " + (i + 1));
                     billDetail.setBillId(billId);
                     billDetail.setProductId(inputProductId(scanner));
                     billDetail.setQuantity(inputQuantity(scanner));
                     billDetail.setPrice(inputPrice(scanner));
+                    System.out.println("**********");
+
                     receiptDetailList.add(billDetail);
                 }
                 boolean success = billReceiptDetailsBusiness.createBatchDetails(receiptDetailList);
@@ -245,7 +251,7 @@ public class ReceiptManagement {
         receipt.setAuthDate(LocalDate.now());
 
         long billId = receipt.getBillId();
-        boolean accepted = billReceiptDetailsBusiness.acceptBill(billId);
+        boolean accepted = receiptBusiness.acceptBill(billId);
         if (accepted) {
             System.out.println(ANSI_BLUE + "Duyệt phiếu nhập và cập nhật số lượng sản phẩm thành công" + ANSI_RESET);
 
@@ -293,7 +299,7 @@ public class ReceiptManagement {
 
     public long inputBillId(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào mã phiếu: ");
+            System.out.print("Nhập vào mã phiếu (Bill ID): ");
             String billId = scanner.nextLine();
             if (Validation.isValidType(billId, "Long")) {
                 if (receiptBusiness.checkExistBillId(Long.parseLong(billId), true)) {
@@ -309,7 +315,7 @@ public class ReceiptManagement {
 
     public String inputExistBillCode(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào mã code phiếu nhập: ");
+            System.out.print("Nhập vào mã code phiếu nhập (Bill Code): ");
             String billCode = scanner.nextLine();
             if (Validation.isValidLength(billCode, CODE_MAX_LENGTH)) {
                 if (receiptBusiness.checkExistBillCode(billCode, true)) {
@@ -325,10 +331,10 @@ public class ReceiptManagement {
 
     public String inputNewBillCode(Scanner scanner) {
         while (true) {
-            System.out.print("Nhập vào mã code phiếu nhập: ");
+            System.out.print("Nhập vào mã code phiếu nhập (Bill Code): ");
             String billCode = scanner.nextLine();
             if (Validation.isValidLength(billCode, CODE_MAX_LENGTH)) {
-                if (!receiptBusiness.checkExistBillCode(billCode, true) || !receiptBusiness.checkExistBillCode(billCode, false)) {
+                if (!receiptBusiness.checkExistBillCode(billCode, true) && !receiptBusiness.checkExistBillCode(billCode, false)) {
                     return billCode;
                 } else {
                     System.out.println(ANSI_RED + "Mã Code này đã tồn tại. Hãy nhập vào mã khác!" + ANSI_RESET);

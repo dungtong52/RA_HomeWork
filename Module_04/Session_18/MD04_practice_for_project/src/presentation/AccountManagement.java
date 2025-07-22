@@ -57,8 +57,8 @@ public class AccountManagement {
                             if (Validation.isIntegerInRange(numberChoice, 1, 2)) {
                                 if (Integer.parseInt(numberChoice) == 2) {
                                     updateAccountStatus(scanner);
-                                    break;
                                 }
+                                break;
                             } else {
                                 System.out.println(ANSI_RED + "Lựa chọn không hợp lệ. Hãy chọn 1 hoặc 2!" + ANSI_RESET);
                             }
@@ -77,8 +77,9 @@ public class AccountManagement {
         Account account = new Account();
         account.setUserName(inputUserName(scanner));
         account.setPassword(inputPassword(scanner));
-        if (inputEmpId(scanner) != null) {
-            account.setEmpId(inputEmpId(scanner));
+        String empId = inputEmpId(scanner);
+        if (empId != null) {
+            account.setEmpId(empId);
             boolean success = accountBusiness.createAccount(account);
             if (success) {
                 System.out.println(ANSI_BLUE + "Tạo mới thành công." + ANSI_RESET);
@@ -99,6 +100,7 @@ public class AccountManagement {
                 Account account = accountBusiness.getAccountById(accountId);
                 if (account != null) {
                     System.out.printf("Trạng thái hiện tại của tài khoản %d: %s\n", accountId, account.isAccStatus());
+
                     account.setAccStatus(inputAccStatus(scanner));
                     if (accountBusiness.updateAccountStatus(account)) {
                         System.out.println(ANSI_BLUE + "Cập nhật thành công" + ANSI_RESET);
@@ -149,6 +151,7 @@ public class AccountManagement {
 
     public String inputPassword(Scanner scanner) {
         while (true) {
+            System.out.println("Mật khẩu tối thiểu 8 ký tự gồm chữ, số và ký tự %, $.");
             System.out.print("Nhập vào mật khẩu: ");
             String password = scanner.nextLine();
             if (Validation.isValidPassword(password)) {

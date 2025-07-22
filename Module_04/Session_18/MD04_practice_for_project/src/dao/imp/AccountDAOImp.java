@@ -116,6 +116,7 @@ public class AccountDAOImp implements AccountDAO {
                 account.setPassword(resultSet.getString("password"));
                 account.setPermission(resultSet.getBoolean("permission"));
                 account.setEmpId(resultSet.getString("emp_id"));
+                account.setEmpName(resultSet.getString("emp_name"));
                 account.setAccStatus(resultSet.getBoolean("acc_status"));
             }
         } catch (Exception e) {

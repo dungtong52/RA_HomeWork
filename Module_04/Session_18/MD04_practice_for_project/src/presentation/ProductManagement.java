@@ -145,7 +145,9 @@ public class ProductManagement {
             String statusInput = scanner.nextLine();
             if (Validation.isIntegerInRange(statusInput, 1, 2)) {
                 boolean status = Integer.parseInt(statusInput) == 1;
+
                 if (productBusiness.updateProductStatus(productId, status)) {
+                    updateProduct = productBusiness.getProductById(productId);
                     System.out.println(ANSI_BLUE + "Cập nhật trạng thái thành công" + ANSI_RESET);
                     PaginationPresentation.printTableHeader("products");
                     System.out.printf("| %-5s %s\n", 1, updateProduct);

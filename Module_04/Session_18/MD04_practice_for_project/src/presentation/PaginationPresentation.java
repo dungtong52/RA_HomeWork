@@ -107,13 +107,13 @@ public class PaginationPresentation {
                 break;
             case "bills":
                 printDivider();
-                System.out.printf("| %-5s | %-10s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n",
+                System.out.printf("| %-5s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-10s |\n",
                         "STT", "Bill ID", "Bill Code", "Bill Type", "Emp ID Created", "Created", "Emp ID Auth", "Auth Date", "Status");
                 printDivider();
                 break;
             case "bill details":
                 printDivider();
-                System.out.printf("| %-5s | %-25s | %-20s | %-20s | %-25s | %-25s |\n",
+                System.out.printf("| %-5s | %-25s | %-21s | %-25s | %-25s | %-25s |\n",
                         "STT", "Bill Detail ID", "Bill ID", "Product ID", "Quantity", "Price");
                 printDivider();
                 break;

@@ -20,7 +20,7 @@ create table employees
     email         varchar(100) not null,
     phone         varchar(100) not null,
     address       text         not null,
-    emp_status    smallint     not null
+    emp_status    smallint     not null default 0
 );
 
 create table accounts
@@ -37,7 +37,7 @@ create table accounts
 create table bills
 (
     bill_id        bigint primary key auto_increment,
-    bill_code      varchar(10) not null,
+    bill_code      varchar(10) not null unique ,
     bill_type      bit         not null,
     emp_id_created char(5)     not null,
     created        date,
@@ -205,13 +205,12 @@ create procedure create_employee(
     in_birth_of_date date,
     in_email varchar(100),
     in_phone varchar(100),
-    in_address text,
-    in_emp_status smallint
+    in_address text
 )
 begin
-    insert into employees(emp_id, emp_name, birth_of_date, email, phone, address, emp_status)
+    insert into employees(emp_id, emp_name, birth_of_date, email, phone, address)
     values (in_emp_id, in_emp_name, in_birth_of_date, in_email,
-            in_phone, in_address, in_emp_status);
+            in_phone, in_address);
 end //
 
 create procedure get_employee_by_id(
@@ -327,8 +326,9 @@ create procedure get_account_by_id(
     in_account_id int
 )
 begin
-    select acc_id, user_name, password, permission, emp_id, acc_status
-    from accounts
+    select a.acc_id, a.user_name,a.password, a.permission, a.emp_id, e.emp_name, a.acc_status
+    from accounts a
+    join employees e on a.emp_id = e.emp_id
     where acc_id = in_account_id;
 end //
 
@@ -385,7 +385,7 @@ begin
       and p.quantity < bd.quantity;
 
     if (v_count_stock > 0) then
-        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Không đủ số lượng tồn kho';
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Không đủ số lượng trong kho';
     end if;
 
     -- Trừ quantity
@@ -765,57 +765,67 @@ end //
 
 DELIMITER ;
 
+-- Bảng sản phẩm
 INSERT INTO products (product_id, product_name, manufacturer, created, batch, quantity, product_status)
-VALUES ('P001', 'Product 1', 'Manufacturer 1', '2023-03-15', 3, 150, 1),
-       ('P002', 'Product 2', 'Manufacturer 2', '2022-07-20', 2, 90, 1),
-       ('P003', 'Product 3', 'Manufacturer 3', '2024-01-11', 1, 120, 0),
-       ('P004', 'Product 4', 'Manufacturer 1', '2023-12-05', 5, 80, 1),
-       ('P005', 'Product 5', 'Manufacturer 2', '2023-05-25', 4, 60, 1),
-       ('P006', 'Product 6', 'Manufacturer 3', '2022-09-18', 2, 200, 0),
-       ('P007', 'Product 7', 'Manufacturer 1', '2023-10-01', 3, 75, 1),
-       ('P008', 'Product 8', 'Manufacturer 2', '2024-03-03', 1, 130, 1),
-       ('P009', 'Product 9', 'Manufacturer 3', '2022-12-29', 2, 55, 0),
-       ('P010', 'Product 10', 'Manufacturer 1', '2023-08-08', 4, 100, 1);
+VALUES
+    ('P001', 'Product 1', 'Manufacturer 1', '2023-03-15', 3, 0, 1),
+    ('P002', 'Product 2', 'Manufacturer 2', '2022-07-20', 2, 0, 1),
+    ('P003', 'Product 3', 'Manufacturer 3', '2024-01-11', 1, 0, 0),
+    ('P004', 'Product 4', 'Manufacturer 1', '2023-12-05', 5, 0, 1),
+    ('P005', 'Product 5', 'Manufacturer 2', '2023-05-25', 4, 0, 1),
+    ('P006', 'Product 6', 'Manufacturer 3', '2022-09-18', 2, 0, 0),
+    ('P007', 'Product 7', 'Manufacturer 1', '2023-10-01', 3, 0, 1),
+    ('P008', 'Product 8', 'Manufacturer 2', '2024-03-03', 1, 0, 1),
+    ('P009', 'Product 9', 'Manufacturer 3', '2022-12-29', 2, 0, 0),
+    ('P010', 'Product 10', 'Manufacturer 1', '2023-08-08', 4, 0, 1);
 
+-- Bảng nhân viên
 INSERT INTO employees (emp_id, emp_name, birth_of_date, email, phone, address, emp_status)
-VALUES ('E001', 'Employee 1', '1990-06-15', 'employee1@example.com', '0123456789', '123 Main St, District 1', 0),
-       ('E002', 'Employee 2', '1988-11-22', 'employee2@example.com', '0987654321', '456 2nd Ave, District 3', 1),
-       ('E003', 'Employee 3', '1995-03-05', 'employee3@example.com', '0901234567', '789 3rd Blvd, District 5', 0),
-       ('E004', 'Employee 4', '1992-08-30', 'employee4@example.com', '0912345678', '234 4th St, District 7', 2),
-       ('E005', 'Employee 5', '1985-01-19', 'employee5@example.com', '0934567890', '567 5th Ave, District 9', 0);
+VALUES
+    ('E001', 'Employee 1', '1990-06-15', 'employee1@example.com', '0123456789', '123 Main St, District 1', 0),
+    ('E002', 'Employee 2', '1988-11-22', 'employee2@example.com', '0987654321', '456 2nd Ave, District 3', 0),
+    ('E003', 'Employee 3', '1995-03-05', 'employee3@example.com', '0901234567', '789 3rd Blvd, District 5', 0),
+    ('E004', 'Employee 4', '1992-08-30', 'employee4@example.com', '0912345678', '234 4th St, District 7', 0),
+    ('E005', 'Employee 5', '1985-01-19', 'employee5@example.com', '0934567890', '567 5th Ave, District 9', 0);
 
+-- Bảng tài khoản
 INSERT INTO accounts (acc_id, user_name, password, permission, emp_id, acc_status)
-VALUES (1, 'user1', 'User111$', 0, 'E001', 1),
-       (2, 'user2', 'User222$', 1, 'E002', 1),
-       (3, 'user3', 'User333$', 1, 'E003', 1),
-       (4, 'user4', 'User444$', 0, 'E004', 0),
-       (5, 'user5', 'User555$', 1, 'E005', 1);
+VALUES
+    (1, 'user1', 'User111$', 0, 'E001', 1),
+    (2, 'user2', 'User222$', 1, 'E002', 1),
+    (3, 'user3', 'User333$', 1, 'E003', 1),
+    (4, 'user4', 'User444$', 1, 'E004', 0),
+    (5, 'user5', 'User555$', 1, 'E005', 1);
 
+-- Bảng phiếu (bills)
 INSERT INTO bills (bill_id, bill_code, bill_type, emp_id_created, created, emp_id_auth, auth_date, bill_status)
-VALUES (1, 'B001', 0, 'E001', '2024-05-10', 'E002', '2024-05-11', 2), -- phiếu nhập đã duyệt
-       (2, 'B002', 1, 'E002', '2024-05-12', NULL, NULL, 0),           -- phiếu xuất chờ duyệt
-       (3, 'B003', 0, 'E003', '2024-06-01', NULL, NULL, 0),           -- phiếu nhập chờ duyệt
-       (4, 'B004', 1, 'E001', '2024-06-03', 'E003', '2024-06-04', 2), -- phiếu xuất đã duyệt
-       (5, 'B005', 0, 'E002', '2024-06-10', NULL, NULL, 1); -- phiếu nhập đã hủy
+VALUES
+    (1, 'B001', 0, 'E001', '2024-05-10', 'E002', '2024-05-11', 2), -- Nhập, đã duyệt
+    (2, 'B002', 1, 'E002', '2024-05-12', NULL, '1970-01-01', 0), -- Xuất, chờ duyệt
+    (3, 'B003', 0, 'E003', '2024-06-01', NULL, '1970-01-01', 0), -- Nhập, chờ duyệt
+    (4, 'B004', 1, 'E001', '2024-06-03', 'E003', '2024-06-04', 2), -- Xuất, đã duyệt
+    (5, 'B005', 0, 'E002', '2024-06-10', NULL, '1970-01-01', 1); -- Nhập, đã hủy
 
+-- Bảng chi tiết phiếu (bill_details)
 INSERT INTO bill_details (bill_detail_id, bill_id, product_id, quantity, price)
 VALUES
--- Chi tiết B001 - Nhập sản phẩm
+-- B001 - Phiếu nhập
 (1, 1, 'P001', 50, 12000),
 (2, 1, 'P002', 30, 15000),
 (3, 1, 'P003', 20, 10000),
 
--- Chi tiết B002 - Xuất sản phẩm (chưa duyệt)
+-- B002 - Phiếu xuất (chờ duyệt)
 (4, 2, 'P001', 10, 15000),
 (5, 2, 'P004', 5, 20000),
 
--- Chi tiết B003 - Nhập sản phẩm (chờ duyệt)
+-- B003 - Phiếu nhập (chờ duyệt)
 (6, 3, 'P005', 40, 11000),
 (7, 3, 'P006', 25, 13000),
 
--- Chi tiết B004 - Xuất sản phẩm
+-- B004 - Phiếu xuất (đã duyệt)
 (8, 4, 'P002', 15, 15000),
 (9, 4, 'P007', 10, 18000),
 
--- Chi tiết B005 - Nhập sản phẩm (đã hủy)
+-- B005 - Phiếu nhập (đã hủy)
 (10, 5, 'P008', 30, 12500);
+
