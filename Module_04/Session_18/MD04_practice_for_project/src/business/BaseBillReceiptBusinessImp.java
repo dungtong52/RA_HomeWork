@@ -43,5 +43,5 @@ public abstract class BaseBillReceiptBusinessImp implements BillReceiptBusiness 
     }
 
     @Override
-    public abstract boolean acceptBill(long billId);
+    public abstract boolean acceptBill(Bill bill);
 }

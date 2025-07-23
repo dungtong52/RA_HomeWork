@@ -162,5 +162,5 @@ public abstract class AbstractBillReceiptDAO implements BillReceiptDAO {
         return false;
     }
 
-    public abstract boolean acceptBill(long billId);
+    public abstract boolean acceptBill(Bill bill);
 }

@@ -32,8 +32,12 @@ public class Main {
             if (Validation.isValidUserName(userName) && Validation.isValidPassword(password)) {
                 Account account = accountBusiness.getAccountToLogin(userName, password);
                 if (account != null) {
-                    AccountManagement.currentAccount = account;
-                    return account.isPermission();
+                    if (account.isAccStatus()) {
+                        AccountManagement.currentAccount = account;
+                        return account.isPermission();
+                    } else {
+                        System.out.println(ANSI_RED + "Tài khoản đã bị khóa!" + ANSI_RESET);
+                    }
                 } else {
                     System.out.println(ANSI_RED + "Tên tài khoản hoặc mật khẩu không đúng. Vui lòng nhập lại!" + ANSI_RESET);
                 }

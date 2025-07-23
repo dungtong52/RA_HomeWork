@@ -30,6 +30,7 @@ public class AccountDAOImp implements AccountDAO {
                 account.setAccId(resultSet.getInt("acc_id"));
                 account.setPermission(resultSet.getBoolean("permission"));
                 account.setEmpId(resultSet.getString("emp_id"));
+                account.setAccStatus(resultSet.getBoolean("acc_status"));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -51,10 +51,12 @@ public class BillManagement {
                 String billCode;
                 switch (Integer.parseInt(choice)) {
                     case 1:
-                        PaginationPresentation.getListPagination(scanner, billBusiness, "bills", new Bill());
+                        Bill bill = new Bill();
+                        bill.setBillType(true);
+                        PaginationPresentation.getListPagination(scanner, billBusiness, "bills", bill);
                         break;
                     case 2:
-                        createBills(scanner);
+                        createBill(scanner);
                         break;
                     case 3:
                         billCode = inputExistBillCode(scanner);
@@ -81,7 +83,7 @@ public class BillManagement {
         }
     }
 
-    public void createBills(Scanner scanner) {
+    public void createBill(Scanner scanner) {
         Bill bill = new Bill();
         String billCode = inputNewBillCode(scanner);
 
@@ -144,10 +146,11 @@ public class BillManagement {
             System.out.println("4. Cập nhật ngày duyệt");
             System.out.println("5. Cập nhật trạng thái phiếu xuất");
             System.out.println("6. Cập nhật chi tiết phiếu xuất");
-            System.out.println("7. Thoát");
+            System.out.println("7. Thêm chi tiết phiếu xuất");
+            System.out.println("8. Thoát");
             System.out.print("Lựa chọn của bạn: ");
             String choice = scanner.nextLine();
-            if (Validation.isIntegerInRange(choice, 1, 7)) {
+            if (Validation.isIntegerInRange(choice, 1, 8)) {
                 switch (Integer.parseInt(choice)) {
                     case 1:
                         bill.setEmpIdCreated(inputEmpIdCreated(scanner));
@@ -171,6 +174,9 @@ public class BillManagement {
                         break;
                     case 6:
                         updateBillDetails(scanner, bill.getBillId());
+                        break;
+                    case 7:
+                        createBillDetails(scanner, bill.getBillId());
                         break;
                     default:
                         exit = true;
@@ -245,16 +251,11 @@ public class BillManagement {
         bill.setEmpIdAuth(AccountManagement.currentAccount.getEmpId());
         bill.setAuthDate(LocalDate.now());
 
-        long billId = bill.getBillId();
-        boolean accepted = billBusiness.acceptBill(billId);
+        boolean accepted = billBusiness.acceptBill(bill);
         if (accepted) {
             System.out.println(ANSI_BLUE + "Duyệt phiếu xuất và cập nhật số lượng sản phẩm thành công" + ANSI_RESET);
-            boolean success = billBusiness.updateBill(bill);
-            if (success) {
-                System.out.println(ANSI_BLUE + "Cập nhật mã nhân viên duyệt và ngày duyệt thành công." + ANSI_RESET);
-            } else {
-                System.out.println(ANSI_RED + "Cập nhật mã nhân viên duyệt và ngày duyệt thất bại!" + ANSI_RESET);
-            }
+            System.out.println(ANSI_BLUE + "Cập nhật mã nhân viên duyệt và ngày duyệt thành công." + ANSI_RESET);
+
         } else {
             System.err.printf(ANSI_RED + "Duyệt phiếu có mã code %s thất bại!\n" + ANSI_RESET, billCode);
         }

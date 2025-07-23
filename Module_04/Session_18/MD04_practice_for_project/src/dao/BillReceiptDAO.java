@@ -16,6 +16,6 @@ public interface BillReceiptDAO {
 
     boolean updateBill(Bill bill);
 
-    boolean acceptBill(long billId);
+    boolean acceptBill(Bill bill);
 
 }

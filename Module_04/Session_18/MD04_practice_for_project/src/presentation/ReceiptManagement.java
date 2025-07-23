@@ -56,7 +56,9 @@ public class ReceiptManagement {
                 String billCode;
                 switch (Integer.parseInt(choice)) {
                     case 1:
-                        PaginationPresentation.getListPagination(scanner, receiptBusiness, "bills", new Bill());
+                        Bill receipt = new Bill();
+                        receipt.setBillType(true);
+                        PaginationPresentation.getListPagination(scanner, receiptBusiness, "bills", receipt);
                         break;
                     case 2:
                         createReceipt(scanner);
@@ -250,17 +252,10 @@ public class ReceiptManagement {
         receipt.setEmpIdAuth(AccountManagement.currentAccount.getEmpId());
         receipt.setAuthDate(LocalDate.now());
 
-        long billId = receipt.getBillId();
-        boolean accepted = receiptBusiness.acceptBill(billId);
+        boolean accepted = receiptBusiness.acceptBill(receipt);
         if (accepted) {
             System.out.println(ANSI_BLUE + "Duyệt phiếu nhập và cập nhật số lượng sản phẩm thành công" + ANSI_RESET);
-
-            boolean success = receiptBusiness.updateBill(receipt);
-            if (success) {
-                System.out.println(ANSI_BLUE + "Cập nhật mã nhân viên duyệt và ngày duyệt thành công." + ANSI_RESET);
-            } else {
-                System.out.println(ANSI_RED + "Cập nhật mã nhân viên duyệt và ngày duyệt thất bại!" + ANSI_RESET);
-            }
+            System.out.println(ANSI_BLUE + "Cập nhật mã nhân viên duyệt và ngày duyệt thành công." + ANSI_RESET);
         } else {
             System.out.printf(ANSI_RED + "Duyệt phiếu có mã code %s thất bại!\n" + ANSI_RESET, billCode);
         }

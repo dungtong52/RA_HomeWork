@@ -15,8 +15,8 @@ public class BillBusinessImp extends BaseBillReceiptBusinessImp{
     }
 
     @Override
-    public boolean acceptBill(long billId) {
-        return billReceiptDAO.acceptBill(billId);
+    public boolean acceptBill(Bill bill) {
+        return billReceiptDAO.acceptBill(bill);
     }
 
 

@@ -100,17 +100,21 @@ public class AccountManagement {
                 Account account = accountBusiness.getAccountById(accountId);
                 if (account != null) {
                     System.out.printf("Trạng thái hiện tại của tài khoản %d: %s\n", accountId, account.isAccStatus());
-
-                    account.setAccStatus(inputAccStatus(scanner));
-                    if (accountBusiness.updateAccountStatus(account)) {
-                        System.out.println(ANSI_BLUE + "Cập nhật thành công" + ANSI_RESET);
-                        PaginationPresentation.printTableHeader("accounts");
-                        System.out.printf("| %-5s %s\n", 1, account);
-                        PaginationPresentation.printDivider();
+                    if (account.getUserName().equals(AccountManagement.currentAccount.getUserName()) || !account.isPermission()) {
+                        account.setAccStatus(inputAccStatus(scanner));
+                        if (accountBusiness.updateAccountStatus(account)) {
+                            System.out.println(ANSI_BLUE + "Cập nhật thành công" + ANSI_RESET);
+                            PaginationPresentation.printTableHeader("accounts");
+                            System.out.printf("| %-5s %s\n", 1, account);
+                            PaginationPresentation.printDivider();
+                        } else {
+                            System.out.println(ANSI_RED + "Cập nhật thất bại" + ANSI_RESET);
+                        }
                     } else {
-                        System.out.println(ANSI_RED + "Cập nhật thất bại" + ANSI_RESET);
+                        System.out.println(ANSI_RED + "Tài khoản Admin không được phép cập nhật tài khoản Admin khác!" + ANSI_RESET);
                     }
                     break;
+
                 } else {
                     System.out.println(ANSI_RED + "Không tồn tại mã tài khoản này!" + ANSI_RESET);
                 }

@@ -1,9 +1,6 @@
 package presentation;
 
-import business.BillReceiptBusiness;
 import business.UserBusiness;
-import business.imp.BillBusinessImp;
-import business.imp.ReceiptBusinessImp;
 import business.imp.UserBusinessImp;
 import entity.Bill;
 import validation.Validation;
@@ -125,7 +122,7 @@ public class WarehouseManagement {
                         getBillByStatus(scanner, false);
                         break;
                     case 6:
-                        billManagement.createBills(scanner);
+                        billManagement.createBill(scanner);
                         break;
                     case 7:
                         billCode = inputBillCode(scanner, false);
