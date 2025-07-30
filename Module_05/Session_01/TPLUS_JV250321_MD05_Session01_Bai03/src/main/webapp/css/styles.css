@@ -1,0 +1,24 @@
+.convert {
+    border: 3px solid black;
+    padding: 20px 10px;
+    width: fit-content;
+}
+
+.convert label, input {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.convert .btn {
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.result {
+    border: 3px solid black;
+    padding: 20px 10px;
+    line-height: 1.5;
+    width: fit-content;
+}
