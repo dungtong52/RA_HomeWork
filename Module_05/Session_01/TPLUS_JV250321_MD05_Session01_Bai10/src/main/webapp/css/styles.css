@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header ul {
+    height: 6vh;
+    background-color: #5d5cdc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+header li {
+    list-style-type: none;
+    color: white;
+}
+
+.input form {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.input input {
+    border-radius: 10px;
+    padding: 5px 10px;
+    height: 40px;
+    width: 500px;
+}
+
+.input .btn {
+    background-color: #5d5cdc;
+    color: white;
+    font-weight: bold;
+    border: none;
+    width: 150px;
+}
+.input .btn:hover{
+    background-color: green;
+    cursor: pointer;
+}
+
+main {
+    padding: 20px 50px;
+}
+
+main table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table .col-id {
+    width: 10%;
+}
+
+table .col-name {
+    width: 40%;
+}
+
+table .col-status {
+    width: 20%;
+}
+
+table .col-action {
+    width: 30%;
+}
+
+table th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table .btn-status {
+    padding: 5px 10px;
+    background-color: #5d5cdc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+table .btn-status:hover {
+    background-color: red;
+}
+
+table tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
+
+table tr:first-child {
+    background-color: #5d5cdc;
+    color: white;
+}
