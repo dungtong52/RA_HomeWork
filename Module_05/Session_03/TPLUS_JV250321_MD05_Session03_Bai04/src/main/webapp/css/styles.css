@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 500px;
+    padding: 30px;
+    margin: 30px auto 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.input-container h3 {
+    margin-bottom: 15px;
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.input-container input {
+    width: 100%;
+    margin-bottom: 15px;
+    height: 40px;
+    padding: 10px 5px;
+    border-radius: 5px;
+}
+
+.input-container .btn {
+    background-color: aqua;
+    font-weight: bold;
+    width: 150px;
+    margin-top: 20px;
+}
+
+.input-container .btn:hover {
+    cursor: pointer;
+    background-color: green;
+}
+
+/* Table */
+.result-container {
+    width: 1000px;
+    margin: 30px auto;
+}
+
+.result-container h3 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.result-container table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th, td {
+    border: solid 1px black;
+    text-align: center;
+    padding: 10px;
+}
+
+.col-id {
+    width: 10%;
+}
+
+.col-name {
+    width: 30%;
+}
+
+.col-age {
+    width: 15%;
+}
+
+.col-address {
+    width: 25%;
+}
+
+.col-action {
+    width: 20%;
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.result-container .btn-update {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: orange;
+    border: none;
+    color: white;
+}
+
+.result-container .btn-update:hover{
+    cursor: pointer;
+    background-color: darkgoldenrod;
+}
+
+.result-container .btn-delete {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: red;
+    border: none;
+    color: white;
+}
+.result-container .btn-delete:hover{
+    cursor: pointer;
+    background-color: darkred;
+}

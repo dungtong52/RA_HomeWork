@@ -9,11 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Giới thiệu về bản thân</h1>
-<p><b>Họ và tên: </b>Nguyễn Văn A</p>
-<p><b>Tuổi: </b>25</p>
-<p><b>Sở thích: </b>Đọc sách, du lịch và lập trình</p>
-<p><b>Giới thiệu: </b>Tôi là một lập trình viên đam mê công nghệ, luôn tìm kiếm cơ hội để học hỏi và phát triển bản thân
-</p>
+    <h1><a href="/AllProductServlet">Hiển thị danh sách sản phẩm</a></h1>
 </body>
 </html>

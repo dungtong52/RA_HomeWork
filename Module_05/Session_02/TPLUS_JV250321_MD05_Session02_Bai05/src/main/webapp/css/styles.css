@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 800px;
+    margin: 50px auto;
+}
+
+h1 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.container table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th, td {
+    border: solid 1px black;
+    text-align: center;
+    padding: 10px;
+}
+
+.col-id {
+    width: 10%;
+}
+
+.col-name {
+    width: 35%;
+}
+
+.col-price {
+    width: 20%;
+}
+
+.col-description {
+    width: 35%;
+}
