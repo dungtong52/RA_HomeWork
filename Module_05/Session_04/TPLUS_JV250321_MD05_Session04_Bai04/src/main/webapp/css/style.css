@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 600px;
+    margin: 30px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container .input {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container .btn {
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    margin: 10px auto;
+    border: none;
+}
+
+.container .add:hover {
+    cursor: pointer;
+    background-color: darkgreen;
+}
+
+.container .edit {
+    background-color: orange;
+}
+
+.container .edit:hover {
+    cursor: pointer;
+    background-color: darkgoldenrod;
+}
+
+/*listCategory.jsp*/
+.table-div {
+    width: 900px;
+    margin: 30px auto;
+}
+
+.table-div table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, td {
+    padding: 10px;
+    border: solid 1px black;
+}
+
+.col-id {
+    width: 10%;
+}
+
+.col-name {
+    width: 20%;
+}
+
+.col-description {
+    width: 35%;
+}
+
+.col-status {
+    width: 15%;
+}
+
+.col-action {
+    width: 20%;
+}
+
+.table-div .btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: orange;
+    border: none;
+}
+
+.table-div .delete {
+    background-color: red;
+    margin-left: 15px;
+}
+
+.table-div .delete:hover {
+    background-color: darkred;
+    cursor: pointer;
+}
+
+.table-div .edit:hover {
+    background-color: darkgoldenrod;
+    cursor: pointer;
+}
+
+.table-div a {
+    text-decoration: none;
+}
