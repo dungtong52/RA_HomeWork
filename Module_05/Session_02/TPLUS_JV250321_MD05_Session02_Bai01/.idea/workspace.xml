@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e5ff9c29-c9f5-4199-8ae1-f973f5d4ecae" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/src/main/java/com/ra/tplus_jv250321_md05_session01_bai01/TimeNowServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai01/src/main/webapp/timeNow.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/src/main/java/com/ra/demotplus_jv250321_md05_session01_bai02/UserServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/src/main/webapp/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai02/src/main/webapp/userDisplay.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/src/main/java/com/ra/tplus_jv250321_md05_session01_bai03/convertServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/src/main/webapp/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai03/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/src/main/java/com/ra/tplus_jv250321_md05_session01_bai04/LoginServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/src/main/webapp/Home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/src/main/webapp/css/loginStyle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai04/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/src/main/java/com/ra/tplus_jv250321_md05_session01_bai05/SignUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/src/main/webapp/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai05/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/src/main/java/com/ra/tplus_jv250321_md05_session01_bai06/NoteServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/src/main/webapp/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai06/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/.idea/material_theme_project_new.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/.idea/webContexts.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/src/main/java/com/ra/tplus_jv250321_md05_session01_bai07/ErrorServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/src/main/webapp/error.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai07/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/src/main/java/com/ra/tplus_jv250321_md05_session01_bai08/RegisterTicket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/src/main/webapp/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai08/src/main/webapp/resultPage.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/src/main/java/com/ra/business/StudentBusiness.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/src/main/java/com/ra/controller/StudentTicketServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/src/main/java/com/ra/entity/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/src/main/webapp/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai09/src/main/webapp/listStudent.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/.idea/webContexts.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/java/com/ra/controller/AddTaskServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/java/com/ra/controller/TaskListServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/java/com/ra/controller/UpdateTaskServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/java/com/ra/entity/Task.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/java/com/ra/service/TaskService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/webapp/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Session_01/TPLUS_JV250321_MD05_Session01_Bai10/src/main/webapp/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="30l2NbObQvtEKKda0vjAVjN1yOC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.27812.49" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.27812.49" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e5ff9c29-c9f5-4199-8ae1-f973f5d4ecae" name="Changes" comment="" />
+      <created>1754187801359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1754187801359</updated>
+      <workItem from="1754187802847" duration="58000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

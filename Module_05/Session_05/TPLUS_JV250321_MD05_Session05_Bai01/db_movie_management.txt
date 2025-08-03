@@ -1,0 +1,67 @@
+create database db_movie_management;
+use db_movie_management;
+
+create table accounts
+(
+    id       bigint primary key auto_increment,
+    username varchar(100)                        not null unique,
+    password varchar(255)                        not null,
+    role     enum ('ADMIN', 'STAFF', 'CUSTOMER') not null default 'customer',
+    status   boolean                                      default true
+);
+
+create table customers
+(
+    id         bigint primary key auto_increment,
+    account_id bigint       not null unique,
+    full_name  varchar(100) not null,
+    phone      varchar(30)  not null unique,
+    email      varchar(100),
+    address    varchar(250),
+    gender     enum ('MALE', 'FEMALE', 'OTHER'),
+    foreign key (account_id) references accounts (id)
+);
+
+create table movies
+(
+    id          bigint primary key auto_increment,
+    title       varchar(250) not null,
+    director    varchar(100),
+    genre       varchar(100),
+    description text,
+    duration    int,
+    language    varchar(100)
+);
+
+create table screen_rooms
+(
+    id               bigint primary key auto_increment,
+    screen_room_name varchar(100) not null,
+    total_seat       int          not null
+);
+
+create table schedules
+(
+    id              bigint primary key auto_increment,
+    movie_id        bigint   not null,
+    screen_room_id  bigint   not null,
+    show_time       datetime not null,
+    format          varchar(30),
+    available_seats int,
+    foreign key (movie_id) references movies (id),
+    foreign key (screen_room_id) references screen_rooms (id)
+);
+
+create table tickets
+(
+    id           bigint primary key auto_increment,
+    schedule_id  bigint         not null unique ,
+    customer_id  bigint         not null,
+    seat_number  varchar(10)    not null unique ,
+    booking_time datetime                             default current_timestamp,
+    price        decimal(10, 2) not null,
+    status       enum ('booked', 'cancelled', 'used') default 'booked',
+
+    foreign key (schedule_id) references schedules (id),
+    foreign key (customer_id) references customers (id)
+);

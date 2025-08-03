@@ -1,0 +1,67 @@
+*, *:after, *:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1500px;
+    margin: 50px auto;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.container h1 {
+    text-align: center;
+}
+
+.container .btn-add {
+    padding: 10px 20px;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: none;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.container table {
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+table th {
+    text-align: left;
+    color: white;
+    background-color: #007bff;
+    padding: 5px 10px;
+    border-bottom: #007bff 1px solid;
+}
+
+table td{
+    text-align: left;
+    padding: 10px;
+    border-bottom: #cccccc 1px solid;
+}
+.col-id{
+    width: 5%;
+}
+.col-title{
+    width: 20%;
+}
+.col-direction{
+    width: 20%;
+}
+.col-genre{
+    width: 20%;
+}
+.col-duration{
+    width: 5%;
+}
+.col-language{
+    width: 10%;
+}
