@@ -2,6 +2,7 @@
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="com.ra.model.Schedule" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -16,7 +17,7 @@
 <div class="container">
     <h1>Danh sách phim đang chiếu</h1>
     <%
-        MovieShow movieShow = (MovieShow) request.getAttribute("movieDetail");
+        MovieShow movieShow = (MovieShow) request.getAttribute("movieShow");
     %>
     <div class="container">
 
@@ -35,12 +36,14 @@
         <h3>Lịch chiếu:</h3>
         <%
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-            List<LocalDateTime> showtimeList = movieShow.getShowtimeList();
-            for (LocalDateTime showtime : showtimeList) {
+            List<Schedule> scheduleList = movieShow.getScheduleList();
+            for (Schedule schedule : scheduleList) {
         %>
         <div class="showtime-div">
-            <div class="showtime"><%=showtime.format(formatter)%>
-            </div>
+            <a class="showtime"
+               href="<%=request.getContextPath()%>/buy-ticket?movieId=<%=movieShow.getMovie().getMovieId()%>&scheduleId=<%=schedule.getId()%>">
+                <%=schedule.getShowTime().format(formatter)%>
+            </a>
         </div>
         <%
             }

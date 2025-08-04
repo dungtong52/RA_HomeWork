@@ -55,12 +55,13 @@ create table schedules
 create table tickets
 (
     id           bigint primary key auto_increment,
-    schedule_id  bigint         not null unique,
-    customer_id  bigint         not null,
-    seat_number  varchar(10)    not null unique,
-    booking_time datetime                             default current_timestamp,
+    schedule_id  bigint      not null,
+    account_id   bigint      not null,
+    seat_number  varchar(10) not null,
+    booking_time datetime default current_timestamp,
     foreign key (schedule_id) references schedules (id),
-    foreign key (customer_id) references customers (id)
+    foreign key (account_id) references accounts (id),
+    unique (schedule_id, seat_number)
 );
 
 # Đăng nhập
@@ -195,44 +196,94 @@ DELIMITER //
 
 create procedure show_movie_with_showtime()
 begin
-    select m.*, s.show_time
+    select m.id as movie_id
+         , m.title
+         , m.director
+         , m.genre
+         , m.description
+         , m.duration
+         , m.language
+         , s.id
+         , s.screen_room_id
+         , s.show_time
+         , s.format
+         , s.available_seats
     from movies m
              join schedules s on m.id = s.movie_id
     order by m.id, s.show_time;
+end //
+
+create procedure get_screen_room_by_schedule_id(
+    in_schedule_id bigint
+)
+begin
+    select sr.*
+    from screen_rooms sr
+             join schedules s
+                  on sr.id = s.screen_room_id
+                      and s.id = in_schedule_id;
 end //
 
 DELIMITER ;
 
 # TICKET
 DELIMITER //
-create procedure
-    DELIMITER;
+create procedure get_seat_by_schedule_id(
+    in_schedule_id bigint
+)
+begin
+    select seat_number from tickets where schedule_id = in_schedule_id;
+end //
+
+create procedure book_ticket(
+    in p_schedule_id bigint,
+    in p_account_id bigint,
+    in p_seat_number varchar(10)
+)
+begin
+    -- Thêm vé
+    insert into tickets(schedule_id, account_id, seat_number)
+    values (p_schedule_id, p_account_id, p_seat_number);
+
+    -- giảm số ghế còn lại
+    update schedules
+    set available_seats = available_seats - 1
+    where id = p_schedule_id;
+end //
+
+DELIMITER ;
 
 # DATA
+insert into accounts (username, password, role)
+values ('admin', 'admin123', 'ADMIN'),
+       ('staff1', 'staff123', 'STAFF'),
+       ('customer1', 'pass123', 'CUSTOMER'),
+       ('customer2', 'pass456', 'CUSTOMER');
 
-INSERT INTO accounts (username, password, role, status)
-VALUES ('admin01', 'adminpass', 'ADMIN', true),
-       ('staff01', 'staffpass', 'STAFF', true),
-       ('customer01', 'custpass', 'CUSTOMER', true),
-       ('customer02', 'custpass2', 'CUSTOMER', true);
+insert into customers (account_id, full_name, phone, email, address, gender)
+values (3, 'Nguyễn Văn A', '0912345678', 'a@example.com', 'Hà Nội', 'MALE'),
+       (4, 'Trần Thị B', '0987654321', 'b@example.com', 'TP.HCM', 'FEMALE');
 
-INSERT INTO customers (account_id, full_name, phone, email, address, gender)
-VALUES (3, 'Nguyen Van A', '0912345678', 'vana@example.com', '123 ABC Street', 'MALE'),
-       (4, 'Tran Thi B', '0987654321', 'thib@example.com', '456 XYZ Street', 'FEMALE');
+insert into movies (title, director, genre, description, duration, language)
+values ('Avengers: Endgame', 'Anthony Russo', 'Action', 'Superhero team fights evil.', 180, 'English'),
+       ('Your Name', 'Makoto Shinkai', 'Romance', 'A body-swapping romance drama.', 110, 'Japanese');
 
-INSERT INTO movies (title, director, genre, description, duration, language)
-VALUES ('Inception', 'Christopher Nolan', 'Sci-Fi', 'A mind-bending thriller.', 148, 'English'),
-       ('Parasite', 'Bong Joon-ho', 'Drama', 'A social commentary on class division.', 132, 'Korean');
+insert into screen_rooms (screen_room_name, total_seat)
+values ('Phòng Chiếu 1', 80),
+       ('Phòng Chiếu 2', 100);
+-- Lịch chiếu Avengers ở Phòng 1
+insert into schedules (movie_id, screen_room_id, show_time, format, available_seats)
+values (1, 1, '2025-08-05 19:00:00', '2D', 80);
 
-INSERT INTO screen_rooms (screen_room_name, total_seat)
-VALUES ('Room A', 50),
-       ('Room B', 60);
+-- Lịch chiếu Your Name ở Phòng 2
+insert into schedules (movie_id, screen_room_id, show_time, format, available_seats)
+values (2, 2, '2025-08-05 20:30:00', '3D', 100);
+-- customer1 đặt ghế A1, A2 cho Avengers
+insert into tickets (schedule_id, account_id, seat_number)
+values (1, 3, 'A1'),
+       (1, 3, 'A2');
 
-INSERT INTO schedules (movie_id, screen_room_id, show_time, format, available_seats)
-VALUES (1, 1, '2025-08-05 19:00:00', '2D', 50),
-       (2, 2, '2025-08-06 20:30:00', '4D', 60);
-
-INSERT INTO tickets (schedule_id, customer_id, seat_number, price, status)
-VALUES (1, 1, 'A01', 120000, 'booked'),
-       (2, 2, 'B05', 150000, 'booked');
+-- customer2 đặt ghế B1 cho Your Name
+insert into tickets (schedule_id, account_id, seat_number)
+values (2, 4, 'B1');
 

@@ -13,38 +13,16 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/home")
-public class MovieShowController extends HttpServlet {
+public class HomeController extends HttpServlet {
     private final MovieShowService movieShowService;
 
-    public MovieShowController() {
+    public HomeController() {
         movieShowService = new MovieShowServiceImp();
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<MovieShow> movieShowList = movieShowService.getMovieListShow();
-
-        String movieIdStr = req.getParameter("movieId");
-        if (movieIdStr != null) {
-            try {
-                long movieId = Long.parseLong(movieIdStr);
-
-                MovieShow selectMovieShow = null;
-                for (MovieShow movieShow : movieShowList) {
-                    if (movieShow.getMovie().getMovieId() == movieId) {
-                        selectMovieShow = movieShow;
-                    }
-                }
-
-                if (selectMovieShow != null) {
-                    req.setAttribute("movieDetail", selectMovieShow);
-                    req.getRequestDispatcher("view/movieDetail.jsp");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
         req.setAttribute("movieCard", movieShowList);
         req.getRequestDispatcher("view/home.jsp").forward(req, resp);
     }

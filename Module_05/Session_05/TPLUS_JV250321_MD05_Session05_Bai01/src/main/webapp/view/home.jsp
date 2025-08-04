@@ -31,7 +31,7 @@
         </p>
         <p>Thể loại: <%=movie.getGenre()%>
         </p>
-        <a href="<%=request.getContextPath()%>/home?movieId=<%=movie.getMovieId()%>">Xem chi tiết</a>
+        <a href="<%=request.getContextPath()%>/movie-detail?movieId=<%=movie.getMovieId()%>">Xem chi tiết</a>
     </div>
     <%
             }

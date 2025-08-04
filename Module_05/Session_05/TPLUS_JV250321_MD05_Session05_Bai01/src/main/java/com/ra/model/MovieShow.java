@@ -13,14 +13,17 @@ import java.util.List;
 @Setter
 public class MovieShow {
     private Movie movie;
-    private List<LocalDateTime> showtimeList;
+    private List<Schedule> scheduleList;
+
+    public MovieShow() {
+    }
 
     public MovieShow(Movie movie) {
         this.movie = movie;
-        this.showtimeList = new ArrayList<>();
+        this.scheduleList = new ArrayList<>();
     }
 
-    public void addShowtime(LocalDateTime showtime){
-        this.showtimeList.add(showtime);
+    public void addSchedule(Schedule schedule) {
+        this.scheduleList.add(schedule);
     }
 }
