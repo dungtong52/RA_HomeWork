@@ -5,7 +5,7 @@ create table accounts
 (
     id       bigint primary key auto_increment,
     username varchar(100)                        not null unique,
-    password varchar(255)                        not null,
+    password varchar(100)                        not null,
     role     enum ('ADMIN', 'STAFF', 'CUSTOMER') not null default 'customer',
     status   boolean                                      default true
 );
@@ -55,13 +55,184 @@ create table schedules
 create table tickets
 (
     id           bigint primary key auto_increment,
-    schedule_id  bigint         not null unique ,
+    schedule_id  bigint         not null unique,
     customer_id  bigint         not null,
-    seat_number  varchar(10)    not null unique ,
+    seat_number  varchar(10)    not null unique,
     booking_time datetime                             default current_timestamp,
-    price        decimal(10, 2) not null,
-    status       enum ('booked', 'cancelled', 'used') default 'booked',
-
     foreign key (schedule_id) references schedules (id),
     foreign key (customer_id) references customers (id)
 );
+
+# Đăng nhập
+DELIMITER //
+
+create procedure get_account_by_user(
+    in_user_name varchar(100),
+    in_password varchar(100)
+)
+begin
+    select id, username, role, status
+    from accounts
+    where username = in_user_name
+      and password = in_password;
+end //
+
+DELIMITER ;
+
+# MOVIE MANAGEMENT
+DELIMITER //
+
+create procedure get_all_movies()
+begin
+    select * from movies;
+end //
+
+create procedure create_movie(
+    in_title varchar(250),
+    in_director varchar(100),
+    in_genre varchar(100),
+    in_description text,
+    in_duration int,
+    in_language varchar(100)
+)
+begin
+    insert into movies(title, director, genre, description, duration, language)
+    values (in_title, in_director, in_genre, in_description, in_duration, in_language);
+end //
+
+create procedure get_movie_by_id(
+    in_id bigint
+)
+begin
+    select * from movies where id = in_id;
+end //
+
+create procedure update_movie(
+    in_id bigint,
+    in_title varchar(250),
+    in_director varchar(100),
+    in_genre varchar(100),
+    in_description text,
+    in_duration int,
+    in_language varchar(100)
+)
+begin
+    update movies
+    set title       = in_title,
+        director    = in_director,
+        genre       = in_genre,
+        description = in_description,
+        duration    = in_duration,
+        language    = in_language
+    where id = in_id;
+end //
+
+create procedure delete_movie(
+    in_id bigint
+)
+begin
+    delete from movies where id = in_id;
+end //
+
+DELIMITER ;
+
+# SCHEDULE MANAGEMENT
+DELIMITER //
+
+create procedure get_all_schedules()
+begin
+    select * from schedules;
+end //
+
+create procedure create_schedule(
+    in_movie_id bigint,
+    in_screen_room_id bigint,
+    in_show_time datetime,
+    in_format varchar(30)
+)
+begin
+    declare v_available_seats int;
+    select total_seat into v_available_seats from screen_rooms;
+
+    insert into schedules(movie_id, screen_room_id, show_time, format, available_seats)
+    values (in_movie_id, in_screen_room_id, in_show_time, in_format, v_available_seats);
+end //
+
+create procedure get_schedule_by_id(
+    in_id bigint
+)
+begin
+    select * from schedules where id = in_id;
+end //
+
+create procedure update_schedule(
+    in_id bigint,
+    in_movie_id bigint,
+    in_screen_room_id bigint,
+    in_show_time datetime,
+    in_format varchar(30)
+)
+begin
+    update schedules
+    set movie_id       = in_movie_id,
+        screen_room_id = in_screen_room_id,
+        show_time      = in_show_time,
+        format         = in_format
+    where id = in_id;
+end //
+
+create procedure delete_schedule(
+    in_id bigint
+)
+begin
+    delete from schedules where id = in_id;
+end //
+
+DELIMITER ;
+
+# SHOW MOVIE
+DELIMITER //
+
+create procedure show_movie_with_showtime()
+begin
+    select m.*, s.show_time
+    from movies m
+             join schedules s on m.id = s.movie_id
+    order by m.id, s.show_time;
+end //
+
+DELIMITER ;
+
+# TICKET
+DELIMITER //
+create procedure
+    DELIMITER;
+
+# DATA
+
+INSERT INTO accounts (username, password, role, status)
+VALUES ('admin01', 'adminpass', 'ADMIN', true),
+       ('staff01', 'staffpass', 'STAFF', true),
+       ('customer01', 'custpass', 'CUSTOMER', true),
+       ('customer02', 'custpass2', 'CUSTOMER', true);
+
+INSERT INTO customers (account_id, full_name, phone, email, address, gender)
+VALUES (3, 'Nguyen Van A', '0912345678', 'vana@example.com', '123 ABC Street', 'MALE'),
+       (4, 'Tran Thi B', '0987654321', 'thib@example.com', '456 XYZ Street', 'FEMALE');
+
+INSERT INTO movies (title, director, genre, description, duration, language)
+VALUES ('Inception', 'Christopher Nolan', 'Sci-Fi', 'A mind-bending thriller.', 148, 'English'),
+       ('Parasite', 'Bong Joon-ho', 'Drama', 'A social commentary on class division.', 132, 'Korean');
+
+INSERT INTO screen_rooms (screen_room_name, total_seat)
+VALUES ('Room A', 50),
+       ('Room B', 60);
+
+INSERT INTO schedules (movie_id, screen_room_id, show_time, format, available_seats)
+VALUES (1, 1, '2025-08-05 19:00:00', '2D', 50),
+       (2, 2, '2025-08-06 20:30:00', '4D', 60);
+
+INSERT INTO tickets (schedule_id, customer_id, seat_number, price, status)
+VALUES (1, 1, 'A01', 120000, 'booked'),
+       (2, 2, 'B05', 150000, 'booked');
+

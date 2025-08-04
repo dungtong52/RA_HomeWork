@@ -1,0 +1,53 @@
+*, *:after, *:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #cccccc;
+}
+
+.container {
+    width: 500px;
+    margin: 50px auto;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container p {
+    margin-bottom: 15px;
+}
+
+.container h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container .showtime-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.showtime-div .showtime {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.container a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.container a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

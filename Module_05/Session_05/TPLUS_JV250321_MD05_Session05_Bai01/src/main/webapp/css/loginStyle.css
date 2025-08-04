@@ -37,4 +37,16 @@
     border-radius: 5px;
     margin-top: 20px;
     border: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.container .btn-login:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.container .error {
+    margin-top: 20px;
+    color: red;
+    text-align: center;
 }

@@ -1,0 +1,49 @@
+*, *:after, *:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #cccccc;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.container {
+    margin: 50px auto;
+    padding: 0 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 100px;
+    gap: 20px;
+}
+
+.container .movie-card {
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    text-align: center;
+}
+
+.movie-card h3 {
+    color: blue;
+    margin-bottom: 20px;
+}
+
+.movie-card p {
+    margin-bottom: 15px;
+}
+
+.movie-card a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.movie-card a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
