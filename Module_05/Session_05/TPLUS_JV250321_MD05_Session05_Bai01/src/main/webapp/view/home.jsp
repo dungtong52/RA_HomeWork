@@ -1,6 +1,4 @@
-<%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="com.ra.model.MovieShow" %>
 <%@ page import="com.ra.model.Movie" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

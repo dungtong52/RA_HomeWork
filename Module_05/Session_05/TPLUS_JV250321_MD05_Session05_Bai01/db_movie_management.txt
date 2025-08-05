@@ -153,7 +153,7 @@ create procedure create_schedule(
 )
 begin
     declare v_available_seats int;
-    select total_seat into v_available_seats from screen_rooms;
+    select total_seat into v_available_seats from screen_rooms where id = in_screen_room_id;
 
     insert into schedules(movie_id, screen_room_id, show_time, format, available_seats)
     values (in_movie_id, in_screen_room_id, in_show_time, in_format, v_available_seats);

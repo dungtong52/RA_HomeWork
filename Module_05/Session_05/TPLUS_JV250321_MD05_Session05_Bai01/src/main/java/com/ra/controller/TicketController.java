@@ -30,6 +30,7 @@ public class TicketController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String movieIdStr = req.getParameter("movieId");
         String scheduleIdStr = req.getParameter("scheduleId");
+        String message = req.getParameter("message");
 
         if (movieIdStr != null && scheduleIdStr != null) {
             long movieId = Long.parseLong(movieIdStr);
@@ -40,9 +41,18 @@ public class TicketController extends HttpServlet {
                     for (Schedule schedule : movieShow.getScheduleList()) {
                         if (schedule.getId() == scheduleId) {
                             ScreenRoom screenRoom = movieShowService.getScreenRoomByScheduleId(scheduleId);
+                            List<String> bookedSeats = ticketService.getSeatByScheduleId(scheduleId);
+
+                            // Gán dữ liệu cho ticket.jsp
                             req.setAttribute("movie", movieShow.getMovie());
                             req.setAttribute("schedule", schedule);
                             req.setAttribute("screenRoom", screenRoom);
+                            req.setAttribute("bookSeat", bookedSeats);
+
+                            if ("success".equals(message)) {
+                                req.setAttribute("message", "Đặt vé thành công!");
+                            }
+
                             req.getRequestDispatcher("view/ticket.jsp").forward(req, resp);
                             return;
                         }
@@ -50,7 +60,6 @@ public class TicketController extends HttpServlet {
                 }
             }
         }
-
         resp.sendRedirect(req.getContextPath() + "/home");
     }
 
@@ -64,6 +73,18 @@ public class TicketController extends HttpServlet {
         List<String> bookedSeats = ticketService.getSeatByScheduleId(scheduleId);
         req.setAttribute("bookSeat", bookedSeats);
         req.setAttribute("scheduleId", scheduleId);
+
+        for (MovieShow movieShow : movieShowService.getMovieListShow()) {
+            for (Schedule schedule : movieShow.getScheduleList()) {
+                if (schedule.getId() == scheduleId) {
+                    ScreenRoom screenRoom = movieShowService.getScreenRoomByScheduleId(scheduleId);
+                    req.setAttribute("movie", movieShow.getMovie());
+                    req.setAttribute("schedule", schedule);
+                    req.setAttribute("screenRoom", screenRoom);
+                    break;
+                }
+            }
+        }
 
         if (success) {
             req.setAttribute("message", "Đặt vé thành công!");

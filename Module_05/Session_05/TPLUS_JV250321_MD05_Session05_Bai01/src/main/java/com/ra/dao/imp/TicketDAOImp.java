@@ -35,7 +35,7 @@ public class TicketDAOImp implements TicketDAO {
     }
 
     @Override
-    public boolean bookTicket(long scheduleId, long customerId, String seatNumber) {
+    public boolean bookTicket(long scheduleId, long accountId, String seatNumber) {
         Connection connection = null;
         CallableStatement callableStatement = null;
         boolean isBooked = false;

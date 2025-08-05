@@ -30,7 +30,7 @@ public class AccountController extends HttpServlet {
         if (account != null) {
             AccountSession.currentAcount = account;
             if (account.getRole() != RoleEnum.CUSTOMER) {
-                resp.sendRedirect(req.getContextPath() + "/movie?action=list");
+                resp.sendRedirect(req.getContextPath() + "view/welcome.jsp");
             } else {
                 resp.sendRedirect(req.getContextPath() + "/home");
             }

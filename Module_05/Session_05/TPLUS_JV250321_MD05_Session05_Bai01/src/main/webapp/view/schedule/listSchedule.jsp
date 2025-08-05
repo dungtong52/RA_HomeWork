@@ -28,7 +28,7 @@
         </thead>
         <tbody>
         <%
-            List<Schedule> scheduleList = (List<Schedule>) request.getAttribute("schedule");
+            List<Schedule> scheduleList = (List<Schedule>) request.getAttribute("list");
             if (scheduleList != null) {
                 for (Schedule schedule : scheduleList) {
         %>

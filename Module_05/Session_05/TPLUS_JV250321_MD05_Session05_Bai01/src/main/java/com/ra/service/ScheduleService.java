@@ -2,9 +2,7 @@ package com.ra.service;
 
 import com.ra.model.Schedule;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 public interface ScheduleService {
     List<Schedule> getAllSchedule();

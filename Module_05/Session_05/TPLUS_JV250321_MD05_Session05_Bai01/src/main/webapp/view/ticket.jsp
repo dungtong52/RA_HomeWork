@@ -39,7 +39,7 @@
     </p>
     <% } %>
 </div>
-<form action="<%=request.getContextPath()%>/buy-ticket" method="post">
+<form action="<%=request.getContextPath()%>/ticket" method="post">
     <input type="hidden" name="scheduleId" value="<%=request.getParameter("scheduleId")%>">
     <input type="hidden" name="accountId" value="<%=AccountSession.currentAcount.getAccountId()%>">
     <input type="hidden" id="seatNumberInput" name="seatNumber">

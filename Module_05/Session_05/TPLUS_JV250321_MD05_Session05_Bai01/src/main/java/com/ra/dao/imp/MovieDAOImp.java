@@ -48,7 +48,7 @@ public class MovieDAOImp implements MovieDAO {
         Movie movie = null;
         try {
             connection = ConnectionDB.openConnection();
-            callableStatement = connection.prepareCall("{call getMovieById(?)}");
+            callableStatement = connection.prepareCall("{call get_movie_by_id(?)}");
             callableStatement.setLong(1, id);
             ResultSet resultSet = callableStatement.executeQuery();
             if (resultSet.next()) {

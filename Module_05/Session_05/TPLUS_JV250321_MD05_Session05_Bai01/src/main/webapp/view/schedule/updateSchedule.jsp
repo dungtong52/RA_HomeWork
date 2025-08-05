@@ -23,7 +23,7 @@
     %>
     <form action="<%=request.getContextPath()%>/schedule?action=update" method="post">
         <%
-            Schedule schedule = (Schedule) request.getAttribute("schedule");
+            Schedule schedule = (Schedule) request.getAttribute("scheduleEdit");
             if (schedule != null) {
         %>
         <label for="scheduleId">ID</label>

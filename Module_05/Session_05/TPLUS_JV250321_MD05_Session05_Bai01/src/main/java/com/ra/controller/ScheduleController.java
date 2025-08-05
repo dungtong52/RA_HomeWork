@@ -25,7 +25,7 @@ public class ScheduleController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
         switch (action) {
-            case "findAll" -> findAllSchedule(req, resp);
+            case "list" -> findAllSchedule(req, resp);
             case "delete" -> {
                 long id = Long.parseLong(req.getParameter("scheduleId"));
                 boolean success = scheduleService.deleteSchedule(id);

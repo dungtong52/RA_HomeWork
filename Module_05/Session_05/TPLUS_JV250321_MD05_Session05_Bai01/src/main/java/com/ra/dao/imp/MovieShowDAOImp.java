@@ -29,12 +29,22 @@ public class MovieShowDAOImp implements MovieShowDAO {
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 long movieId = resultSet.getLong("movie_id");
-                String title = resultSet.getString("title");
-                String director = resultSet.getString("director");
-                String genre = resultSet.getString("genre");
-                String description = resultSet.getString("description");
-                int duration = resultSet.getInt("duration");
-                String language = resultSet.getString("language");
+
+                MovieShow movieShow = movieShowMap.get(movieId);
+                if (movieShow == null) {
+                    String title = resultSet.getString("title");
+                    String director = resultSet.getString("director");
+                    String genre = resultSet.getString("genre");
+                    String description = resultSet.getString("description");
+                    int duration = resultSet.getInt("duration");
+                    String language = resultSet.getString("language");
+
+                    Movie movie = new Movie(movieId, title, director, genre, description, duration, language);
+
+                    movieShow = new MovieShow();
+                    movieShow.setMovie(movie);
+                    movieShowMap.put(movieId, movieShow);
+                }
 
                 long scheduleId = resultSet.getLong("id");
                 long screenRoomId = resultSet.getLong("screen_room_id");
@@ -42,17 +52,8 @@ public class MovieShowDAOImp implements MovieShowDAO {
                 String format = resultSet.getString("format");
                 int availableSeats = resultSet.getInt("available_seats");
 
-                MovieShow movieShow = movieShowMap.get(movieId);
-                if (movieShow == null) {
-                    Movie movie = new Movie(movieId, title, director, genre, description, duration, language);
-
-                    movieShow = new MovieShow();
-                    movieShow.setMovie(movie);
-                    movieShowMap.put(movieId, movieShow);
-
-                    Schedule schedule = new Schedule(scheduleId, movieId, screenRoomId, showTime, format, availableSeats);
-                    movieShow.addSchedule(schedule);
-                }
+                Schedule schedule = new Schedule(scheduleId, movieId, screenRoomId, showTime, format, availableSeats);
+                movieShow.addSchedule(schedule);
             }
             movieShowList.addAll(movieShowMap.values());
         } catch (Exception e) {

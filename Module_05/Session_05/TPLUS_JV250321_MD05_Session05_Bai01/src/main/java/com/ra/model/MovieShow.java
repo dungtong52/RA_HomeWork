@@ -16,6 +16,7 @@ public class MovieShow {
     private List<Schedule> scheduleList;
 
     public MovieShow() {
+        this.scheduleList = new ArrayList<>();
     }
 
     public MovieShow(Movie movie) {

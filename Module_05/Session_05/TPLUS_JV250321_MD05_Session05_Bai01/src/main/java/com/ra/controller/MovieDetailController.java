@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("movie-detail")
+@WebServlet("/movie-detail")
 public class MovieDetailController extends HttpServlet {
     private final MovieShowService movieShowService;
 

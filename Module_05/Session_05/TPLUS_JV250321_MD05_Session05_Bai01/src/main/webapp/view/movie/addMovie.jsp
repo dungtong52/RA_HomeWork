@@ -24,8 +24,8 @@
         <label for="title">Tiêu đề</label>
         <input type="text" id="title" name="title" required>
 
-        <label for="direction">Đạo diễn</label>
-        <input type="text" id="direction" name="direction">
+        <label for="director">Đạo diễn</label>
+        <input type="text" id="director" name="director">
 
         <label for="genre">Thể loại</label>
         <input type="text" id="genre" name="genre">
