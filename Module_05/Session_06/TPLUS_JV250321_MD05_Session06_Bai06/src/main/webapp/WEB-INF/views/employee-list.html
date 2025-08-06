@@ -5,6 +5,33 @@
     <title>Title</title>
 </head>
 <body>
+<h2>Employee List</h2>
 
+<a th:href="@{/add}">Add New Employee</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Position</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.position}"></td>
+        <td class="actions">
+            <a th:href="@{'/employee/edit/' + ${employee.id}}">Edit</a>
+            <a th:href="@{'/employee/delete/' + ${employee.id}}"
+               onclick="return confirm('Bạn có chắc là muốn xóa không?');">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

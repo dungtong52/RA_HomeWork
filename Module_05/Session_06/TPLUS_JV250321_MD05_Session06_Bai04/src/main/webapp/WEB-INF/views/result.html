@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Result</title>
+</head>
+<body>
+<h2>Đăng ký thành công!</h2>
+<div th:if="${user != null}">
+    <p><strong>Tên người dùng:</strong> <span th:text="${user.username}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p><strong>Số điện thoại:</strong> <span th:text="${user.phoneNumber}"></span></p>
+</div>
+</body>
+</html>

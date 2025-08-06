@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Game</title>
+</head>
+<body>
+<h1>Đoán hình ảnh</h1>
+
+<p th:if="${message}" th:text="${message}" style="color: red;"></p>
+
+<div th:if="${currentQuestion}">
+    <img th:src="${currentQuestion.imageUrl}" alt="Câu hỏi" style="max-width: 300px;">
+    <p>Số lượt đoán còn lại: <span th:text="${guessCount}"></span></p>
+
+    <form action="#" th:action="@{/guess}" method="post">
+        <input type="text" name="userAnswer" placeholder="Nhập câu trả lời">
+        <button type="submit">Đoán</button>
+    </form>
+</div>
+
+<div th:unless="${currentQuestion}">
+    <p>Đã xảy ra lỗi hoặc bạn đã kết thúc trò chơi. <a th:href="@{/quiz}">Chơi lại</a></p>
+</div>
+</body>
+</html>

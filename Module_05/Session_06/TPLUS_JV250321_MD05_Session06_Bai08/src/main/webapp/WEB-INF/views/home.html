@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title>Trang chính</title>
+</head>
+<body>
+<h2>Trang chính</h2>
+
+<div style="display: flex; gap: 40px;">
+    <div>
+        <a th:href="@{/shop}">
+            <img src="/images/shop.png" alt="Shop" width="150"/>
+        </a>
+        <p>Shop</p>
+    </div>
+    <div>
+        <a th:href="@{/warehouse}">
+            <img src="/images/warehouse.png" alt="Kho" width="150"/>
+        </a>
+        <p>Kho</p>
+    </div>
+    <div>
+        <a th:href="@{/farm}">
+            <img src="/images/farm.png" alt="Nông trại" width="150"/>
+        </a>
+        <p>Nông trại</p>
+    </div>
+</div>
+
+<a th:href="@{/logout}">Đăng xuất</a>
+</body>
+</html>

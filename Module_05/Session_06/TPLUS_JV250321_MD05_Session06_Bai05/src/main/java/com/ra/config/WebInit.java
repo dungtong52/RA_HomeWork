@@ -1,11 +1,12 @@
 package com.ra.config;
 
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class AppInitialize extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class[0];
     }
 
     @Override

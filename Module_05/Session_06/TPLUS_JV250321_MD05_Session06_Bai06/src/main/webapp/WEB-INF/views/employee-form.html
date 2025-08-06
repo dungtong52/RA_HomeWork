@@ -5,6 +5,28 @@
     <title>Title</title>
 </head>
 <body>
+<h2 th:text="${employee.id == null ? 'Add' : 'Edit'}"></h2>
 
+<form th:action="@{/save}" th:object="${employee}" method="post">
+    <div>
+        <label for="employee-id">ID:</label>
+        <input type="text" th:field="*{id}" id="employee-id" readonly/>
+    </div>
+    <div>
+        <label for="employee-name">Name:</label>
+        <input type="text" th:field="*{name}" id="employee-name"/>
+    </div>
+    <div>
+        <label for="employee-email">Email:</label>
+        <input type="text" th:field="*{email}" id="employee-email"/>
+    </div>
+    <div>
+        <label for="employee-position">Position:</label>
+        <input type="text" th:field="*{position}" id="employee-position"/>
+    </div>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
 </body>
 </html>

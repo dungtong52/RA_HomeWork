@@ -26,7 +26,7 @@ public class ProductController {
         return "product-list";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/edit")
     public String showAddProduct(Model model) {
         model.addAttribute("product", new Product());
         return "product-form";

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Form</title>
+    <style>
+        .error { color: red; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+<h2>Đăng ký tài khoản</h2>
+<form th:action="@{/register}" th:object="${user}" method="post">
+    <table>
+        <tr>
+            <td><label for="username">Tên người dùng:</label></td>
+            <td>
+                <input type="text" id="username" th:field="*{username}"/>
+                <br>
+                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></p>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="email">Email:</label></td>
+            <td>
+                <input type="email" id="email" th:field="*{email}"/>
+                <br>
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></p>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="phoneNumber">Số điện thoại:</label></td>
+            <td>
+                <input type="tel" id="phoneNumber" th:field="*{phoneNumber}"/>
+                <br>
+                <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></p>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Đăng ký"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
