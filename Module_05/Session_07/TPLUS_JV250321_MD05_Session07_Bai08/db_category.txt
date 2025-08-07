@@ -1,0 +1,67 @@
+create database db_category;
+use db_category;
+
+create table categories
+(
+    id            int auto_increment primary key,
+    category_name varchar(50) not null unique,
+    description   text        not null,
+    status        bit default 1
+);
+
+DELIMITER //
+create procedure get_all_categories()
+begin
+    select * from categories;
+end //
+
+create procedure get_category_by_id(in_id int)
+begin
+    select * from categories where id = in_id;
+end //
+
+create procedure create_category(
+    in_category_name varchar(50),
+    in_description text,
+    in_status bit
+)
+begin
+    insert into categories(category_name, description, status)
+        value (in_category_name, in_description, in_status);
+end //
+
+create procedure update_category(
+    in_id int,
+    in_category_name varchar(50),
+    in_description text,
+    in_status bit
+)
+begin
+    update categories
+    set category_name = in_category_name,
+        description   = in_description,
+        status        = in_status
+    where id = in_id;
+end //
+
+create procedure delete_category(in_id int)
+begin
+    delete from categories where id = in_id;
+end //
+
+create procedure check_exist_category_name(
+    in_category_name varchar(50)
+)
+begin
+    select 1 from categories where category_name = in_category_name;
+end //
+
+DELIMITER ;
+
+insert into categories (category_name, description, status)
+values ('Hành động', 'Thể loại phim có nhiều cảnh đánh nhau, rượt đuổi, kịch tính.', b'1'),
+       ('Tình cảm', 'Phim nói về các mối quan hệ yêu đương, gia đình.', b'1'),
+       ('Kinh dị', 'Phim gây sợ hãi, hồi hộp, thường có yếu tố siêu nhiên.', b'1'),
+       ('Hài hước', 'Phim gây cười, giải trí nhẹ nhàng.', b'1'),
+       ('Khoa học viễn tưởng', 'Phim với bối cảnh công nghệ tương lai hoặc thế giới giả tưởng.', b'0'),
+       ('Hoạt hình', 'Phim vẽ tay hoặc CGI, thường dành cho trẻ em nhưng không giới hạn.', b'1');

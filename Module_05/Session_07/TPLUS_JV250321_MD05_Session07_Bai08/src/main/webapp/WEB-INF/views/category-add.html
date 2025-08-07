@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Form</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Add Category</h1>
+    <form th:action="@{/add}" th:object="${category}" method="post">
+        <label for="category-name" class="label">Category Name</label>
+        <input type="text" id="category-name" th:field="*{categoryName}" class="input">
+        <div th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}" class="error"></div>
+
+        <label for="description" class="label">Description</label>
+        <input type="text" id="description" th:field="*{description}" class="input">
+        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error"></div>
+
+        <label class="label">Status</label>
+        <input type="radio" id="status-true" th:field="*{status}" value="true">
+        <label for="status-true"> Active</label>
+        <input type="radio" id="status-false" th:field="*{status}" value="false">
+        <label for="status-false"> Inactive</label>
+
+        <input type="submit" value="Add" class="btn">
+    </form>
+</div>
+</body>
+</html>

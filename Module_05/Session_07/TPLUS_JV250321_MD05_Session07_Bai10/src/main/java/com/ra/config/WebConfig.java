@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.ra.config;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -14,10 +14,10 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.example.demo"})
+@ComponentScan("com.ra")
 public class WebConfig implements WebMvcConfigurer {
-   
-    // Template Resolve
+
+    // template View
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
@@ -28,7 +28,6 @@ public class WebConfig implements WebMvcConfigurer {
         return templateResolver;
     }
 
-    // Template Engine
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -36,7 +35,6 @@ public class WebConfig implements WebMvcConfigurer {
         return templateEngine;
     }
 
-    // Template Thymeleaf
     @Bean
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
@@ -47,7 +45,6 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**")
-                .addResourceLocations("/resources/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 }

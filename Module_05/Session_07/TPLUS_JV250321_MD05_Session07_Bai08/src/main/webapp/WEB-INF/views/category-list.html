@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category List</title>
+    <link rel="stylesheet" th:href="@{/resources/css/style.css}">
+</head>
+<body>
+<h1>Category List</h1>
+<a th:href="@{/add}">Thêm danh mục</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Category Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.id}"></td>
+        <td th:text="${category.categoryName}"></td>
+        <td th:text="${category.description}"></td>
+        <td th:text="${category.status ? 'Hoạt động' : 'Không hoạt động'}"></td>
+        <td>
+            <a th:href="@{/edit/{id}(id=${category.id})}">Sửa</a>
+            <a th:href="@{/delete/{id}(id=${category.id})}" onclick="Bạn có chắc chắn muốn xóa?"
+            >Xóa</a>
+        </td>
+    </tr>
+</table>
+<div th:if="${errorMsg}" class="error">
+    <p th:text="${errorMsg}"></p>
+</div>
+<div th:if="${successMsg}" class="success">
+    <p th:text="${successMsg}"></p>
+</div>
+</body>
+</html>

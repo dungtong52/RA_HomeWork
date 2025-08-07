@@ -1,0 +1,67 @@
+create database db_game;
+use db_game;
+
+create table users
+(
+    id       int primary key auto_increment,
+    username varchar(100) unique,
+    password varchar(100),
+    email    varchar(100),
+    balance  double
+);
+
+create table seeds
+(
+    id         int primary key auto_increment,
+    seeds_name varchar(100),
+    price      double,
+    image_url  varchar(255)
+);
+
+delimiter //
+
+create procedure insert_user(
+    in u_username varchar(100),
+    in u_password varchar(100),
+    in u_email varchar(100),
+    in u_balance double
+)
+begin
+    insert into users(username, password, email, balance)
+    values (u_username, u_password, u_email, u_balance);
+end //
+
+create procedure check_username_exists(
+    in u_username varchar(100)
+)
+begin
+    select id from users where username = u_username;
+end //
+
+create procedure find_user(
+    in u_username varchar(100),
+    in u_password varchar(100)
+)
+begin
+    select * from users where username = u_username and password = u_password;
+end //
+
+create procedure get_all_seeds()
+begin
+    select * from seeds;
+end //
+
+delimiter ;
+
+INSERT INTO users (username, password, email)
+VALUES ('admin', 'admin123', 'admin@example.com'),
+       ('dungtran', '123456', 'dung@example.com'),
+       ('alice', 'alice123', 'alice@example.com');
+
+INSERT INTO seeds (seeds_name, price, image_url)
+VALUES ('Hạt giống Cà chua', 5000, 'https://via.placeholder.com/150?text=Ca+chua'),
+       ('Hạt giống Cải ngọt', 3000, 'https://via.placeholder.com/150?text=Cai+ngot'),
+       ('Hạt giống Bí đỏ', 7000, 'https://via.placeholder.com/150?text=Bi+do'),
+       ('Hạt giống Hoa hướng dương', 8000, 'https://via.placeholder.com/150?text=Huong+duong'),
+       ('Hạt giống Dưa hấu', 9000, 'https://via.placeholder.com/150?text=Dua+hau'),
+       ('Hạt giống Xà lách', 3500, 'https://via.placeholder.com/150?text=Xa+lach');
