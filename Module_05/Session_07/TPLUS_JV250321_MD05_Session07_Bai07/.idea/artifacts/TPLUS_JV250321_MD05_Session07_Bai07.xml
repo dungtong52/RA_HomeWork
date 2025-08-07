@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="TPLUS_JV250321_MD05_Session07_Bai07">
+    <output-path>$PROJECT_DIR$/out/artifacts/TPLUS_JV250321_MD05_Session07_Bai07</output-path>
+    <root id="root" />
+  </artifact>
+</component>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết quả</title>
+</head>
+<body>
+<h2>Thông tin bạn đã nhập</h2>
+
+<p><strong>Tên:</strong> <span th:text="${user.name}"></span></p>
+<p><strong>Tuổi:</strong> <span th:text="${user.age}"></span></p>
+<p><strong>Địa chỉ:</strong> <span th:text="${user.address}"></span></p>
+
+<a th:href="@{/userForm}">Quay lại Form</a>
+</body>
+</html>
