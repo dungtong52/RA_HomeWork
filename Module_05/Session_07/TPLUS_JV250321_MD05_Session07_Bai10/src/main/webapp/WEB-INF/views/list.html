@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List Movie</title>
@@ -25,10 +25,13 @@
             <td th:text="${movie.director}"></td>
             <td th:text="${movie.releaseDate}"></td>
             <td th:text="${movie.genre}"></td>
-            <td th:text="${movie.poster}"></td>
+            <td>
+                <img th:src="${movie.poster}" th:alt="${movie.title}" style="width:100px; height:auto;">
+            </td>
             <td>
                 <a th:href="@{/edit/{id}(id=${movie.id})}">Sửa</a>
-                <a th:href="@{/delete/{id}(id=${movie.id})}" onclick="Bạn có chắc chắn muốn xóa?"
+                <a th:href="@{/delete/{id}(id=${movie.id})}"
+                   onclick="return confirm('Bạn có chắc chắn muốn xóa?')"
                 >Xóa</a>
             </td>
         </tr>

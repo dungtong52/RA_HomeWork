@@ -35,7 +35,7 @@ public class CategoryController {
         if (result.hasErrors()) {
             return "category-add";
         } else if (categoryService.checkExistCategoryName(category.getCategoryName())) {
-            result.reject("categoryName", "Tên danh mục phải là duy nhất");
+            result.rejectValue("categoryName", null,  "Tên danh mục phải là duy nhất");
             return "category-add";
         }
         boolean success = categoryService.saveCategory(category);
@@ -63,7 +63,7 @@ public class CategoryController {
         if (result.hasErrors()) {
             return "category-edit";
         } else if (categoryService.checkExistCategoryName(category.getCategoryName())) {
-            result.reject("categoryName", "Tên danh mục phải là duy nhất");
+            result.rejectValue("categoryName", "Tên danh mục phải là duy nhất");
             return "category-edit";
         }
         boolean success = categoryService.updateCategory(category);

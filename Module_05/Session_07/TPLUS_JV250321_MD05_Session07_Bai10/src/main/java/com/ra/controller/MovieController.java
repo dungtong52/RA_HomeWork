@@ -1,6 +1,7 @@
 package com.ra.controller;
 
 import com.ra.model.Movie;
+import com.ra.service.CloudinaryService;
 import com.ra.service.MovieService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +9,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
 public class MovieController {
-    @Autowired
-    private MovieService movieService;
+    private final MovieService movieService;
+    private final CloudinaryService cloudinaryService;
 
-    @GetMapping
+    @Autowired
+    public MovieController(MovieService movieService, CloudinaryService cloudinaryService) {
+        this.movieService = movieService;
+        this.cloudinaryService = cloudinaryService;
+    }
+
+    @GetMapping("/")
     public String showAllMovie(Model model) {
         List<Movie> movieList = movieService.findAll();
         model.addAttribute("movies", movieList);
@@ -33,10 +41,23 @@ public class MovieController {
     }
 
     @PostMapping("/add")
-    public String addMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String addMovie(@Valid @ModelAttribute("movie") Movie movie,
+                           BindingResult result,
+                           @RequestParam("imageFile") MultipartFile uploadFile,
+                           Model model,
+                           RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "add";
         }
+        String imageUrl = null;
+        try {
+            imageUrl = cloudinaryService.uploadFile(uploadFile);
+            movie.setPoster(imageUrl);
+        } catch (IOException e) {
+            model.addAttribute("error", "Có lỗi khi upload file");
+            return "add";
+        }
+        
         boolean success = movieService.saveMovie(movie);
         if (!success) {
             model.addAttribute("error", "Thêm mới không thành công");
@@ -60,10 +81,24 @@ public class MovieController {
     }
 
     @PostMapping("/edit")
-    public String editMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String editMovie(@Valid @ModelAttribute("movie") Movie movie,
+                            BindingResult result,
+                            @RequestParam("imageFile") MultipartFile uploadFile,
+                            Model model,
+                            RedirectAttributes redirectAttributes) {
+
         if (result.hasErrors()) {
             return "edit";
         }
+
+        try {
+            String imageUrl = cloudinaryService.uploadFile(uploadFile);
+            movie.setPoster(imageUrl);
+        } catch (IOException e) {
+            model.addAttribute("error", "Có lỗi khi upload file");
+            return "edit";
+        }
+
         boolean success = movieService.updateMovie(movie);
         if (!success) {
             model.addAttribute("error", "Sửa không thành công");

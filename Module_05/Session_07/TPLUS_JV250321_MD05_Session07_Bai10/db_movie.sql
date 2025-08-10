@@ -1,0 +1,81 @@
+create database db_movie;
+use db_movie;
+
+create table movie
+(
+    id           int auto_increment primary key,
+    title        varchar(100) not null,
+    director     varchar(50)  not null,
+    release_date date,
+    genre        varchar(30)  not null,
+    poster       varchar(255)
+);
+
+DELIMITER //
+create procedure add_movie(
+    in_title varchar(100),
+    in_director varchar(50),
+    in_release_date date,
+    in_genre varchar(30),
+    in_poster varchar(255)
+)
+begin
+    insert into movie (title, director, release_date, genre, poster)
+    values (in_title, in_director, in_release_date, in_genre, in_poster);
+end //
+
+create procedure update_movie(
+    in_id int,
+    in_title varchar(100),
+    in_director varchar(50),
+    in_release_date date,
+    in_genre varchar(30),
+    in_poster varchar(255)
+)
+begin
+    update movie
+    set title        = in_title,
+        director     = in_director,
+        release_date = in_release_date,
+        genre        = in_genre,
+        poster       = in_poster
+    where id = in_id;
+end //
+
+create procedure delete_movie(
+    in_id int
+)
+begin
+    delete from movie where id = in_id;
+end //
+
+create procedure get_all_movies()
+begin
+    select * from movie order by id;
+end //
+
+create procedure get_movie_by_id(in_id int)
+begin
+    select * from movie where id = in_id;
+end //
+
+DELIMITER ;
+
+INSERT INTO movie (title, director, release_date, genre, poster)
+VALUES ('Inception', 'Christopher Nolan', '2010-07-16', 'Sci-Fi',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/inception.jpg'),
+       ('Parasite', 'Bong Joon-ho', '2019-05-30', 'Thriller',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/parasite.jpg'),
+       ('Spirited Away', 'Hayao Miyazaki', '2001-07-20', 'Animation',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/spiritedaway.jpg'),
+       ('The Shawshank Redemption', 'Frank Darabont', '1994-09-22', 'Drama',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/shawshank.jpg'),
+       ('The Matrix', 'The Wachowskis', '1999-03-31', 'Action',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/matrix.jpg'),
+       ('Interstellar', 'Christopher Nolan', '2014-11-07', 'Sci-Fi',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/interstellar.jpg'),
+       ('Your Name', 'Makoto Shinkai', '2016-08-26', 'Romance',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/yourname.jpg'),
+       ('Avengers: Endgame', 'Anthony and Joe Russo', '2019-04-26', 'Superhero',
+        'https://res.cloudinary.com/demo/image/upload/v1690000000/endgame.jpg');
+

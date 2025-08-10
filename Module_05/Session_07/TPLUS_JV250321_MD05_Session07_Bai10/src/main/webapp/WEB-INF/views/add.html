@@ -9,7 +9,7 @@
 <div class="container">
     <h1>Add Movie</h1>
     <p th:text="${error}" class="error"></p>
-    <form th:action="@{/add}" th:object="${movie}" method="post">
+    <form th:action="@{/add}" th:object="${movie}" method="post" enctype="multipart/form-data">
         <label for="title" class="label">Title</label>
         <input type="text" id="title" th:field="*{title}" class="input">
         <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
@@ -26,7 +26,8 @@
         <div th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}" class="error"></div>
 
         <label for="poster" class="label">Poster</label>
-        <input type="text" id="poster" th:field="*{poster}" class="input">
+        <input type="file" id="poster" name="imageFile" class="input">
+        <div th:if="${#fields.hasErrors('poster')}" th:errors="*{poster}" class="error"></div>
 
         <input type="submit" value="Add" class="btn">
     </form>

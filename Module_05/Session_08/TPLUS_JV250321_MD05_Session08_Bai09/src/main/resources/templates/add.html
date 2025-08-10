@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/static/style.css}">
+    <title>Add Bus</title>
+</head>
+<body>
+<div class="container">
+    <h1>Add Bus</h1>
+    <form th:action="@{/add}" th:object="${bus}" method="post" enctype="multipart/form-data">
+        <label for="license-plate">License Plate</label>
+        <input type="text" id="license-plate" th:field="*{licensePlate}" class="input">
+        <div class="error" th:if="${#fields.hasErrors('licensePlate')}" th:errors="*{licensePlate}"></div>
+
+        <label for="bus-type">Bus Type</label>
+        <select id="bus-type" th:field="*{busType}" class="input">
+            <option value="" disabled selected> -- Chọn loại xe --</option>
+            <option th:each="type : ${busTypes}"
+                    th:value="${type}"
+                    th:text="${type.getShowType()}"
+            ></option>
+        </select>
+        <div class="error" th:if="${#fields.hasErrors('busType')}" th:errors="*{busType}"></div>
+
+        <label for="row-seat">Row Seat</label>
+        <input type="number" id="row-seat" th:field="*{rowSeat}" class="input">
+        <div class="error" th:if="${#fields.hasErrors('rowSeat')}" th:errors="*{rowSeat}"></div>
+
+        <label for="col-seat">Column Seat</label>
+        <input type="number" id="col-seat" th:field="*{colSeat}" class="input">
+        <div class="error" th:if="${#fields.hasErrors('colSeat')}" th:errors="*{colSeat}"></div>
+
+        <label for="image">Image</label>
+        <input type="file" id="image" name="imageFile" class="input">
+        <div class="error" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></div>
+
+        <input type="submit" class="btn" th:value="ADD">
+    </form>
+    <div th:if="${errorMsg}" class="error">
+        <p th:text="${errorMsg}"></p>
+    </div>
+</div>
+</body>
+</html>
