@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="form-container">
+    <h2>Thêm Mới Danh Mục</h2>
+    <p th:if="${error}" th:text="${error}" style="color: red"></p>
+
+    <form th:action="@{/categoryController/addCategory}" method="post">
+        <label for="categoryNameVi">Tên Danh Mục:</label>
+        <input type="text" id="categoryNameVi" name="categoryNameVi" required>
+
+        <label for="categoryNameEn">Category Name:</label>
+        <input type="text" id="categoryNameEn" name="categoryNameEn" required>
+
+        <label for="descriptionVi">Mô Tả:</label>
+        <textarea id="descriptionVi" name="descriptionVi"></textarea>
+
+        <label for="descriptionEn">Description:</label>
+        <textarea id="descriptionEn" name="descriptionEn"></textarea>
+
+        <button type="submit">Thêm</button>
+    </form>
+</div>
+</body>
+</html>

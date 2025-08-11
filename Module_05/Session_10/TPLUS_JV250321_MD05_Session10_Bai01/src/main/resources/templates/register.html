@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Đăng ký</title>
+    <link rel="stylesheet" th:href="@{/static/registerStyle.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Đăng ký tài khoản</h2>
+    <form th:action="@{/}" th:object="${customer}" method="post">
+        <label for="full-name">Họ và tên</label>
+        <input type="text" id="full-name" th:field="*{fullName}" placeholder="Nhập họ và tên" required>
+        <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+
+        <label for="phone-number">Số điện thoại</label>
+        <input type="tel" id="phone-number" th:field="*{phoneNumber}" pattern="0[0-9]{9}"
+               placeholder="Nhập số điện thoại" required>
+        <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Nhập email" required>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" th:field="*{password}" minlength="6" placeholder="Nhập mật khẩu" required>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+        <label for="address">Địa chỉ</label>
+        <textarea id="address" th:field="*{address}" placeholder="Nhập địa chỉ" required></textarea>
+        <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+
+        <label for="role">Vai trò</label>
+        <select id="role" th:field="*{role}" required>
+            <option value="" disabled selected>-- Chọn vai trò --</option>
+            <option th:each="role : ${roles}"
+                    th:value="${role}"
+                    th:text="${role}"
+            ></option>
+        </select>
+        <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
+
+        <button type="submit" class="btn">Đăng ký</button>
+    </form>
+    <a th:href="@{/login}" class="redirect-login">Bạn đã có tài khoản</a>
+</div>
+</body>
+</html>

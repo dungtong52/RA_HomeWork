@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa phòng</title>
+    <link rel="stylesheet" th:href="@{/static/roomStyle.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Sửa phòng</h1>
+    <form th:action="@{/room/edit}" th:object="${room}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Tên phòng:</label>
+        <input type="text" th:field="*{roomName}">
+
+        <label>Loại phòng:</label>
+        <input type="text" th:field="*{roomType}">
+
+        <label>Trạng thái:</label>
+        <select th:field="*{status}">
+            <option th:each="s : ${statuses}" th:value="${s}" th:text="${s}"></option>
+        </select>
+
+        <label>Giá:</label>
+        <input type="number" step="0.01" th:field="*{price}">
+
+        <label>Hình ảnh (URL):</label>
+        <input type="text" th:field="*{image}">
+
+        <button type="submit" class="btn">Cập nhật</button>
+        <a href="/room" class="btn-cancel">Hủy</a>
+    </form>
+</div>
+</body>
+</html>

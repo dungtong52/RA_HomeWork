@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách khách hàng</title>
+  <link rel="stylesheet" th:href="@{/static/listStyle.css}">
+</head>
+<body>
+<h1>Danh sách khách hàng</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Họ tên</th>
+    <th>SĐT</th>
+    <th>Email</th>
+    <th>Địa chỉ</th>
+    <th>Vai trò</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="customer : ${customers}">
+    <td th:text="${customer.id}"></td>
+    <td th:text="${customer.fullName}"></td>
+    <td th:text="${customer.phoneNumber}"></td>
+    <td th:text="${customer.email}"></td>
+    <td th:text="${customer.address}"></td>
+    <td th:text="${customer.role}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Phân trang -->
+<div class="pagination" th:if="${totalPages > 1}">
+  <a th:each="i : ${#numbers.sequence(1, totalPages)}"
+     th:href="@{'/customer'(page=${i}, size=${pageSize})}"
+     th:text="${i}"
+     th:classappend="${i == currentPage} ? 'active' : ''">
+  </a>
+</div>
+
+</body>
+</html>

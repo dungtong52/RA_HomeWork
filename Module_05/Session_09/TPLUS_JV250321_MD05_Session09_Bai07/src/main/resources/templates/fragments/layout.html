@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--Header-->
+<header th:fragment="header">
+    <h1 th:text="${title}">Default Title</h1>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/about}">About</a>
+        <a th:href="@{/contact}">Contact</a>
+    </nav>
+</header>
+
+<!--Footer-->
+<footer th:fragment="footer">
+    <p>&copy; 2025 My Website</p>
+</footer>
+
+</body>
+</html>

@@ -9,51 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa3a1ca-cf20-4fb6-9be4-548c274014a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/com/ra/validator/ValidEmail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai04/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai04/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/ra/edu/btvn05/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/com/ra/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/ra/edu/btvn05/config/WebInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/com/ra/config/WebInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/ra/edu/btvn05/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/com/ra/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/ra/edu/btvn05/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/com/ra/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/ra/edu/btvn05/validator/UserDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/java/ra/edu/btvn05/validator/UserValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai05/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/ra/edu/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/com/ra/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/ra/edu/config/WebInitial.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/com/ra/config/WebInitial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/ra/edu/controller/phoneNumberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/com/ra/controller/phoneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/ra/edu/entity/ValidPhone.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/com/ra/validator/ValidPhone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/ra/edu/entity/ValidatorPhoneNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/com/ra/validator/ValidatorPhoneNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/ra/edu/entity/userForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/java/com/ra/entity/userForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/webapp/view/checknumberphone.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/webapp/view/phone-form.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/webapp/view/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai06/src/main/webapp/view/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai08/src/main/java/com/ra/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai08/src/main/java/com/ra/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/db_movie.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/java/com/ra/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/java/com/ra/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/java/com/ra/config/WebInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/java/com/ra/config/WebInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/java/com/ra/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/java/com/ra/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/webapp/WEB-INF/views/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/webapp/WEB-INF/views/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/webapp/WEB-INF/views/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/webapp/WEB-INF/views/edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/webapp/WEB-INF/views/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Session_07/TPLUS_JV250321_MD05_Session07_Bai10/src/main/webapp/WEB-INF/views/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1aa3a1ca-cf20-4fb6-9be4-548c274014a2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -224,6 +180,7 @@
       <workItem from="1754798571829" duration="2706000" />
       <workItem from="1754819228223" duration="3494000" />
       <workItem from="1754822777969" duration="1665000" />
+      <workItem from="1754835288041" duration="60000" />
     </task>
     <servers />
   </component>

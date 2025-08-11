@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phòng</title>
+    <link rel="stylesheet" th:href="@{/static/roomStyle.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Danh sách phòng</h1>
+    <a href="/room/add" class="btn">+ Thêm phòng</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên phòng</th>
+            <th>Loại phòng</th>
+            <th>Trạng thái</th>
+            <th>Giá</th>
+<!--            <th>Hình ảnh</th>-->
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.id}"></td>
+            <td th:text="${room.roomName}"></td>
+            <td th:text="${room.roomType}"></td>
+            <td th:text="${room.status}"></td>
+            <td th:text="${room.price}"></td>
+<!--            <td>-->
+<!--                <img th:src="@{${room.image}}" alt="room image" width="80">-->
+<!--            </td>-->
+            <td>
+                <a th:href="@{'/room/edit/' + ${room.id}}" class="btn-edit">Sửa</a>
+                <a th:href="@{'/room/delete/' + ${room.id}}" class="btn-delete"
+                   onclick="return confirm('Xóa phòng này?')">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <a th:each="pageNum : ${#numbers.sequence(1, totalPages)}"
+           th:href="@{'/room?page=' + ${pageNum} + '&size=' + ${pageSize}}"
+           th:text="${pageNum}"
+           th:classappend="${pageNum == currentPage} ? 'active'">
+        </a>
+    </div>
+</div>
+</body>
+</html>
