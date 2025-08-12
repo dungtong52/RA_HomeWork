@@ -1,8 +1,9 @@
-package com.ra.service;
+package com.ra.service.impl;
 
 import com.ra.model.Customer;
 import com.ra.repository.CustomerRepository;
 import com.ra.model.PaginationResult;
+import com.ra.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

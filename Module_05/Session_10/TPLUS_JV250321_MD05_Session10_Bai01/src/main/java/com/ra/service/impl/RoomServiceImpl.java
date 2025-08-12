@@ -1,10 +1,10 @@
-package com.ra.service;
+package com.ra.service.impl;
 
 import com.ra.model.PaginationResult;
 import com.ra.model.Room;
 import com.ra.repository.RoomRepository;
+import com.ra.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 @Service

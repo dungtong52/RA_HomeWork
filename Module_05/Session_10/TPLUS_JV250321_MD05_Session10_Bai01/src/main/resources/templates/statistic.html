@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Admin Statistics</title>
+    <link rel="stylesheet" th:href="@{/static/statisticStyle.css}">
+</head>
+<body>
+<h1>Thống kê trang quản lý</h1>
+
+<p><strong>Số lượng khách hàng:</strong> <span th:text="${customerCount}"></span></p>
+<p><strong>Doanh thu tháng hiện tại:</strong> <span
+        th:text="${#numbers.formatDecimal(monthlyRevenue, 0, 'COMMA', 2, 'POINT')}"></span> VNĐ</p>
+
+<h2>Top 3 phòng được đặt nhiều nhất</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Phòng</th>
+        <th>Số lượt đặt</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="room : ${topRooms}">
+        <td th:text="${room.roomName}"></td>
+        <td>???</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Top 5 khách hàng đặt phòng nhiều nhất</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Khách hàng</th>
+        <th>Số lượt đặt</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${topCustomers}">
+        <td th:text="${customer.fullName}"></td>
+        <td>???</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

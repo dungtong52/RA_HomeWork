@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Danh sách phòng</title>
+    <link rel="stylesheet" th:href="@{/static/roomStyle.css}">
+</head>
+<body>
+<h1>Danh sách phòng khách sạn</h1>
+
+<table>
+    <tr>
+        <th>Tên phòng</th>
+        <th>Loại phòng</th>
+        <th>Giá</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.roomName}"></td>
+        <td th:text="${room.roomType}"></td>
+        <td th:text="${room.price}"></td>
+        <td th:text="${room.status}"></td>
+        <td>
+            <a th:if="${room.status.name() == 'EMPTY'}"
+               th:href="@{'/home/bookings'(roomId=${room.id})}"
+               class="btn btn-primary">
+                Book Room
+            </a>
+            <span th:if="${room.status.name() == 'PLACED'}"
+                  class="btn btn-secondary disabled"
+                  style="pointer-events:none;">
+                Đã đặt
+            </span>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

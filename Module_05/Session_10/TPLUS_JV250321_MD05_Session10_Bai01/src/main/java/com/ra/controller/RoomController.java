@@ -29,12 +29,12 @@ public class RoomController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", pagination.getTotalPages());
         model.addAttribute("pageSize", size);
-        System.out.println(123);
+
         return "room/list";
     }
 
     @GetMapping("/add")
-    public String showAddForm(Model model) {
+    public String initAddForm(Model model) {
         model.addAttribute("room", new Room());
         model.addAttribute("statuses", RoomStatus.values());
         return "room/add";
@@ -59,7 +59,7 @@ public class RoomController {
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable("id") long id, Model model) {
+    public String initEditForm(@PathVariable("id") long id, Model model) {
         Room room = roomService.findById(id);
         if (room == null) {
             return "redirect:/room";
@@ -89,7 +89,7 @@ public class RoomController {
 
     @GetMapping("/delete/{id}")
     public String deleteRoom(@PathVariable("id") long id) {
-        roomService.deleteRoom(id);
+        boolean success = roomService.deleteRoom(id);
         return "redirect:/room";
     }
 }

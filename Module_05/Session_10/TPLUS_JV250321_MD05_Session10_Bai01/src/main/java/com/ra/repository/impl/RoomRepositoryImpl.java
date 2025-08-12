@@ -1,8 +1,9 @@
-package com.ra.repository;
+package com.ra.repository.impl;
 
 import com.ra.model.PaginationResult;
 import com.ra.model.Room;
 import com.ra.model.RoomStatus;
+import com.ra.repository.RoomRepository;
 import com.ra.utils.ConnectionDB;
 import org.springframework.stereotype.Repository;
 

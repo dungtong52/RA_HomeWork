@@ -61,7 +61,7 @@ public class CustomerController {
         if(customerLogin.getRole() == CustomerRole.ADMIN){
             return "redirect:/room";
         } else {
-            return "home";
+            return "redirect:/home";
         }
     }
 

@@ -1,8 +1,9 @@
-package com.ra.repository;
+package com.ra.repository.impl;
 
 import com.ra.model.Customer;
 import com.ra.model.PaginationResult;
 import com.ra.model.CustomerRole;
+import com.ra.repository.CustomerRepository;
 import com.ra.utils.ConnectionDB;
 import org.springframework.stereotype.Repository;
 
