@@ -1,8 +1,98 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
+    <meta charset="UTF-8">
     <title>Thêm bài viết mới</title>
-    <link rel="stylesheet" th:href="/assets/css/addPostStyle.css">
+    <style>
+        body, h1, h2, p, textarea, input, button {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 60px;
+        }
+
+        form {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            margin-top: 12px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        input[type="file"] {
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .errorMsg {
+            color: red;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -19,7 +109,7 @@
     <button type="submit">Đăng bài</button>
 </form>
 
-<p th:if="${errorMsg}" th:text="${errorMsg}"></p>
+<p th:if="${errorMsg}" th:text="${errorMsg}" class="errorMsg"></p>
 
 </body>
 </html>

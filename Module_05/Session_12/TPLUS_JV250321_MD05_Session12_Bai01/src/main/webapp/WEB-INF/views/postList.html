@@ -1,9 +1,72 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
 <head>
     <meta charset="UTF-8">
     <title>Danh sách bài viết</title>
-    <link rel="stylesheet" th:href="@{/static/css/style.css}">
+    <style>
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f2f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .post-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 0 auto 20px auto;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .post-header {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .post-header span {
+            font-weight: normal;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .post-content {
+            margin: 10px 0;
+            color: #444;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .post-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .post-date {
+            font-size: 12px;
+            color: #888;
+        }
+
+    </style>
 </head>
 <body>
 <h1>Danh sách bài viết</h1>
@@ -12,15 +75,18 @@
     <p>Chưa có bài viết nào.</p>
 </div>
 
-<div th:each="post : ${posts}" style="border:1px solid #ccc; margin-bottom:10px; padding:10px;">
-    <p><strong th:text="${post.user.fullName}"></strong>
+<a th:href="@{/posts/add}">Thêm mới bài viết</a>
+
+<div th:each="post : ${posts}" class="post-card">
+    <p class="post-header">
+        <strong th:text="${post.user.fullName}"></strong>
         <span th:if="${post.friend != null}">
             viết bởi <strong th:text="${post.friend.fullName}"></strong>
         </span>
     </p>
-    <p th:text="${post.content}"></p>
-    <img th:if="${post.image != null}" th:src="${post.image}" alt="Post image" style="max-width:300px;">
-    <p><small th:text="${post.createdDate}"></small></p>
+    <p class="post-content" th:text="${post.content}"></p>
+    <img th:if="${post.image != null}" th:src="${post.image}" alt="Post image" class="post-image">
+    <p class="post-date"><small th:text="${post.createdDate}"></small></p>
 </div>
 
 </body>

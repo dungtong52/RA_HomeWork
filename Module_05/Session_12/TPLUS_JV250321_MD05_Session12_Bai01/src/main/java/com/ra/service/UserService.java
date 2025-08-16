@@ -18,4 +18,6 @@ public interface UserService {
     User findByEmail(String email);
 
     void addFriend(User currentUser, User friend);
+
+    List<User> findAllFriend(Long id);
 }

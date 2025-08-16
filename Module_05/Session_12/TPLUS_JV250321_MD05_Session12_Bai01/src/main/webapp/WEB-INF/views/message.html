@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <title>Chat với bạn bè</title>
+    <style>
+        .chat-box {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .sent {
+            background: #e6f7ff;
+            text-align: right;
+        }
+        .received {
+            background: #f5f5f5;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align:center;">Nhắn tin với bạn bè</h2>
+
+<div class="chat-box">
+    <div th:each="msg : ${messages}"
+         th:classappend="${msg.sender.id == senderId} ? 'sent' : 'received'"
+         class="message">
+        <p th:text="${msg.content}"></p>
+        <small th:text="${#temporals.format(msg.sentDate, 'dd/MM/yyyy HH:mm')}"></small>
+    </div>
+</div>
+
+<form th:action="@{/messages/sender/{sId}/receiver/{rId}(sId=${senderId}, rId=${receiverId})}"
+      th:object="${newMessage}" method="post" style="text-align:center;">
+    <textarea th:field="*{content}" rows="3" cols="50" placeholder="Nhập tin nhắn..."></textarea><br>
+    <button type="submit">Gửi</button>
+</form>
+
+<a th:href="@{/users/all-friend}" style="display:block; text-align:center; margin-top:15px;">Quay lại danh sách bạn bè</a>
+</body>
+</html>

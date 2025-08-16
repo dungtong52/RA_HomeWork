@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm bác sĩ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .actions {
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Thêm bác sĩ</h2>
+
+<form th:action="@{/doctors/add}" th:object="${doctor}" method="post">
+    <label for="fullName">Họ và tên</label>
+    <input id="fullName" type="text" th:field="*{fullName}" required>
+    <div class="error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+
+    <label for="specialization">Chuyên khoa</label>
+    <input id="specialization" type="text" th:field="*{specialization}" required>
+    <div class="error" th:if="${#fields.hasErrors('specialization')}" th:errors="*{specialization}"></div>
+
+    <label for="contact">Thông tin liên lạc</label>
+    <textarea id="contact" th:field="*{contact}" rows="3" required></textarea>
+    <div class="error" th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"></div>
+
+    <label for="phone">Số điện thoại</label>
+    <input id="phone" type="text" th:field="*{phone}" required>
+    <div class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+
+    <input type="hidden" th:field="*{status}" value="true"/>
+
+    <div class="actions">
+        <a class="btn-secondary" th:href="@{/doctors}">Quay lại</a>
+        <button type="submit" class="btn-primary">Lưu</button>
+    </div>
+</form>
+
+</body>
+</html>

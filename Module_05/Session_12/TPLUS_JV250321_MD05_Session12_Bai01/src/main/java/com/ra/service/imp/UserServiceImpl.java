@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -61,4 +60,8 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public List<User> findAllFriend(Long id) {
+        return userRepository.findAllFriend(id);
+    }
 }

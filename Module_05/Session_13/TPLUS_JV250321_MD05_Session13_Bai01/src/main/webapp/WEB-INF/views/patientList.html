@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Bệnh nhân</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .status-true {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-false {
+            color: red;
+            font-weight: bold;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .edit-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .restore-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Danh sách Bệnh nhân</h2>
+    <a th:href="@{/patients/add}" class="btn">Thêm Bệnh nhân</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Họ tên</th>
+            <th>Ngày sinh</th>
+            <th>Liên lạc</th>
+            <th>Điện thoại</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.fullName}"></td>
+            <td th:text="${patient.dob}"></td>
+            <td th:text="${patient.contact}"></td>
+            <td th:text="${patient.phone}"></td>
+            <td>
+                <span th:classappend="${patient.status} ? 'status-true' : 'status-false'"
+                      th:text="${patient.status} ? 'Đang hoạt động' : 'Ngừng'">
+                </span>
+            </td>
+            <td>
+                <a class="action-btn edit-btn"
+                   th:href="@{/patients/edit/{id}(id=${patient.id})}">Sửa</a>
+
+                <a class="action-btn delete-btn"
+                   th:href="@{/patients/delete/{id}(id=${patient.id})}"
+                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+
+                <a class="action-btn restore-btn"
+                   th:href="@{/patients/restore/{id}(id=${patient.id})}">Khôi phục</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -13,9 +13,8 @@ public interface UserRepository {
 
     List<User> findAll();
 
-    void delete(Long id);
-
     void update(User user);
 
+    List<User> findAllFriend(Long id);
 
 }

@@ -15,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Controller
 @RequestMapping
 public class UserController {
@@ -64,7 +66,7 @@ public class UserController {
 
         if (user != null) {
             session.setAttribute("loggedInUser", user);
-            return "redirect:/user";
+            return "redirect:/users";
         } else {
             model.addAttribute("error", "Email hoặc mật khẩu không đúng");
             return "login";
@@ -79,7 +81,7 @@ public class UserController {
 
     // User
 
-    @GetMapping("/user")
+    @GetMapping("/users")
     public String profile(HttpSession session, Model model) {
         User currentUser = (User) session.getAttribute("loggedInUser");
         if (currentUser == null) {
@@ -89,7 +91,7 @@ public class UserController {
         return "profile";
     }
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     public String updateProfile(@ModelAttribute("user") User updateUser,
                                 @RequestParam("avatarImg") MultipartFile avatarImg,
                                 HttpSession session) {
@@ -112,22 +114,24 @@ public class UserController {
         }
         userService.update(currentUser);
         session.setAttribute("loggedInUser", currentUser);
-        return "redirect:/user";
+        return "redirect:/users";
     }
 
     @GetMapping("/users/search")
-    public String showSearchFriendForm(){
+    public String showSearchFriendForm() {
         return "searchFriend";
     }
 
-    @PostMapping("/user/search")
+    @PostMapping("/users/search-user")
     public String searchFriend(@RequestParam("email") String email,
                                HttpSession session,
-                               Model model){
+                               Model model) {
         User currentUser = (User) session.getAttribute("loggedInUser");
         User foundUser = userService.findByEmail(email);
-        if(foundUser!=null && !foundUser.getId().equals(currentUser.getId())){
-            boolean isAlreadyFriend = currentUser.getFriends().contains(foundUser);
+
+        if (foundUser != null && !foundUser.getId().equals(currentUser.getId())) {
+            boolean isAlreadyFriend = currentUser.getFriends().stream()
+                    .anyMatch(f -> f.getId().equals(foundUser.getId()));
             model.addAttribute("foundUser", foundUser);
             model.addAttribute("alreadyFriend", isAlreadyFriend);
         } else {
@@ -136,14 +140,24 @@ public class UserController {
         return "searchFriend";
     }
 
-    @GetMapping("/user/add-friend")
+    @GetMapping("/users/add-friend")
     public String addFriend(@RequestParam("friendId") Long friendId,
-                            HttpSession session){
+                            HttpSession session) {
         User currentUser = (User) session.getAttribute("loggedInUser");
         User friend = userService.findByEmail(userService.findById(friendId).getEmail());
 
         userService.addFriend(currentUser, friend);
 
-        return "redirect:/profile";
+        return "redirect:/users/all-friend";
+    }
+
+    @GetMapping("/users/all-friend")
+    public String showAllFriend(HttpSession session, Model model) {
+        User currentUser = (User) session.getAttribute("loggedInUser");
+        Long currentUserId = currentUser.getId();
+        List<User> userList = userService.findAllFriend(currentUserId);
+        model.addAttribute("friends", userList);
+        model.addAttribute("senderId", currentUserId);
+        return "listFriend";
     }
 }

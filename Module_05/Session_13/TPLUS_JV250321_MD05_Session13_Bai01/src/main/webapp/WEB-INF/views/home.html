@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Hệ thống Quản lý Phòng khám</h1>
+
+<a th:href="@{/doctors}" class="btn">Quản lý Bác sĩ</a>
+<a th:href="@{/patients}" class="btn">Quản lý Bệnh nhân</a>
+<a th:href="@{/appointments}" class="btn">Quản lý Lịch khám</a>
+</body>
+</html>

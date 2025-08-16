@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +29,11 @@ public class User {
     @Column(nullable = false)
     private String avatar;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_friends",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
-    @Builder.Default
     private List<User> friends = new ArrayList<>();
 }

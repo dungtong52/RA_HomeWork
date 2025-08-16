@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Patient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .actions {
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            background-color: #ddd;
+        }
+
+        .status-group {
+            display: flex;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .status-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .status-group input[type="radio"] {
+            accent-color: #4CAF50;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Cập nhật thông tin bệnh nhân</h2>
+
+<form th:action="@{/patients/edit}" th:object="${patient}" method="post">
+    <label for="id">Họ và tên</label>
+    <input id="id" type="number" th:field="*{id}" readonly>
+
+    <label for="fullName">Họ và tên</label>
+    <input id="fullName" type="text" th:field="*{fullName}" required>
+    <div class="error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+
+    <label>Ngày sinh:</label>
+    <input type="date" th:field="*{dob}" required/>
+    <div class="error" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
+
+    <label>Liên lạc:</label>
+    <input type="text" th:field="*{contact}" required/>
+    <div class="error" th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"></div>
+
+    <label>Điện thoại:</label>
+    <input type="text" th:field="*{phone}" required/>
+    <div class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+
+    <div class="status-group">
+        <label>
+            <input type="radio" th:field="*{status}" value="true"/> Đang hoạt dộng
+        </label>
+        <label>
+            <input type="radio" th:field="*{status}" value="false"/> Ngừng
+        </label>
+    </div>
+
+    <div class="actions">
+        <a class="btn-secondary" th:href="@{/patients}">Quay lại</a>
+        <button type="submit" class="btn-primary">Lưu</button>
+    </div>
+</form>
+
+</body>
+</html>
