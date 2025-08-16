@@ -55,7 +55,7 @@ public class BusController {
         try {
             String imageUrl = cloudinaryService.uploadFile(file);
             bus.setImage(imageUrl);
-            System.out.println(123);
+          
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("errorMsg", "Upload ảnh thất bại");
@@ -90,11 +90,11 @@ public class BusController {
             model.addAttribute("busTypes", BusType.values());
             return "update";
         }
-        System.out.println("Cạy ở POST edit trước khi up file");
+        
         try {
             String imageFile = cloudinaryService.uploadFile(file);
             bus.setImage(imageFile);
-            System.out.println(456);
+            
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("errorMsg", "Vui lòng chọn ảnh để upload");

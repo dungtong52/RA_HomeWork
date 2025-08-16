@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 30px auto;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+textarea {
+    padding: 10px;
+    resize: vertical;
+}
+input[type="file"] {
+    padding: 5px;
+}
+button {
+    padding: 10px;
+    background-color: #4cafef;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #3a8cd8;
+}
+.error {
+    color: red;
+    font-size: 14px;
+}

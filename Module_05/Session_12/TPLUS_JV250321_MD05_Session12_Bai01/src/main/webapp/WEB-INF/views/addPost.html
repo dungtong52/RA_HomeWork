@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm bài viết mới</title>
+    <link rel="stylesheet" th:href="/assets/css/addPostStyle.css">
+</head>
+<body>
+
+<h2>Thêm bài viết mới</h2>
+
+<form th:action="@{/posts/add}" th:object="${postDto}" method="post" enctype="multipart/form-data">
+    <label>Nội dung</label>
+    <textarea th:field="*{content}" rows="4"></textarea>
+    <div class="error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
+
+    <label>Hình ảnh (tùy chọn)</label>
+    <input type="file" th:field="*{image}">
+
+    <button type="submit">Đăng bài</button>
+</form>
+
+<p th:if="${errorMsg}" th:text="${errorMsg}"></p>
+
+</body>
+</html>

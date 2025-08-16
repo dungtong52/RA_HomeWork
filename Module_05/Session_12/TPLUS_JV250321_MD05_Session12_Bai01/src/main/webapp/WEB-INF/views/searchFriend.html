@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm kiếm bạn bè</title>
+</head>
+<body>
+<h1>Tìm kiếm bạn bè</h1>
+
+<form th:action="@{/users/search-user}" method="post">
+    <input type="email" name="email" placeholder="Nhập email bạn bè" required>
+    <button type="submit">Search</button>
+</form>
+
+<p th:if="${message}" th:text="${message}"></p>
+
+<div th:if="${foundUser}">
+    <p>Email: <span th:text="${foundUser.email}"></span></p>
+    <p>Họ tên: <span th:text="${foundUser.fullName}"></span></p>
+    <img th:src="${foundUser.avatar}" alt="avatar" width="100">
+
+    <a th:if="${!alreadyFriend}"
+       th:href="@{/users/add-friend(friendId=${foundUser.id})}">
+        <button type="button">Kết bạn</button>
+    </a>
+
+    <p th:if="${alreadyFriend}">Bạn đã là bạn bè với người này</p>
+</div>
+
+</body>
+</html>
